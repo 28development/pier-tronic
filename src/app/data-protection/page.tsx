@@ -25,7 +25,7 @@ export default function DataProtectionPage() {
                 <CardContent className='pt-6'>
                     <p className='mb-4'>
                         This mock privacy notice explains how <strong>Pier Tronic GmbH</strong>
-                        ("Pier Tronic", "we", "us") collects, uses, shares and protects
+                        (&ldquo;Pier Tronic&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects, uses, shares and protects
                         personal data when you visit our websites, interact with our services,
                         or contact us.
                     </p>

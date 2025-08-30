@@ -1,13 +1,13 @@
 import React from 'react'
 import { Mail, SendHorizonal } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { HeroHeader } from '@/components/header'
+
 import { LogoCloud } from '@/components/logo-cloud'
 import { TextEffect } from './ui/text-effect'
 import { AnimatedGroup } from './ui/animated-group'
 import Image from 'next/image'
 import { CountingNumber } from './ui/shadcn-io/counting-number'
-import { GradientText } from './ui/shadcn-io/gradient-text'
+
 
 const transitionVariants = {
     item: {
@@ -16,7 +16,7 @@ const transitionVariants = {
             opacity: 1,
             filter: 'blur(0px)',
             y: 0,
-            transition: { type: 'spring', bounce: 0.3, duration: 1.5 },
+            transition: { type: 'spring' as const, bounce: 0.3, duration: 1.5 },
         },
     },
 }
