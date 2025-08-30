@@ -3,7 +3,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ChevronsUpDown } from 'lucide-react'
 import Link from 'next/link'
-import { Logo } from './logo'
+import { LogoWordmark } from './logo'
 import { cn } from '@/lib/utils'
 
 const links = [
@@ -12,7 +12,7 @@ const links = [
         items: [
             {
                 title: 'About',
-                href: '#',
+                href: '#about',
             },
             {
                 title: 'Contact',
@@ -52,7 +52,7 @@ export default function FooterSection() {
                         href="/"
                         aria-label="go home"
                         className="block size-fit">
-                        <Logo />
+                        <LogoWordmark uniColor className="h-6 text-foreground" />
                     </Link>
                     <div className="flex flex-wrap justify-center gap-6 text-sm">
                         <Link
@@ -201,7 +201,7 @@ export default function FooterSection() {
                                 />
                                 <Button size="sm">Submit</Button>
                             </div>
-                            <span className="text-muted-foreground block text-sm">Don't miss any update!</span>
+                            <span className="text-muted-foreground block text-sm">Don&apos;t miss any update!</span>
                         </div>
                     </form>
                 </div>
