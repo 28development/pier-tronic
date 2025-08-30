@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { TextEffect } from './ui/text-effect'
+import { AnimatedGroup } from './ui/animated-group'
 
 const members = [
     {
@@ -39,6 +41,18 @@ const members = [
     },
 ]
 
+const transitionVariants = {
+    item: {
+        hidden: { opacity: 0, filter: 'blur(12px)', y: 12 },
+        visible: {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            transition: { type: 'spring' as const, bounce: 0.3, duration: 1.5 },
+        },
+    },
+}
+
 export default function TeamSection() {
     return (
         <section className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
@@ -46,13 +60,34 @@ export default function TeamSection() {
                 <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 px-6 dark:bg-gray-950">Artists</span>
                 <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">
                     <div className="sm:w-2/5">
-                        <h2 className="text-3xl font-bold sm:text-4xl">Our Artists</h2>
+                        <TextEffect
+                            preset="fade-in-blur"
+                            speedSegment={0.3}
+                            as="h2"
+                            className="text-3xl font-bold sm:text-4xl"
+                        >
+                            Our Artists
+                        </TextEffect>
                     </div>
                     <div className="mt-6 sm:mt-0">
-                        <p>Our artists are the heart of our events. They are the ones who create the magic that makes our events so special.</p>
+                        <TextEffect
+                            per="line"
+                            preset="fade-in-blur"
+                            speedSegment={0.3}
+                            delay={0.3}
+                            as="p"
+                        >
+                            Our artists are the heart of our events. They are the ones who create the magic that makes our events so special.
+                        </TextEffect>
                     </div>
                 </div>
-                <div className="mt-12 md:mt-24">
+                <AnimatedGroup
+                    variants={{
+                        container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.6 } } },
+                        ...transitionVariants,
+                    }}
+                    className="mt-12 md:mt-24"
+                >
                     <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                         {members.map((member, index) => (
                             <div
@@ -83,7 +118,7 @@ export default function TeamSection() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </AnimatedGroup>
             </div>
         </section>
     )

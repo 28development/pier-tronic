@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils'
 import { LogoWordmark } from './logo'
 
 const menuItems = [
-    { name: 'Features', href: '#link' },
-    { name: 'Pricing', href: '#link' },
+    { name: 'Artists', href: '#artists' },
+    { name: 'Tickets', href: '#tickets' },
     { name: 'About', href: '#about' },
 ]
 

@@ -5,6 +5,7 @@ import { ChevronsUpDown } from 'lucide-react'
 import Link from 'next/link'
 import { LogoWordmark } from './logo'
 import { cn } from '@/lib/utils'
+import { AnimatedGroup } from './ui/animated-group'
 
 const links = [
     {
@@ -43,10 +44,28 @@ const links = [
     },
 ]
 
+const transitionVariants = {
+    item: {
+        hidden: { opacity: 0, filter: 'blur(12px)', y: 12 },
+        visible: {
+            opacity: 1,
+            filter: 'blur(0px)',
+            y: 0,
+            transition: { type: 'spring' as const, bounce: 0.3, duration: 1.5 },
+        },
+    },
+}
+
 export default function FooterSection() {
     return (
         <footer className="border-b bg-white pt-20 dark:bg-transparent">
-            <div className="mb-8 border-b md:mb-12">
+            <AnimatedGroup
+                variants={{
+                    container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.2 } } },
+                    ...transitionVariants,
+                }}
+                className="mb-8 border-b md:mb-12"
+            >
                 <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-between gap-6 px-6 pb-6">
                     <Link
                         href="/"
@@ -164,8 +183,14 @@ export default function FooterSection() {
                         </Link>
                     </div>
                 </div>
-            </div>
-            <div className="mx-auto max-w-5xl px-6">
+            </AnimatedGroup>
+            <AnimatedGroup
+                variants={{
+                    container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.4 } } },
+                    ...transitionVariants,
+                }}
+                className="mx-auto max-w-5xl px-6"
+            >
                 <div className="grid gap-12 md:grid-cols-3 md:gap-0">
                     <div className="grid grid-cols-2 gap-6 md:col-span-2 lg:col-span-2">
                         {links.map((link, index) => (
@@ -229,7 +254,7 @@ export default function FooterSection() {
                         </div>
                     </form>
                 </div>
-            </div>
+            </AnimatedGroup>
         </footer>
     )
 }

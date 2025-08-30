@@ -2,6 +2,7 @@ import ContentSection from "@/components/content";
 import Features from "@/components/feature";
 import FooterSection from "@/components/footer";
 import HeroSection from "@/components/hero-section";
+import TicketsSection from "@/components/tickets-section";
 import StatsSection from "@/components/stats";
 import TeamSection from "@/components/team";
 import localFont from "next/font/local";
@@ -20,6 +21,7 @@ export default function Home() {
       <HeroSection />
       <TeamSection />
       <ContentSection />
+      <TicketsSection />
       <StatsSection />
       <Features />
       <FooterSection />

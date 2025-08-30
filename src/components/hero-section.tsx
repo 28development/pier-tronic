@@ -24,13 +24,39 @@ const transitionVariants = {
 export default function HeroSection() {
     return (
         <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
-            <section>
-                <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 lg:pt-48">
+            <section className="relative h-dvh">
+                {/* Background video */}
+                <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
+                    <video
+                        className="h-full w-full object-cover grayscale"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
+                    >
+                        <source src="/piertronic-hero.webm" type="video/webm" />
+                        <source src="/piertronic-hero.mp4" type="video/mp4" />
+                        <source src="https://www.pexels.com/download/video/2022395/" type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/30 to-background/80 h-dvh" />
+                </div>
+                <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-42 lg:pt-64">
                     <div className="relative z-10 mx-auto max-w-4xl text-center">
                         <TextEffect
                             preset="fade-in-blur"
                             speedSegment={0.3}
                             as="h1"
+                            className="text-balance text-5xl font-medium md:text-6xl"
+                        >
+                            Pier Tronic
+                        </TextEffect>
+                        <TextEffect
+                            preset="fade-in-blur"
+                            speedSegment={0.3}
+                            delay={0.3}
+                            as="h2"
                             className="text-balance text-5xl font-medium md:text-6xl"
                         >
                             The Ultimate Music Festival
@@ -77,14 +103,25 @@ export default function HeroSection() {
 
                             <div
                                 aria-hidden
-                                className="bg-radial from-primary/50 dark:from-primary/25 relative mx-auto mt-32 max-w-2xl to-transparent to-55% text-left"
+                                className="bg-radial from-primary/50 dark:from-primary/25 relative mx-auto mt-32 max-w-2xl to-transparent to-55% text-left lg:hidden"
                             >
                                 <div className="bg-background border-border/50 absolute inset-0 mx-auto w-80 -translate-x-3 -translate-y-12 rounded-[2rem] border p-2">
-                                    <Image
-                                        fill
-                                        src="https://images.unsplash.com/photo-1648726442589-63bd0d91d1e5?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Festival Stats"
-                                        className="object-cover rounded-[2rem]"
-                                    />
+                                    <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
+                                        <video
+                                            className="h-full w-full object-cover"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            preload="metadata"
+                                            poster="https://images.unsplash.com/photo-1648726442589-63bd0d91d1e5?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0"
+                                            aria-label="Festival highlight video"
+                                        >
+                                            <source src="/piertronic-hero.webm" type="video/webm" />
+                                            <source src="/piertronic-hero.mp4" type="video/mp4" />
+                                            <source src="https://cdn.coverr.co/videos/coverr-crowd-at-a-live-concert-5358/1080p.mp4" type="video/mp4" />
+                                        </video>
+                                    </div>
                                 </div>
                                 <div className="bg-muted dark:bg-background/50 border-border/50 mx-auto w-80 translate-x-4 rounded-[2rem] border p-2 backdrop-blur-3xl sm:translate-x-8">
                                     <div className="bg-background space-y-2 overflow-hidden rounded-[1.5rem] border p-2 shadow-xl dark:bg-white/5 dark:shadow-black dark:backdrop-blur-3xl">
