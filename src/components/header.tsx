@@ -1,14 +1,13 @@
 'use client'
 import Link from 'next/link'
-import { Logo } from '@tailark/core/components/logo'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import React from 'react'
-import { cn } from '@tailark/core/lib/utils'
+import { cn } from '@/lib/utils'
+import { Logo, LogoWordmark, LogoWordmarkStroke } from './logo'
 
 const menuItems = [
     { name: 'Features', href: '#link' },
-    { name: 'Solution', href: '#link' },
     { name: 'Pricing', href: '#link' },
     { name: 'About', href: '#link' },
 ]
@@ -36,7 +35,7 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <Logo />
+                                <LogoWordmark uniColor className="h-6 text-foreground" />
                             </Link>
 
                             <button

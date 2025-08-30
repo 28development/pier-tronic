@@ -82,3 +82,82 @@ export const LogoStroke = ({ className }: { className?: string }) => {
         </svg>
     )
 }
+
+export interface LogoWordmarkProps {
+    className?: string
+    uniColor?: boolean
+}
+
+export const LogoWordmark = ({ className, uniColor }: LogoWordmarkProps) => {
+    return (
+        <svg
+            viewBox="0 0 140 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={cn('text-foreground h-5 w-auto', className)}>
+            <title>Pier Tronic</title>
+            <text
+                x="0"
+                y="18"
+                fontSize="16"
+                fontWeight={700}
+                letterSpacing=".02em"
+                fill={uniColor ? 'currentColor' : 'url(#logo-gradient)'}>
+                Pier Tronic
+            </text>
+            <defs>
+                <linearGradient
+                    id="logo-gradient"
+                    x1="10"
+                    y1="0"
+                    x2="10"
+                    y2="20"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#9B99FE" />
+                    <stop
+                        offset="1"
+                        stopColor="#2BC8B7"
+                    />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
+
+export const LogoWordmarkStroke = ({ className, uniColor }: LogoWordmarkProps) => {
+    return (
+        <svg
+            viewBox="0 0 140 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className={cn('text-foreground h-5 w-auto', className)}>
+            <title>Pier Tronic</title>
+            <text
+                x="0"
+                y="18"
+                fontSize="16"
+                fontWeight={700}
+                letterSpacing=".02em"
+                fill="none"
+                stroke={uniColor ? 'currentColor' : 'url(#logo-gradient)'}
+                strokeWidth={1}>
+                Pier Tronic
+            </text>
+            <defs>
+                <linearGradient
+                    id="logo-gradient"
+                    x1="10"
+                    y1="0"
+                    x2="10"
+                    y2="20"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#9B99FE" />
+                    <stop
+                        offset="1"
+                        stopColor="#2BC8B7"
+                    />
+                </linearGradient>
+            </defs>
+        </svg>
+    )
+}
