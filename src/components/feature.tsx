@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import { BorderBeam } from './magic-ui/border-beam'
+import { TextEffect } from './ui/text-effect'
+import { AnimatedGroup } from './ui/animated-group'
 
 export default function Features() {
     type ImageKey = 'item-1' | 'item-2' | 'item-3' | 'item-4'
@@ -29,16 +31,49 @@ export default function Features() {
         },
     }
 
+    const transitionVariants = {
+        item: {
+            hidden: { opacity: 0, filter: 'blur(12px)', y: 12 },
+            visible: {
+                opacity: 1,
+                filter: 'blur(0px)',
+                y: 0,
+                transition: { type: 'spring' as const, bounce: 0.3, duration: 1.5 },
+            },
+        },
+    }
+
     return (
         <section className="py-12 md:py-20 lg:py-32">
             <div className="bg-linear-to-b absolute inset-0 -z-10 sm:inset-6 sm:rounded-b-3xl dark:block dark:to-[color-mix(in_oklab,var(--color-zinc-900)_75%,var(--color-background))]"></div>
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16 lg:space-y-20 dark:[--color-border:color-mix(in_oklab,var(--color-white)_10%,transparent)]">
                 <div className="relative z-10 mx-auto max-w-2xl space-y-6 text-center">
-                    <h2 className="text-balance text-4xl font-semibold lg:text-6xl">Festival Highlights</h2>
-                    <p>Experience the ultimate night of music, lights, and fun. From epic DJ performances to immersive stages and tasty food & drinks, there’s something for everyone.</p>
+                    <TextEffect
+                        preset="fade-in-blur"
+                        speedSegment={0.3}
+                        as="h2"
+                        className="text-balance text-4xl font-semibold lg:text-6xl"
+                    >
+                        Festival Highlights
+                    </TextEffect>
+                    <TextEffect
+                        per="line"
+                        preset="fade-in-blur"
+                        speedSegment={0.3}
+                        delay={0.3}
+                        as="p"
+                    >
+                        Experience the ultimate night of music, lights, and fun. From epic DJ performances to immersive stages and tasty food & drinks, there's something for everyone.
+                    </TextEffect>
                 </div>
 
-                <div className="grid gap-12 sm:px-12 md:grid-cols-2 lg:gap-20 lg:px-0">
+                <AnimatedGroup
+                    variants={{
+                        container: { visible: { transition: { staggerChildren: 0.1, delayChildren: 0.6 } } },
+                        ...transitionVariants,
+                    }}
+                    className="grid gap-12 sm:px-12 md:grid-cols-2 lg:gap-20 lg:px-0"
+                >
                     <Accordion
                         type="single"
                         value={activeItem}
@@ -82,9 +117,8 @@ export default function Features() {
                         </AccordionItem>
                     </Accordion>
 
-                    <div className="bg-background relative flex overflow-hidden rounded-3xl border p-2">
-                        <div className="w-15 absolute inset-0 right-0 ml-auto border-l bg-[repeating-linear-gradient(-45deg,var(--color-border),var(--color-border)_1px,transparent_1px,transparent_8px)]"></div>
-                        <div className="aspect-76/59 bg-background relative w-[calc(3/4*100%+3rem)] rounded-2xl">
+                    <div className="bg-background relative flex overflow-hidden rounded-3xl border p-2 h-full">
+                        <div className="bg-background relative w-full h-full rounded-2xl">
                             <AnimatePresence mode="wait">
                                 <motion.div
                                     key={`${activeItem}-id`}
@@ -95,10 +129,9 @@ export default function Features() {
                                     className="size-full overflow-hidden rounded-2xl border bg-zinc-900 shadow-md">
                                     <Image
                                         src={images[activeItem].image}
-                                        className="size-full object-cover object-left-top dark:mix-blend-lighten"
+                                        className="size-full object-cover object-left-top dark:mix-blend-lighten rounded-2xl"
                                         alt={images[activeItem].alt}
-                                        width={1207}
-                                        height={929}
+                                        fill
                                     />
                                 </motion.div>
                             </AnimatePresence>
@@ -109,7 +142,7 @@ export default function Features() {
                             className="from-transparent via-yellow-700 to-transparent dark:via-white/50"
                         />
                     </div>
-                </div>
+                </AnimatedGroup>
             </div>
         </section>
     )
