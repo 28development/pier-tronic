@@ -24,11 +24,11 @@ const transitionVariants = {
 export default function HeroSection() {
     return (
         <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
-            <section className="relative h-dvh">
+            <section className="relative h-dvh group">
                 {/* Background video */}
                 <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
                     <video
-                        className="h-full w-full object-cover grayscale"
+                        className="h-full w-full object-cover grayscale transition-[filter] duration-500 ease-in-out group-focus-within:grayscale-0"
                         autoPlay
                         loop
                         muted
