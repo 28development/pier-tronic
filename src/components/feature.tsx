@@ -63,7 +63,7 @@ export default function Features() {
                         delay={0.3}
                         as="p"
                     >
-                        Experience the ultimate night of music, lights, and fun. From epic DJ performances to immersive stages and tasty food & drinks, there's something for everyone.
+                        Experience the ultimate night of music, lights, and fun. From epic DJ performances to immersive stages and tasty food & drinks, there&apos;s something for everyone.
                     </TextEffect>
                 </div>
 

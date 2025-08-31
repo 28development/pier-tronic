@@ -80,13 +80,13 @@ function TicketCard({ item }: TicketCardProps) {
                 {/* Details layer (revealed on hover) */}
                 <div className="absolute inset-0 z-20 grid content-between rounded-2xl bg-black/30 backdrop-blur-sm p-5 text-zinc-100">
                     <div className="space-y-2">
-                        <div className="text-xs uppercase tracking-wide text-zinc-400">{item.city} • {item.venue}</div>
+                        <div className="text-xs uppercase tracking-wide text-zinc-300">{item.city} • {item.venue}</div>
                         <h3 className="text-balance text-2xl font-semibold">{item.title}</h3>
                         <div className="text-sm text-zinc-300">{item.date}</div>
                     </div>
                     <div className="flex items-center justify-between pt-3">
                         <div className="text-sm text-zinc-300">Starting at <span className="font-medium text-white">{item.price}</span></div>
-                        <Button size="sm" className="rounded-full">Buy Ticket</Button>
+                        <Button size="sm" className="rounded-full hover:cursor-pointer hover:bg-zinc-800">Buy Ticket</Button>
                     </div>
                 </div>
 

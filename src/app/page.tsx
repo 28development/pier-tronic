@@ -24,7 +24,6 @@ export default function Home() {
       <TicketsSection />
       <StatsSection />
       <Features />
-      <FooterSection />
     </div>
   );
 }
