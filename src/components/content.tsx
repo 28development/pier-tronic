@@ -7,6 +7,7 @@ import { TextEffect } from './ui/text-effect'
 import { AnimatedGroup } from './ui/animated-group'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
+import { useEffect, useState } from 'react'
 
 const transitionVariants = {
     item: {
@@ -21,6 +22,22 @@ const transitionVariants = {
 }
 
 export default function ContentSection() {
+    const [dict, setDict] = useState<Record<string, string> | null>(null)
+    useEffect(() => {
+        let isActive = true
+            ; (async () => {
+                try {
+                    const lang = new URLSearchParams(window.location.search).get('lang')
+                    const res = await fetch(`/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ''}`, { cache: 'no-store' })
+                    if (!res.ok) return
+                    const json = await res.json()
+                    if (isActive) setDict(json)
+                } catch { }
+            })()
+        return () => { isActive = false }
+    }, [])
+    const t = (k: string) => dict?.[k] ?? k
+
     return (
         <section className="py-16 md:py-32">
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
@@ -51,7 +68,7 @@ export default function ContentSection() {
                         as="h2"
                         className="text-4xl font-medium"
                     >
-                        An unforgettable night of music, lights & energy
+                        {t('content_title')}
                     </TextEffect>
                     <div className="space-y-6">
                         <TextEffect
@@ -61,10 +78,7 @@ export default function ContentSection() {
                             delay={0.6}
                             as="p"
                         >
-                            Join thousands of music lovers as top international DJs and
-                            artists take the stage. From hypnotic techno beats to uplifting
-                            house anthems, experience the ultimate celebration of sound and
-                            community under one roof.
+                            {t('content_blurb')}
                         </TextEffect>
 
                         <AnimatedGroup
@@ -80,7 +94,7 @@ export default function ContentSection() {
                                 className="gap-1 pr-1.5"
                             >
                                 <Link href="#">
-                                    <span>See the Lineup</span>
+                                    <span>{t('content_lineup')}</span>
                                     <ChevronRight className="size-2" />
                                 </Link>
                             </Button>
