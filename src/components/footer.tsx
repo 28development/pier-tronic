@@ -14,7 +14,7 @@ const links = [
     {
         groupKey: 'groups_company',
         items: [
-            { key: 'link_about', href: '#about' },
+            { key: 'link_about', href: '#' },
             { key: 'link_contact', href: '#' },
             { key: 'link_help', href: '#' },
         ],
@@ -23,7 +23,6 @@ const links = [
         groupKey: 'groups_legal',
         items: [
             { key: 'link_privacy', href: '/data-protection' },
-            { key: 'link_cookies', href: '#' },
             { key: 'link_imprint', href: '/imprint' },
         ],
     },
@@ -46,7 +45,7 @@ export default async function FooterSection() {
     const t = await getServerT(locale)
     const year = new Date().getFullYear()
     return (
-        <footer className="border-b bg-white pt-20 dark:bg-transparent">
+        <footer className="border-b pt-20 dark:bg-transparent">
             <AnimatedGroup
                 variants={{
                     container: { visible: { transition: { staggerChildren: 0.05, delayChildren: 0.2 } } },
