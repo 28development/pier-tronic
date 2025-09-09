@@ -8,14 +8,15 @@ import { cn } from '@/lib/utils'
 import { LogoWordmark } from './logo'
 
 const menuItems = [
-    { name: 'Artists', href: '#artists' },
-    { name: 'Tickets', href: '#tickets' },
-    { name: 'About', href: '#about' },
+    { key: 'team_caption', href: '#artists' },
+    { key: 'tickets_title', href: '#tickets' },
+    { key: 'link_about', href: '#about' },
 ]
 
 export const HeroHeader = () => {
     const [menuState, setMenuState] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
+    const [dict, setDict] = useState<Record<string, string> | null>(null)
 
     useEffect(() => {
         const handleScroll = () => {
@@ -24,6 +25,21 @@ export const HeroHeader = () => {
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
+    useEffect(() => {
+        let isActive = true
+            ; (async () => {
+                try {
+                    const lang = new URLSearchParams(window.location.search).get('lang')
+                    const res = await fetch(`/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ''}`, { cache: 'no-store' })
+                    if (!res.ok) return
+                    const json = await res.json()
+                    if (isActive) setDict(json)
+                } catch { }
+            })()
+        return () => { isActive = false }
+    }, [])
+    const t = (k: string) => dict?.[k] ?? k
 
     return (
         <header>
@@ -56,7 +72,7 @@ export const HeroHeader = () => {
                                         <Link
                                             href={item.href}
                                             className={cn('block duration-150', isScrolled ? 'text-muted-foreground hover:text-accent-foreground' : 'text-white hover:text-white')}>
-                                            <span>{item.name}</span>
+                                            <span>{t(item.key)}</span>
                                         </Link>
                                     </li>
                                 ))}
@@ -71,7 +87,7 @@ export const HeroHeader = () => {
                                             <Link
                                                 href={item.href}
                                                 className={cn('block duration-150', isScrolled ? 'text-muted-foreground hover:text-accent-foreground' : 'text-white hover:text-white')}>
-                                                <span>{item.name}</span>
+                                                <span>{t(item.key)}</span>
                                             </Link>
                                         </li>
                                     ))}

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { HeroHeader } from "@/components/header";
 import FooterSection from "@/components/footer";
+import { getRequestLocale } from "./i18n-request";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,13 +20,14 @@ export const metadata: Metadata = {
   description: "Pier-Tronic, the ultimate music festival",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getRequestLocale();
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

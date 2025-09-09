@@ -6,40 +6,25 @@ import Link from 'next/link'
 import { LogoWordmark } from './logo'
 import { cn } from '@/lib/utils'
 import { AnimatedGroup } from './ui/animated-group'
+import { getRequestLocale } from '@/app/i18n-request'
+import { LanguageSelect } from '@/components/language-select'
+import { getServerT } from '@/app/i18n-server'
 
 const links = [
     {
-        group: 'Company',
+        groupKey: 'groups_company',
         items: [
-            {
-                title: 'About',
-                href: '#about',
-            },
-            {
-                title: 'Contact',
-                href: '#',
-            },
-            {
-                title: 'Help',
-                href: '#',
-            },
+            { key: 'link_about', href: '#about' },
+            { key: 'link_contact', href: '#' },
+            { key: 'link_help', href: '#' },
         ],
     },
     {
-        group: 'Legal',
+        groupKey: 'groups_legal',
         items: [
-            {
-                title: 'Privacy',
-                href: '/data-protection',
-            },
-            {
-                title: 'Cookies',
-                href: '#',
-            },
-            {
-                title: 'Imprint',
-                href: '/imprint',
-            },
+            { key: 'link_privacy', href: '/data-protection' },
+            { key: 'link_cookies', href: '#' },
+            { key: 'link_imprint', href: '/imprint' },
         ],
     },
 ]
@@ -56,7 +41,10 @@ const transitionVariants = {
     },
 }
 
-export default function FooterSection() {
+export default async function FooterSection() {
+    const locale = await getRequestLocale()
+    const t = await getServerT(locale)
+    const year = new Date().getFullYear()
     return (
         <footer className="border-b bg-white pt-20 dark:bg-transparent">
             <AnimatedGroup
@@ -197,13 +185,13 @@ export default function FooterSection() {
                             <div
                                 key={index}
                                 className="space-y-4 text-sm">
-                                <span className="block font-medium">{link.group}</span>
+                                <span className="block font-medium">{t(link.groupKey)}</span>
                                 {link.items.map((item, index) => (
                                     <Link
                                         key={index}
                                         href={item.href}
                                         className="text-muted-foreground hover:text-primary block duration-150">
-                                        <span>{item.title}</span>
+                                        <span>{t(item.key)}</span>
                                     </Link>
                                 ))}
                             </div>
@@ -214,43 +202,25 @@ export default function FooterSection() {
                             <Label
                                 htmlFor="mail"
                                 className="block font-medium">
-                                Newsletter
+                                {t('newsletter')}
                             </Label>
                             <div className="flex gap-2">
                                 <Input
                                     type="email"
                                     id="mail"
                                     name="mail"
-                                    placeholder="Your email"
+                                    placeholder={t('newsletter_placeholder')}
                                     className="h-8 text-sm"
                                 />
-                                <Button size="sm">Submit</Button>
+                                <Button size="sm">{t('newsletter_submit')}</Button>
                             </div>
-                            <span className="text-muted-foreground block text-sm">Don&apos;t miss any update!</span>
+                            <span className="text-muted-foreground block text-sm">{t('newsletter_hint')}</span>
                         </div>
                     </form>
                 </div>
                 <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
-                    <small className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Pier-Tronic, All rights reserved</small>
-                    <form action="">
-                        <div className="relative">
-                            <ChevronsUpDown
-                                className="pointer-events-none absolute inset-y-0 right-2 my-auto opacity-75"
-                                size="0.75rem"
-                            />
-                            <select
-                                className={cn(
-                                    'border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground shadow-xs flex h-9 w-full min-w-32 appearance-none rounded-md border bg-transparent px-3 py-1 text-base outline-none transition-[color,box-shadow] file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
-                                    'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-                                    'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive'
-                                )}
-                                name="language">
-                                <option value="1">English</option>
-                                <option value="2">Deutsch</option>
-                                <option value="3">Dutch</option>
-                            </select>
-                        </div>
-                    </form>
+                    <small className="text-muted-foreground order-last block text-center text-sm md:order-first">{t('footer_rights', { year })}</small>
+                    <LanguageSelect value={locale} />
                 </div>
             </AnimatedGroup>
         </footer>

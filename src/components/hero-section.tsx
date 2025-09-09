@@ -7,6 +7,8 @@ import { TextEffect } from './ui/text-effect'
 import { AnimatedGroup } from './ui/animated-group'
 import Image from 'next/image'
 import { CountingNumber } from './ui/shadcn-io/counting-number'
+import { getRequestLocale } from '@/app/i18n-request'
+import { getServerT } from '@/app/i18n-server'
 
 
 const transitionVariants = {
@@ -21,7 +23,9 @@ const transitionVariants = {
     },
 }
 
-export default function HeroSection() {
+export default async function HeroSection() {
+    const locale = await getRequestLocale()
+    const t = await getServerT(locale)
     return (
         <main className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]">
             <section className="relative h-dvh group">
@@ -50,7 +54,7 @@ export default function HeroSection() {
                             as="h1"
                             className="text-balance text-5xl font-medium md:text-6xl"
                         >
-                            Pier-Tronic
+                            {t('hero_title')}
                         </TextEffect>
                         <TextEffect
                             preset="fade-in-blur"
@@ -59,7 +63,7 @@ export default function HeroSection() {
                             as="h2"
                             className="text-balance text-5xl font-medium md:text-6xl"
                         >
-                            The Ultimate Music Festival
+                            {t('hero_subtitle')}
                         </TextEffect>
 
                         <TextEffect
@@ -70,9 +74,7 @@ export default function HeroSection() {
                             as="p"
                             className="mx-auto mt-6 max-w-2xl text-pretty text-lg"
                         >
-                            Join thousands of music lovers for a night of electrifying DJs,
-                            immersive light shows, and unforgettable experiences. Grab your
-                            tickets now and be part of the celebration!
+                            {t('hero_blurb')}
                         </TextEffect>
 
                         <AnimatedGroup
@@ -82,30 +84,10 @@ export default function HeroSection() {
                             }}
                             className="mt-12"
                         >
-                            <form className="mx-auto max-w-sm">
-                                <div className="bg-background relative grid grid-cols-[1fr_auto] items-center rounded-[calc(var(--radius)+0.5rem)] border pr-2 shadow shadow-zinc-950/5 has-[input:focus]:ring-2">
-                                    <Mail className="pointer-events-none absolute inset-y-0 left-4 my-auto size-4" />
+                            <Button asChild size="sm" className="rounded-(--radius)">
+                                <a href="#tickets">{t('hero_cta')}</a>
+                            </Button>
 
-                                    <input
-                                        placeholder="Your email for tickets"
-                                        className="h-12 w-full bg-transparent pl-12 focus:outline-none"
-                                        type="email"
-                                    />
-
-                                    <div className="md:pr-1.5 lg:pr-0">
-                                        <Button aria-label="submit" size="sm" className="rounded-(--radius)">
-                                            <span className="hidden md:block">Subscribe</span>
-                                            <SendHorizonal className="relative mx-auto size-5 md:hidden" strokeWidth={2} />
-                                        </Button>
-                                    </div>
-                                </div>
-                            </form>
-
-                            <div className="mt-4">
-                                <Button asChild size="sm" className="rounded-(--radius)">
-                                    <a href="#tickets">Get Tickets now!</a>
-                                </Button>
-                            </div>
 
                             <div
                                 aria-hidden

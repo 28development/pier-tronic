@@ -6,7 +6,7 @@ import { AnimatedGroup } from './ui/animated-group'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'motion/react'
 import { BorderBeam } from './magic-ui/border-beam'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const members = [
     {
@@ -118,10 +118,25 @@ function MemberCard({ member, index }: { member: typeof members[number]; index: 
 }
 
 export default function TeamSection() {
+    const [dict, setDict] = useState<Record<string, string> | null>(null)
+    useEffect(() => {
+        let isActive = true
+            ; (async () => {
+                try {
+                    const lang = new URLSearchParams(window.location.search).get('lang')
+                    const res = await fetch(`/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ''}`, { cache: 'no-store' })
+                    if (!res.ok) return
+                    const json = await res.json()
+                    if (isActive) setDict(json)
+                } catch { }
+            })()
+        return () => { isActive = false }
+    }, [])
+    const t = (k: string) => dict?.[k] ?? k
     return (
         <section className="bg-gray-50 py-16 md:py-32 dark:bg-transparent">
             <div className="mx-auto max-w-5xl border-t px-6">
-                <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 px-6 dark:bg-gray-950">Artists</span>
+                <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 px-6 dark:bg-gray-950">{t('team_caption')}</span>
                 <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">
                     <div className="sm:w-2/5">
                         <TextEffect
@@ -130,7 +145,7 @@ export default function TeamSection() {
                             as="h2"
                             className="text-3xl font-bold sm:text-4xl"
                         >
-                            Our Artists
+                            {t('team_title')}
                         </TextEffect>
                     </div>
                     <div className="mt-6 sm:mt-0">
@@ -141,7 +156,7 @@ export default function TeamSection() {
                             delay={0.3}
                             as="p"
                         >
-                            Our artists are the heart of our events. They are the ones who create the magic that makes our events so special.
+                            {t('team_blurb')}
                         </TextEffect>
                     </div>
                 </div>

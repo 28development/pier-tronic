@@ -1,6 +1,8 @@
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
 import { TextEffect } from './ui/text-effect'
 import { AnimatedGroup } from './ui/animated-group'
+import { getRequestLocale } from '@/app/i18n-request'
+import { getServerT } from '@/app/i18n-server'
 
 const transitionVariants = {
     item: {
@@ -14,7 +16,9 @@ const transitionVariants = {
     },
 }
 
-export default function StatsSection() {
+export default async function StatsSection() {
+    const locale = await getRequestLocale()
+    const t = await getServerT(locale)
     return (
         <section id="about" className="py-12 md:py-20">
             <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">
@@ -25,7 +29,7 @@ export default function StatsSection() {
                         as="h2"
                         className="text-4xl font-medium lg:text-5xl"
                     >
-                        The Event in Numbers
+                        {t('stats_title')}
                     </TextEffect>
                     <TextEffect
                         per="line"
@@ -34,9 +38,7 @@ export default function StatsSection() {
                         delay={0.3}
                         as="p"
                     >
-                        A night full of music, lights, and unforgettable vibes. Experience the
-                        energy of world-class DJs, live performances, and a crowd that never
-                        stops moving.
+                        {t('stats_blurb')}
                     </TextEffect>
                 </div>
 
@@ -55,7 +57,7 @@ export default function StatsSection() {
                                 transition={{ stiffness: 100, damping: 30 }}
                             />
                         </div>
-                        <p>International DJs & Artists</p>
+                        <p>{t('stats_card1')}</p>
                     </div>
                     <div className="space-y-4">
                         <div className="text-5xl font-bold">
@@ -65,7 +67,7 @@ export default function StatsSection() {
                                 transition={{ stiffness: 100, damping: 30 }}
                             />
                         </div>
-                        <p>Music Lovers Attending</p>
+                        <p>{t('stats_card2')}</p>
                     </div>
                     <div className="space-y-4">
                         <div className="text-5xl font-bold">
@@ -75,7 +77,7 @@ export default function StatsSection() {
                                 transition={{ stiffness: 100, damping: 30 }}
                             />
                         </div>
-                        <p>Non-stop Music & Performances</p>
+                        <p>{t('stats_card3')}</p>
                     </div>
                 </AnimatedGroup>
             </div>

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'motion/react'
 import { BorderBeam } from './magic-ui/border-beam'
 import { TextEffect } from './ui/text-effect'
 import { Button } from './ui/button'
+import { useEffect, useState } from 'react'
 
 interface TicketItem {
     id: string
@@ -118,6 +119,21 @@ function TicketCard({ item }: TicketCardProps) {
 }
 
 export default function TicketsSection() {
+    const [dict, setDict] = useState<Record<string, string> | null>(null)
+    useEffect(() => {
+        let isActive = true
+            ; (async () => {
+                try {
+                    const lang = new URLSearchParams(window.location.search).get('lang')
+                    const res = await fetch(`/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ''}`, { cache: 'no-store' })
+                    if (!res.ok) return
+                    const json = await res.json()
+                    if (isActive) setDict(json)
+                } catch { }
+            })()
+        return () => { isActive = false }
+    }, [])
+    const t = (k: string) => dict?.[k] ?? k
     return (
         <section id="tickets" className="py-12 md:py-20 lg:py-32">
             <div className="bg-linear-to-b absolute inset-0 -z-10 sm:inset-6 sm:rounded-b-3xl dark:block dark:to-[color-mix(in_oklab,var(--color-zinc-900)_75%,var(--color-background))]"></div>
@@ -129,7 +145,7 @@ export default function TicketsSection() {
                         as="h2"
                         className="text-balance text-4xl font-semibold lg:text-6xl"
                     >
-                        Upcoming Tickets
+                        {t('tickets_title')}
                     </TextEffect>
                     <TextEffect
                         per="line"
@@ -139,7 +155,7 @@ export default function TicketsSection() {
                         as="p"
                         className="text-pretty"
                     >
-                        Get your spot for the next Pier-Tronic experiences. Hover a card to peek details, pricing and venue.
+                        {t('tickets_blurb')}
                     </TextEffect>
                 </div>
 

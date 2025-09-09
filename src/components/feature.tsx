@@ -7,8 +7,24 @@ import { motion, AnimatePresence } from 'motion/react'
 import { BorderBeam } from './magic-ui/border-beam'
 import { TextEffect } from './ui/text-effect'
 import { AnimatedGroup } from './ui/animated-group'
+import { useEffect } from 'react'
 
 export default function Features() {
+    const [dict, setDict] = useState<Record<string, string> | null>(null)
+    useEffect(() => {
+        let isActive = true
+            ; (async () => {
+                try {
+                    const lang = new URLSearchParams(window.location.search).get('lang')
+                    const res = await fetch(`/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ''}`, { cache: 'no-store' })
+                    if (!res.ok) return
+                    const json = await res.json()
+                    if (isActive) setDict(json)
+                } catch { }
+            })()
+        return () => { isActive = false }
+    }, [])
+    const t = (k: string) => dict?.[k] ?? k
     type ImageKey = 'item-1' | 'item-2' | 'item-3' | 'item-4'
     const [activeItem, setActiveItem] = useState<ImageKey>('item-1')
 
@@ -54,7 +70,7 @@ export default function Features() {
                         as="h2"
                         className="text-balance text-4xl font-semibold lg:text-6xl"
                     >
-                        Festival Highlights
+                        {t('features_title')}
                     </TextEffect>
                     <TextEffect
                         per="line"
@@ -63,7 +79,7 @@ export default function Features() {
                         delay={0.3}
                         as="p"
                     >
-                        Experience the ultimate night of music, lights, and fun. From epic DJ performances to immersive stages and tasty food & drinks, there&apos;s something for everyone.
+                        {t('features_blurb')}
                     </TextEffect>
                 </div>
 
@@ -83,37 +99,37 @@ export default function Features() {
                             <AccordionTrigger>
                                 <div className="flex items-center gap-2 text-base">
                                     <Music className="size-4" />
-                                    Main DJ Stage
+                                    {t('feat_main_stage')}
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent>Top international DJs perform non-stop on our main stage with high-energy sets and amazing sound.</AccordionContent>
+                            <AccordionContent>{t('feat_main_stage_desc')}</AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-2">
                             <AccordionTrigger>
                                 <div className="flex items-center gap-2 text-base">
                                     <Lightbulb className="size-4" />
-                                    Spectacular Light Show
+                                    {t('feat_lights')}
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent>Immerse yourself in a visually stunning light show that transforms the venue and elevates the music experience.</AccordionContent>
+                            <AccordionContent>{t('feat_lights_desc')}</AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-3">
                             <AccordionTrigger>
                                 <div className="flex items-center gap-2 text-base">
                                     <Sun className="size-4" />
-                                    Food & Drinks
+                                    {t('feat_food')}
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent>Enjoy a variety of gourmet food trucks, refreshing drinks, and cocktails while taking a break from the dance floor.</AccordionContent>
+                            <AccordionContent>{t('feat_food_desc')}</AccordionContent>
                         </AccordionItem>
                         <AccordionItem value="item-4">
                             <AccordionTrigger>
                                 <div className="flex items-center gap-2 text-base">
                                     <Ticket className="size-4" />
-                                    VIP Lounge
+                                    {t('feat_vip')}
                                 </div>
                             </AccordionTrigger>
-                            <AccordionContent>Relax in the exclusive VIP area with premium amenities, better views, and special access to meet-and-greet events.</AccordionContent>
+                            <AccordionContent>{t('feat_vip_desc')}</AccordionContent>
                         </AccordionItem>
                     </Accordion>
 
