@@ -6,8 +6,8 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
 export const metadata: Metadata = {
-    title: 'Imprint | Pier Tronic',
-    description: 'Mock imprint of Pier Tronic GmbH',
+    title: 'Imprint | Pier-Tronic',
+    description: 'Mock imprint of Pier-Tronic GmbH',
 }
 
 export default function ImpressumPage() {
@@ -21,7 +21,7 @@ export default function ImpressumPage() {
                 <CardContent className='pt-6'>
                     <div className='space-y-6'>
                         <div>
-                            <h2 className='font-normal text-xl mb-2'>Pier Tronic GmbH</h2>
+                            <h2 className='font-normal text-xl mb-2'>Pier-Tronic GmbH</h2>
                             <p>Harborstrasse 7</p>
                             <p>20457 Hamburg</p>
                             <p>Germany</p>
@@ -44,7 +44,7 @@ export default function ImpressumPage() {
 
                         <div>
                             <h2 className='font-normal text-xl mb-2'>Responsible for content</h2>
-                            <p>Pier Tronic GmbH</p>
+                            <p>Pier-Tronic GmbH</p>
                             <p>(address as above)</p>
                         </div>
 
@@ -65,7 +65,7 @@ export default function ImpressumPage() {
                         <div>
                             <h2 className='font-normal text-xl mb-2'>Copyright</h2>
                             <p className='mb-4'>
-                                © {new Date().getFullYear()} Pier Tronic GmbH. All rights reserved. Reproduction,
+                                © {new Date().getFullYear()} Pier-Tronic GmbH. All rights reserved. Reproduction,
                                 distribution or storage in any form requires prior written consent from Pier
                                 Tronic GmbH unless otherwise permitted by law.
                             </p>
@@ -85,7 +85,7 @@ export default function ImpressumPage() {
                                 >
                                     https://ec.europa.eu/consumers/odr/
                                 </Link>
-                                . Pier Tronic is neither obligated nor willing to participate in dispute resolution
+                                . Pier-Tronic is neither obligated nor willing to participate in dispute resolution
                                 proceedings before a consumer arbitration board.
                             </p>
                         </div>
@@ -95,7 +95,7 @@ export default function ImpressumPage() {
                         <div>
                             <h2 className='font-normal text-xl mb-2'>Design and development</h2>
                             <ul className='list-disc list-inside pl-4 space-y-1'>
-                                <li>Pier Tronic Design Team (mock)</li>
+                                <li>Pier-Tronic Design Team (mock)</li>
                                 <li>nextindex (mock)</li>
                                 <li>ingenit GmbH & Co. KG (mock)</li>
                             </ul>

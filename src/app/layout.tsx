@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Pier Tronic",
-  description: "Pier Tronic, the ultimate music festival",
+  title: "Pier-Tronic",
+  description: "Pier-Tronic, the ultimate music festival",
 };
 
 export default function RootLayout({

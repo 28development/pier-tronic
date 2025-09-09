@@ -9,9 +9,9 @@ import {
 import { Card, CardContent } from '@/components/ui/card'
 
 export const metadata: Metadata = {
-    title: 'Privacy Policy | Pier Tronic',
+    title: 'Privacy Policy | Pier-Tronic',
     description:
-        'Mock privacy policy for Pier Tronic – how we collect, use and protect your data.',
+        'Mock privacy policy for Pier-Tronic – how we collect, use and protect your data.',
 }
 
 export default function DataProtectionPage() {
@@ -24,8 +24,8 @@ export default function DataProtectionPage() {
             <Card className='mb-8'>
                 <CardContent className='pt-6'>
                     <p className='mb-4'>
-                        This mock privacy notice explains how <strong>Pier Tronic GmbH</strong>
-                        (&ldquo;Pier Tronic&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects, uses, shares and protects
+                        This mock privacy notice explains how <strong>Pier-Tronic GmbH</strong>
+                        (&ldquo;Pier-Tronic&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) collects, uses, shares and protects
                         personal data when you visit our websites, interact with our services,
                         or contact us.
                     </p>
@@ -100,7 +100,7 @@ export default function DataProtectionPage() {
                     <AccordionContent className='text-base space-y-4'>
                         <p>The controller for this website is:</p>
                         <div className='pl-4 border-l-2 border-primary space-y-1'>
-                            <p>Pier Tronic GmbH</p>
+                            <p>Pier-Tronic GmbH</p>
                             <p>Harborstrasse 7</p>
                             <p>20457 Hamburg, Germany</p>
                             <p>T: +49 (0)40 1234 5670</p>
@@ -113,7 +113,7 @@ export default function DataProtectionPage() {
                             If you have privacy questions, contact our Data Protection team:
                         </p>
                         <div className='pl-4 border-l-2 border-primary space-y-1'>
-                            <p>Pier Tronic GmbH – Data Protection</p>
+                            <p>Pier-Tronic GmbH – Data Protection</p>
                             <p>Harborstrasse 7, 20457 Hamburg, Germany</p>
                             <p>E: dpo@pier-tronic.com</p>
                             <p>T: +49 (0)40 1234 5671</p>
