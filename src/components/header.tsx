@@ -1,8 +1,9 @@
 'use client'
+
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 import { LogoWordmark } from './logo'
 
@@ -13,16 +14,17 @@ const menuItems = [
 ]
 
 export const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false)
-    const [isScrolled, setIsScrolled] = React.useState(false)
+    const [menuState, setMenuState] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 50)
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
+
     return (
         <header>
             <nav
@@ -35,7 +37,7 @@ export const HeroHeader = () => {
                                 href="/"
                                 aria-label="home"
                                 className="flex items-center space-x-2">
-                                <LogoWordmark uniColor className="h-6 text-foreground" />
+                                <LogoWordmark uniColor className={cn('h-6', isScrolled ? 'text-foreground' : 'text-white')} />
                             </Link>
 
                             <button
@@ -53,7 +55,7 @@ export const HeroHeader = () => {
                                     <li key={index}>
                                         <Link
                                             href={item.href}
-                                            className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                            className={cn('block duration-150', isScrolled ? 'text-muted-foreground hover:text-accent-foreground' : 'text-white hover:text-white')}>
                                             <span>{item.name}</span>
                                         </Link>
                                     </li>
@@ -68,7 +70,7 @@ export const HeroHeader = () => {
                                         <li key={index}>
                                             <Link
                                                 href={item.href}
-                                                className="text-muted-foreground hover:text-accent-foreground block duration-150">
+                                                className={cn('block duration-150', isScrolled ? 'text-muted-foreground hover:text-accent-foreground' : 'text-white hover:text-white')}>
                                                 <span>{item.name}</span>
                                             </Link>
                                         </li>

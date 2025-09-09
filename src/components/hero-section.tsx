@@ -50,7 +50,7 @@ export default function HeroSection() {
                             as="h1"
                             className="text-balance text-5xl font-medium md:text-6xl"
                         >
-                            Pier Tronic
+                            Pier-Tronic
                         </TextEffect>
                         <TextEffect
                             preset="fade-in-blur"
@@ -94,12 +94,18 @@ export default function HeroSection() {
 
                                     <div className="md:pr-1.5 lg:pr-0">
                                         <Button aria-label="submit" size="sm" className="rounded-(--radius)">
-                                            <span className="hidden md:block">Get Tickets</span>
+                                            <span className="hidden md:block">Subscribe</span>
                                             <SendHorizonal className="relative mx-auto size-5 md:hidden" strokeWidth={2} />
                                         </Button>
                                     </div>
                                 </div>
                             </form>
+
+                            <div className="mt-4">
+                                <Button asChild size="sm" className="rounded-(--radius)">
+                                    <a href="#tickets">Get Tickets now!</a>
+                                </Button>
+                            </div>
 
                             <div
                                 aria-hidden

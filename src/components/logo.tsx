@@ -95,7 +95,7 @@ export const LogoWordmark = ({ className, uniColor }: LogoWordmarkProps) => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={cn('text-foreground h-5 w-auto', className)}>
-            <title>Pier Tronic</title>
+            <title>Pier-Tronic</title>
             <text
                 x="0"
                 y="18"
@@ -103,7 +103,7 @@ export const LogoWordmark = ({ className, uniColor }: LogoWordmarkProps) => {
                 fontWeight={700}
                 letterSpacing=".02em"
                 fill={uniColor ? 'currentColor' : 'url(#logo-gradient)'}>
-                Pier Tronic
+                Pier-Tronic
             </text>
             <defs>
                 <linearGradient
@@ -131,7 +131,7 @@ export const LogoWordmarkStroke = ({ className, uniColor }: LogoWordmarkProps) =
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={cn('text-foreground h-5 w-auto', className)}>
-            <title>Pier Tronic</title>
+            <title>Pier-Tronic</title>
             <text
                 x="0"
                 y="18"
@@ -141,7 +141,7 @@ export const LogoWordmarkStroke = ({ className, uniColor }: LogoWordmarkProps) =
                 fill="none"
                 stroke={uniColor ? 'currentColor' : 'url(#logo-gradient)'}
                 strokeWidth={1}>
-                Pier Tronic
+                Pier-Tronic
             </text>
             <defs>
                 <linearGradient

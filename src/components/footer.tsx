@@ -231,7 +231,7 @@ export default function FooterSection() {
                     </form>
                 </div>
                 <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
-                    <small className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Pier Tronic, All rights reserved</small>
+                    <small className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Pier-Tronic, All rights reserved</small>
                     <form action="">
                         <div className="relative">
                             <ChevronsUpDown
@@ -246,10 +246,8 @@ export default function FooterSection() {
                                 )}
                                 name="language">
                                 <option value="1">English</option>
-                                <option value="2">Espanol</option>
-                                <option value="3">Français</option>
-                                <option value="4">Swahili</option>
-                                <option value="5">Lingala</option>
+                                <option value="2">Deutsch</option>
+                                <option value="3">Dutch</option>
                             </select>
                         </div>
                     </form>

@@ -24,7 +24,7 @@ interface TicketItem {
 const TICKETS: TicketItem[] = [
     {
         id: 't1',
-        title: 'Pier Tronic Opening Night',
+        title: 'Pier-Tronic Opening Night',
         date: 'Fri, Jul 18 • 21:00',
         city: 'Hamburg',
         venue: 'Dockside Arena',
@@ -119,7 +119,7 @@ function TicketCard({ item }: TicketCardProps) {
 
 export default function TicketsSection() {
     return (
-        <section className="py-12 md:py-20 lg:py-32">
+        <section id="tickets" className="py-12 md:py-20 lg:py-32">
             <div className="bg-linear-to-b absolute inset-0 -z-10 sm:inset-6 sm:rounded-b-3xl dark:block dark:to-[color-mix(in_oklab,var(--color-zinc-900)_75%,var(--color-background))]"></div>
             <div className="mx-auto max-w-6xl space-y-10 px-6 md:space-y-16 lg:space-y-20">
                 <div className="relative z-10 mx-auto max-w-2xl space-y-6 text-center">
@@ -139,17 +139,22 @@ export default function TicketsSection() {
                         as="p"
                         className="text-pretty"
                     >
-                        Get your spot for the next Pier Tronic experiences. Hover a card to peek details, pricing and venue.
+                        Get your spot for the next Pier-Tronic experiences. Hover a card to peek details, pricing and venue.
                     </TextEffect>
                 </div>
 
-                <div
+
+                <iframe style={{ border: 'none', borderRadius: '20px', height: '1216px', width: '100%', overflowY: 'hidden' }} src="https://stagedates.com/events/docklands-2026-docklands-20260606-btFET?embedded=true" id="stagedates-iframe-shop-1" allow="fullscreen; encrypt-media; payment;" scrolling="no">
+                </iframe>
+                {/*
+                    <div
                     className="grid auto-rows-[14rem] grid-cols-1 gap-6 sm:grid-cols-2 lg:auto-rows-[16rem] lg:grid-cols-6"
                 >
-                    {TICKETS.map((item) => (
+                    TICKETS.map((item) => (
                         <TicketCard key={item.id} item={item} />
-                    ))}
-                </div>
+                    ))
+                    </div>
+                    */}
             </div>
         </section>
     )
