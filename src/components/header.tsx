@@ -6,6 +6,7 @@ import { Menu, X, Users, Ticket, Info } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { LogoWordmark } from "./logo";
+import { motion, AnimatePresence } from "motion/react";
 
 const menuItems = [
     { key: "team_caption", href: "#artists", icon: Users },
@@ -13,9 +14,33 @@ const menuItems = [
     { key: "link_about", href: "#about", icon: Info },
 ];
 
+const navVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: [0.22, 1, 0.36, 1] as const,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }
+    }
+};
+
 export const HeroHeader = () => {
     const [menuState, setMenuState] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const [hoveredItem, setHoveredItem] = useState<number | null>(null);
     const [dict, setDict] = useState<Record<string, string> | null>(null);
 
     useEffect(() => {
@@ -61,30 +86,48 @@ export const HeroHeader = () => {
 
     return (
         <header>
-            {/* Mobile Menu Backdrop */}
-            <div
-                className={cn(
-                    "fixed inset-0 z-20 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden",
-                    menuState ? "opacity-100" : "opacity-0 pointer-events-none"
+            {/* Mobile Menu Backdrop with Blur */}
+            <AnimatePresence>
+                {menuState && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="fixed inset-0 z-20 bg-black/60 backdrop-blur-md lg:hidden"
+                        onClick={() => setMenuState(false)}
+                        aria-hidden="true"
+                    />
                 )}
-                onClick={() => setMenuState(false)}
-                aria-hidden="true"
-            />
+            </AnimatePresence>
 
-            <nav
+            <motion.nav
+                variants={navVariants}
+                initial="hidden"
+                animate="visible"
                 aria-label="Primary"
-                data-state={menuState && "active"}
                 className="fixed w-full px-2 z-30"
             >
-                <div
+                <motion.div
+                    animate={{
+                        backgroundColor: isScrolled ? "rgba(var(--background), 0.9)" : "rgba(0, 0, 0, 0.3)",
+                        backdropFilter: isScrolled ? "blur(24px)" : "blur(12px)",
+                    }}
+                    transition={{ duration: 0.4, ease: "easeInOut" }}
                     className={cn(
-                        "mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12",
-                        isScrolled &&
-                        "bg-background/60 max-w-4xl rounded-2xl border backdrop-blur-lg lg:px-5"
+                        "mx-auto mt-4 max-w-7xl px-8 transition-all duration-400 lg:px-16",
+                        "rounded-3xl border shadow-2xl",
+                        isScrolled
+                            ? "border-border/60 shadow-black/10 dark:shadow-black/40 max-w-5xl"
+                            : "border-white/20 shadow-black/20"
                     )}
                 >
-                    <div className="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
-                        <div className="flex w-full justify-between lg:w-auto">
+                    <div className="relative flex flex-wrap items-center justify-between gap-8 py-5 lg:gap-0 lg:py-6">
+                        {/* Logo */}
+                        <motion.div
+                            variants={itemVariants}
+                            className="flex w-full justify-between lg:w-auto"
+                        >
                             <Link
                                 href="/"
                                 aria-label="home"
@@ -93,111 +136,192 @@ export const HeroHeader = () => {
                                 <LogoWordmark
                                     uniColor
                                     className={cn(
-                                        "h-6",
+                                        "h-7 transition-all duration-300 drop-shadow-lg",
                                         isScrolled ? "text-foreground" : "text-white"
                                     )}
                                 />
                             </Link>
 
-                            <button
+                            {/* Mobile Menu Toggle */}
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
                                 onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState == true ? "Close Menu" : "Open Menu"}
+                                aria-label={menuState ? "Close Menu" : "Open Menu"}
                                 className={cn(
-                                    "relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden",
-                                    "rounded-lg transition-colors duration-200",
-                                    "hover:bg-white/10 active:bg-white/20"
+                                    "relative z-20 -m-2.5 -mr-4 block p-3 lg:hidden",
+                                    "rounded-xl transition-all duration-300 overflow-hidden group",
+                                    "hover:bg-gradient-to-r hover:from-purple-500/20 hover:via-pink-500/20 hover:to-orange-500/20"
                                 )}
                             >
-                                <Menu className={cn(
-                                    "m-auto size-6 transition-all duration-300",
-                                    menuState ? "rotate-180 scale-0 opacity-0" : "rotate-0 scale-100 opacity-100",
-                                    isScrolled ? "text-foreground" : "text-white"
-                                )} />
-                                <X className={cn(
-                                    "absolute inset-0 m-auto size-6 transition-all duration-300",
-                                    menuState ? "rotate-0 scale-100 opacity-100" : "-rotate-180 scale-0 opacity-0",
-                                    isScrolled ? "text-foreground" : "text-white"
-                                )} />
-                            </button>
-                        </div>
+                                <motion.div
+                                    animate={{ rotate: menuState ? 180 : 0 }}
+                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+                                >
+                                    {menuState ? (
+                                        <X className={cn("size-7", isScrolled ? "text-foreground" : "text-white drop-shadow-md")} />
+                                    ) : (
+                                        <Menu className={cn("size-7", isScrolled ? "text-foreground" : "text-white drop-shadow-md")} />
+                                    )}
+                                </motion.div>
+                            </motion.button>
+                        </motion.div>
 
-                        <div className="absolute inset-0 m-auto hidden size-fit lg:block">
-                            <ul className="flex gap-8 text-sm">
+                        {/* Desktop Navigation */}
+                        <motion.div
+                            variants={itemVariants}
+                            className="absolute inset-0 m-auto hidden size-fit lg:block"
+                        >
+                            <ul className="flex gap-2">
                                 {menuItems.map((item, index) => (
-                                    <li key={index}>
+                                    <motion.li
+                                        key={index}
+                                        onHoverStart={() => setHoveredItem(index)}
+                                        onHoverEnd={() => setHoveredItem(null)}
+                                        className="relative"
+                                    >
                                         <Link
                                             href={item.href}
-                                            className={cn(
-                                                "block duration-150",
-                                                isScrolled
-                                                    ? "text-muted-foreground hover:text-foreground"
-                                                    : "text-white hover:text-white/80"
-                                            )}
+                                            className="relative block px-6 py-3 font-semibold text-base group"
                                         >
-                                            <span>{t(item.key)}</span>
+                                            <span
+                                                className={cn(
+                                                    "relative z-10 transition-colors duration-300",
+                                                    isScrolled
+                                                        ? "text-muted-foreground group-hover:text-foreground"
+                                                        : "text-white/90 group-hover:text-white drop-shadow-lg"
+                                                )}
+                                            >
+                                                {t(item.key)}
+                                            </span>
+
+                                            {/* Subtle background fade */}
+                                            {hoveredItem === index && (
+                                                <motion.div
+                                                    layoutId="navBackground"
+                                                    className="absolute inset-0 rounded-lg"
+                                                    style={{
+                                                        background: isScrolled
+                                                            ? "rgba(0, 0, 0, 0.03)"
+                                                            : "rgba(255, 255, 255, 0.06)",
+                                                    }}
+                                                    initial={{ opacity: 0 }}
+                                                    animate={{ opacity: 1 }}
+                                                    exit={{ opacity: 0 }}
+                                                    transition={{ duration: 0.2 }}
+                                                />
+                                            )}
+
+                                            {/* Minimal bottom border */}
+                                            {hoveredItem === index && (
+                                                <motion.div
+                                                    layoutId="navIndicator"
+                                                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full"
+                                                    style={{
+                                                        background: isScrolled
+                                                            ? "rgba(0, 0, 0, 0.2)"
+                                                            : "rgba(255, 255, 255, 0.4)",
+                                                        width: "40%",
+                                                    }}
+                                                    initial={{ scaleX: 0 }}
+                                                    animate={{ scaleX: 1 }}
+                                                    exit={{ scaleX: 0 }}
+                                                    transition={{
+                                                        duration: 0.3,
+                                                        ease: [0.4, 0, 0.2, 1]
+                                                    }}
+                                                />
+                                            )}
                                         </Link>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
 
-                        <div className={cn(
-                            "bg-background hidden w-full flex-wrap items-center justify-end rounded-3xl border p-6 shadow-2xl shadow-zinc-300/20 md:flex-nowrap",
-                            "lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none dark:shadow-none dark:lg:bg-transparent",
-                            "transition-all duration-300 ease-out",
-                            menuState && "in-data-[state=active]:block lg:in-data-[state=active]:flex animate-in slide-in-from-top-5 fade-in-0"
-                        )}>
-                            <div className="lg:hidden">
-                                <ul className="space-y-2">
-                                    {menuItems.map((item, index) => {
-                                        const Icon = item.icon;
-                                        return (
-                                            <li key={index}>
-                                                <Link
-                                                    href={item.href}
-                                                    onClick={() => setMenuState(false)}
-                                                    className={cn(
-                                                        "group flex items-center gap-4 rounded-xl px-4 py-3.5 text-base font-medium",
-                                                        "text-foreground transition-all duration-200",
-                                                        "hover:bg-accent hover:text-accent-foreground",
-                                                        "active:scale-[0.98]"
-                                                    )}
-                                                >
-                                                    <Icon className="size-5 opacity-70 group-hover:opacity-100 transition-opacity" />
-                                                    <span>{t(item.key)}</span>
-                                                </Link>
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                                <div className="pt-6 border-t">
-                                    <Button
-                                        asChild
-                                        size="lg"
-                                        className="w-full"
+                        {/* CTA Button */}
+                        <motion.div
+                            variants={itemVariants}
+                            className="hidden lg:block"
+                        >
+                            <AnimatePresence>
+                                {isScrolled && (
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                                        animate={{ opacity: 1, scale: 1, x: 0 }}
+                                        exit={{ opacity: 0, scale: 0.8, x: 20 }}
+                                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
                                     >
-                                        <Link href="#tickets" onClick={() => setMenuState(false)}>
-                                            <Ticket className="mr-2 size-4" />
-                                            <span>Get Tickets</span>
-                                        </Link>
-                                    </Button>
-                                </div>
-                            </div>
-                            <div className="hidden lg:flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit">
+                                        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                                            <Button asChild size="default" className="relative overflow-hidden group font-semibold text-base px-6 h-11">
+                                                <Link href="#tickets">
+                                                    <motion.div
+                                                        className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 opacity-0 group-hover:opacity-100"
+                                                        transition={{ duration: 0.3 }}
+                                                    />
+                                                    <span className="relative z-10 flex items-center">
+                                                        <Ticket className="mr-2 size-5" />
+                                                        Get Tickets
+                                                    </span>
+                                                </Link>
+                                            </Button>
+                                        </motion.div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </motion.nav>
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {menuState && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className="fixed top-24 left-0 right-0 z-20 px-4 lg:hidden"
+                    >
+                        <div className="bg-background rounded-2xl border shadow-2xl p-6 max-w-md mx-auto">
+                            <ul className="space-y-2">
+                                {menuItems.map((item, index) => {
+                                    const Icon = item.icon;
+                                    return (
+                                        <li key={index}>
+                                            <Link
+                                                href={item.href}
+                                                onClick={() => setMenuState(false)}
+                                                className={cn(
+                                                    "group flex items-center gap-4 rounded-xl px-4 py-3.5 text-base font-medium",
+                                                    "text-foreground transition-all duration-200",
+                                                    "hover:bg-accent hover:text-accent-foreground",
+                                                    "active:scale-[0.98]"
+                                                )}
+                                            >
+                                                <Icon className="size-5 opacity-70 group-hover:opacity-100 transition-opacity" />
+                                                <span>{t(item.key)}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
+                            </ul>
+                            <div className="pt-6 border-t mt-4">
                                 <Button
                                     asChild
-                                    size="sm"
-                                    className={cn(isScrolled ? "lg:inline-flex" : "hidden")}
+                                    size="lg"
+                                    className="w-full"
                                 >
-                                    <Link href="#tickets">
+                                    <Link href="#tickets" onClick={() => setMenuState(false)}>
+                                        <Ticket className="mr-2 size-4" />
                                         <span>Get Tickets</span>
                                     </Link>
                                 </Button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </header>
     );
 };

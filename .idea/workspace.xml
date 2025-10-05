@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/data-protection/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data-protection/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/imprint/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/imprint/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/hero-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/hero-section.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logo-cloud.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logo-cloud.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/team.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/team.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tickets-section.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tickets-section.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,5 +95,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="partial" />
+    <option name="LAST_COMMIT_MESSAGE" value="partial" />
   </component>
 </project>
