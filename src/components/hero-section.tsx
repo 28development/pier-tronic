@@ -46,10 +46,16 @@ export default function HeroSection() {
           preload="metadata"
           poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
         >
-          <source src="/piertronic-hero.webm" type="video/webm" />
-          <source src="/piertronic-hero.mp4" type="video/mp4" />
           <source
-            src="https://www.pexels.com/download/video/2022395/"
+            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
+            type="video/webm"
+          />
+          <source
+            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
+            type="video/mp4"
+          />
+          <source
+            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
             type="video/mp4"
           />
         </video>
