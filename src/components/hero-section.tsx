@@ -108,11 +108,13 @@ export default function HeroSection() {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">Dec 31, 2025</span>
+                  <span className="text-sm font-medium">June 22, 2026</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">Tenerife, Spain</span>
+                  <span className="text-sm font-medium">
+                    Amsterdam, Netherlands
+                  </span>
                 </div>
               </motion.div>
 
@@ -142,7 +144,7 @@ export default function HeroSection() {
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />
-                    View Lineup
+                    Lineup ansehen
                   </a>
                 </Button>
               </motion.div>
