@@ -1,5 +1,3 @@
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ChevronsUpDown } from 'lucide-react'
 import Link from 'next/link'
@@ -9,6 +7,8 @@ import { AnimatedGroup } from './ui/animated-group'
 import { getRequestLocale } from '@/app/i18n-request'
 import { LanguageSelect } from '@/components/language-select'
 import { getServerT } from '@/app/i18n-server'
+import { ShareButtons } from '@/components/share-buttons'
+import { headers as getHeaders } from 'next/headers'
 
 const links = [
     {
@@ -44,6 +44,11 @@ export default async function FooterSection() {
     const locale = await getRequestLocale()
     const t = await getServerT(locale)
     const year = new Date().getFullYear()
+    const headersList = await getHeaders()
+    const host = headersList.get('x-forwarded-host') ?? headersList.get('host') ?? 'localhost:3000'
+    const protocol = headersList.get('x-forwarded-proto') ?? 'https'
+    const origin = `${protocol}://${host}`
+    const shareUrl = origin
     return (
         <footer className="border-b pt-20 dark:bg-transparent">
             <AnimatedGroup
@@ -196,26 +201,16 @@ export default async function FooterSection() {
                             </div>
                         ))}
                     </div>
-                    <form className="border-b pb-8 text-sm md:col-span-1 md:border-none lg:col-span-1">
+                    <div className="border-b pb-8 text-sm md:col-span-1 md:border-none lg:col-span-1">
                         <div className="space-y-4">
-                            <Label
-                                htmlFor="mail"
-                                className="block font-medium">
-                                {t('newsletter')}
-                            </Label>
-                            <div className="flex gap-2">
-                                <Input
-                                    type="email"
-                                    id="mail"
-                                    name="mail"
-                                    placeholder={t('newsletter_placeholder')}
-                                    className="h-8 text-sm"
-                                />
-                                <Button size="sm">{t('newsletter_submit')}</Button>
-                            </div>
-                            <span className="text-muted-foreground block text-sm">{t('newsletter_hint')}</span>
+                            <Label className="block font-medium">{t('share_title')}</Label>
+                            <ShareButtons
+                                shareUrl={shareUrl}
+                                copyLabel={t('share_copy')}
+                                copiedLabel={t('share_copied')}
+                            />
                         </div>
-                    </form>
+                    </div>
                 </div>
                 <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
                     <small className="text-muted-foreground order-last block text-center text-sm md:order-first">{t('footer_rights', { year })}</small>

@@ -5,6 +5,8 @@ import { HeroHeader } from "@/components/header";
 import FooterSection from "@/components/footer";
 import { getRequestLocale } from "./i18n-request";
 import { BubbleBackground } from "@/components/animate-ui/components/backgrounds/bubble";
+import Script from "next/script";
+import { headers as getHeaders } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,11 +29,35 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getRequestLocale();
+  const headersList = await getHeaders();
+  const host = headersList.get('x-forwarded-host') ?? headersList.get('host') ?? 'localhost:3000';
+  const protocol = headersList.get('x-forwarded-proto') ?? 'https';
+  const origin = `${protocol}://${host}`;
   return (
     <html lang={locale}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Script id="ld-json-org" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Pier-Tronic",
+            "url": origin + "/",
+            "logo": origin + "/next.svg",
+            "sameAs": [
+
+            ]
+          })}
+        </Script>
+        <Script id="ld-json-website" type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Pier-Tronic",
+            "url": origin + "/",
+          })}
+        </Script>
         <BubbleBackground
           interactive={true}
           className="fixed inset-0 z-0 pointer-events-none bg-white bg-none"
