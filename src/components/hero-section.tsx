@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { LogoCloud } from "@/components/logo-cloud";
-import { Calendar, MapPin, Users, Ticket } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, Ticket, Users } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
 
@@ -21,7 +21,7 @@ export default function HeroSection() {
         if (!res.ok) return;
         const json = await res.json();
         if (isActive) setDict(json);
-      } catch { }
+      } catch {}
     })();
     return () => {
       isActive = false;
@@ -63,7 +63,6 @@ export default function HeroSection() {
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="mx-auto max-w-6xl px-6 py-32 lg:px-12 lg:py-40 w-full">
           <div className="max-w-4xl">
-
             {/* Main Content */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -148,7 +147,6 @@ export default function HeroSection() {
                 </Button>
               </motion.div>
             </motion.div>
-
           </div>
         </div>
       </div>

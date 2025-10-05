@@ -1,9 +1,9 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
 import { TextEffect } from "./ui/text-effect";
@@ -14,23 +14,26 @@ const featuredArtist = {
   role: "DJ / PRODUCER",
   location: "Tenerife, Spain",
   images: [
-    "/images/ana_pak/IMG_0112.JPG",
-    "/images/ana_pak/IMG_0114.JPG",
-    "/images/ana_pak/IMG_0577.JPG",
-    "/images/ana_pak/IMG_0578.JPG",
-    "/images/ana_pak/IMG_0841.JPG",
-    "/images/ana_pak/IMG_0845.JPG",
-    "/images/ana_pak/IMG_0878.JPG",
-    "/images/ana_pak/IMG_3253.JPG",
-    "/images/ana_pak/IMG_3987.JPG",
-    "/images/ana_pak/IMG_4987.JPG",
-    "/images/ana_pak/IMG_5014.JPG",
-    "/images/ana_pak/IMG_5085.JPG",
-    "/images/ana_pak/IMG_5870.PNG",
-    "/images/ana_pak/IMG_5871.PNG",
-    "/images/ana_pak/IMG_6948.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0112.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0114.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0577.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0578.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0841.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0845.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0878.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_3253.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_3987.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_4987.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5014.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5085.JPG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5870.PNG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5871.PNG",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_6948.JPG",
   ],
-  videos: ["/videos/ana_pak/CLIP 5.mp4", "/videos/ana_pak/CLIP 7.mp4"],
+  videos: [
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%207.mp4",
+  ],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
     youtube: "https://www.youtube.com/@anapakdj/videos",
@@ -113,7 +116,9 @@ function FeaturedArtistCard() {
   // Combine videos and selected images for rotation
   const mediaItems = [
     ...featuredArtist.videos.map((v) => ({ type: "video" as const, src: v })),
-    ...featuredArtist.images.slice(0, 6).map((i) => ({ type: "image" as const, src: i })),
+    ...featuredArtist.images
+      .slice(0, 6)
+      .map((i) => ({ type: "image" as const, src: i })),
   ];
 
   useEffect(() => {
@@ -192,7 +197,9 @@ function FeaturedArtistCard() {
                 onLoadedData={() => setIsLoaded(true)}
                 onError={(e) => {
                   console.error("Video failed to load", e);
-                  setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
+                  setCurrentMediaIndex(
+                    (prev) => (prev + 1) % mediaItems.length
+                  );
                 }}
               />
             ) : (
@@ -299,10 +306,11 @@ function FeaturedArtistCard() {
             <button
               key={index}
               onClick={() => setCurrentMediaIndex(index)}
-              className={`h-1 rounded-full transition-all duration-300 ${index === currentMediaIndex
-                ? "w-8 bg-white"
-                : "w-4 bg-white/30 hover:bg-white/50"
-                }`}
+              className={`h-1 rounded-full transition-all duration-300 ${
+                index === currentMediaIndex
+                  ? "w-8 bg-white"
+                  : "w-4 bg-white/30 hover:bg-white/50"
+              }`}
               aria-label={`View media ${index + 1}`}
             />
           ))}
@@ -389,7 +397,7 @@ export default function TeamSection() {
         if (!res.ok) return;
         const json = await res.json();
         if (isActive) setDict(json);
-      } catch { }
+      } catch {}
     })();
     return () => {
       isActive = false;
