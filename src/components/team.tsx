@@ -407,7 +407,7 @@ export default function TeamSection() {
   return (
     <section id="artists" className="py-16 dark:bg-transparent">
       <div className="mx-auto max-w-5xl border-t px-6">
-        <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 px-6 dark:bg-gray-950">
+        <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 rounded-4xl px-6 dark:bg-gray-950">
           {t("team_caption")}
         </span>
         <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">

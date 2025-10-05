@@ -36,9 +36,9 @@ export default function HeroSection() {
       className="relative overflow-hidden"
     >
       {/* Dynamic Background with Video */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 h-dvh">
         <video
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
           muted
@@ -55,8 +55,8 @@ export default function HeroSection() {
         </video>
 
         {/* Multi-layer gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20" />
+        <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
+        <div className="absolute h-dvh inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20" />
       </div>
 
       {/* Hero Content */}
@@ -152,7 +152,7 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom Fade Transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-transparent z-10" />
 
       <LogoCloud />
     </section>
