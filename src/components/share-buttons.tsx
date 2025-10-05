@@ -26,12 +26,6 @@ export function ShareButtons({ shareUrl, copyLabel, copiedLabel }: ShareButtonsP
 
     return (
         <div className="space-y-3">
-            <div className="flex gap-2">
-                <Input readOnly value={shareUrl} className="h-8 text-sm" />
-                <Button size="sm" type="button" onClick={onCopy} aria-label={copyLabel}>
-                    {copied ? copiedLabel : copyLabel}
-                </Button>
-            </div>
             <div className="flex flex-wrap gap-2">
                 <Button asChild size="sm" variant="secondary" aria-label="X/Twitter">
                     <a
