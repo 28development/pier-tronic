@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="Update Hero section" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,6 +89,23 @@
       <workItem from="1758222543738" duration="1212000" />
       <workItem from="1758527019382" duration="598000" />
     </task>
+    <task id="LOCAL-00001" summary="Update header component.">
+      <option name="closed" value="true" />
+      <created>1759695131643</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759695131643</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update Hero section">
+      <option name="closed" value="true" />
+      <created>1759697589773</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759697589773</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -98,6 +113,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="partial" />
-    <option name="LAST_COMMIT_MESSAGE" value="partial" />
+    <MESSAGE value="Update header component." />
+    <MESSAGE value="Update Hero section" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Hero section" />
   </component>
 </project>
