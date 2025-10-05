@@ -1,199 +1,162 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-
-import { getRequestLocale } from "@/app/i18n-request";
-import { getServerT } from "@/app/i18n-server";
 import { LogoCloud } from "@/components/logo-cloud";
-import Image from "next/image";
-import { AnimatedGroup } from "./ui/animated-group";
-import { CountingNumber } from "./ui/shadcn-io/counting-number";
-import { TextEffect } from "./ui/text-effect";
+import { Calendar, MapPin, Users, Ticket } from "lucide-react";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
-const transitionVariants = {
-  item: {
-    hidden: { opacity: 0, filter: "blur(12px)", y: 12 },
-    visible: {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      transition: { type: "spring" as const, bounce: 0.3, duration: 1.5 },
-    },
-  },
-};
+export default function HeroSection() {
+  const [dict, setDict] = useState<Record<string, string> | null>(null);
 
-export default async function HeroSection() {
-  const locale = await getRequestLocale();
-  const t = await getServerT(locale);
+  useEffect(() => {
+    let isActive = true;
+    (async () => {
+      try {
+        const lang = new URLSearchParams(window.location.search).get("lang");
+        const res = await fetch(
+          `/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ""}`,
+          { cache: "no-store" }
+        );
+        if (!res.ok) return;
+        const json = await res.json();
+        if (isActive) setDict(json);
+      } catch { }
+    })();
+    return () => {
+      isActive = false;
+    };
+  }, []);
+
+  const t = (k: string) => dict?.[k] ?? k;
+
   return (
     <section
       aria-labelledby="hero-heading"
-      className="overflow-hidden [--color-primary-foreground:var(--color-white)] [--color-primary:var(--color-green-600)]"
+      className="relative overflow-hidden"
     >
-      <div className="relative h-dvh group">
-        {/* Background video */}
-        <div aria-hidden className="absolute inset-0 z-0 overflow-hidden">
-          <video
-            className="h-full w-full object-cover grayscale transition-[filter] duration-500 ease-in-out group-focus-within:grayscale-0"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
-          >
-            <source src="/piertronic-hero.webm" type="video/webm" />
-            <source src="/piertronic-hero.mp4" type="video/mp4" />
-            <source
-              src="https://www.pexels.com/download/video/2022395/"
-              type="video/mp4"
-            />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-background/10 via-background/30 to-background/80 h-dvh" />
-        </div>
-        <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-42 lg:pt-64">
-          <div className="relative z-10 mx-auto max-w-4xl text-center">
-            <h1
-              id="hero-heading"
-              className="text-balance text-5xl font-medium md:text-6xl"
-            >
-              <TextEffect preset="fade-in-blur" speedSegment={0.3} as="span">
-                {t("hero_title")}
-              </TextEffect>
-            </h1>
-            <TextEffect
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              delay={0.3}
-              as="h2"
-              className="text-balance text-5xl font-medium md:text-6xl"
-            >
-              {t("hero_subtitle")}
-            </TextEffect>
+      {/* Dynamic Background with Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
+        >
+          <source src="/piertronic-hero.webm" type="video/webm" />
+          <source src="/piertronic-hero.mp4" type="video/mp4" />
+          <source
+            src="https://www.pexels.com/download/video/2022395/"
+            type="video/mp4"
+          />
+        </video>
 
-            <TextEffect
-              per="line"
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              delay={0.5}
-              as="p"
-              className="mx-auto mt-6 max-w-2xl text-pretty text-lg"
-            >
-              {t("hero_blurb")}
-            </TextEffect>
+        {/* Multi-layer gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20" />
+      </div>
 
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: { staggerChildren: 0.05, delayChildren: 0.75 },
-                  },
-                },
-                ...transitionVariants,
-              }}
-              className="mt-12"
-            >
-              <Button asChild size="sm" className="rounded-(--radius)">
-                <a href="#tickets">{t("hero_cta")}</a>
-              </Button>
+      {/* Hero Content */}
+      <div className="relative z-10 min-h-screen flex items-center">
+        <div className="mx-auto max-w-6xl px-6 py-32 lg:px-12 lg:py-40 w-full">
+          <div className="max-w-4xl">
 
-              <div
-                aria-hidden
-                className="bg-radial from-primary/50 dark:from-primary/25 relative mx-auto mt-32 max-w-2xl to-transparent to-55% text-left lg:hidden"
-              >
-                <div className="bg-background border-border/50 absolute inset-0 mx-auto w-80 -translate-x-3 -translate-y-12 rounded-[2rem] border p-2">
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem]">
-                    <video
-                      className="h-full w-full object-cover"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="metadata"
-                      poster="https://images.unsplash.com/photo-1648726442589-63bd0d91d1e5?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0"
-                      aria-label="Festival highlight video"
-                    >
-                      <source src="/piertronic-hero.webm" type="video/webm" />
-                      <source src="/piertronic-hero.mp4" type="video/mp4" />
-                      <source
-                        src="https://cdn.coverr.co/videos/coverr-crowd-at-a-live-concert-5358/1080p.mp4"
-                        type="video/mp4"
-                      />
-                    </video>
-                  </div>
-                </div>
-                <div className="bg-muted dark:bg-background/50 border-border/50 mx-auto w-80 translate-x-4 rounded-[2rem] border p-2 backdrop-blur-3xl sm:translate-x-8">
-                  <div className="bg-background space-y-2 overflow-hidden rounded-[1.5rem] border p-2 shadow-xl dark:bg-white/5 dark:shadow-black dark:backdrop-blur-3xl">
-                    <FestivalStats />
-                    <Image
-                      height={100}
-                      width={500}
-                      src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
-                      alt="Festival Stats"
-                      className="object-cover rounded-[2rem]"
-                    />
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] mix-blend-overlay [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] dark:opacity-5"></div>
+            {/* Main Content */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="space-y-8"
+            >
+              {/* Main Headline */}
+              <div className="space-y-6">
+                <motion.h1
+                  id="hero-heading"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.6 }}
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white leading-tight tracking-tight"
+                >
+                  {t("hero_title")}
+                </motion.h1>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
+                  className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white/90 leading-tight"
+                >
+                  {t("hero_subtitle")}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="text-lg lg:text-xl text-white/70 max-w-2xl leading-relaxed"
+                >
+                  {t("hero_blurb")}
+                </motion.p>
               </div>
-            </AnimatedGroup>
+
+              {/* Event Info - Inline */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-6 text-white/80"
+              >
+                <div className="flex items-center gap-2">
+                  <Calendar className="size-5 text-white/60" />
+                  <span className="text-sm font-medium">Dec 31, 2025</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="size-5 text-white/60" />
+                  <span className="text-sm font-medium">Tenerife, Spain</span>
+                </div>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="flex flex-wrap gap-4"
+              >
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12"
+                >
+                  <a href="#tickets">
+                    <Ticket className="mr-2 size-5" />
+                    {t("hero_cta")}
+                  </a>
+                </Button>
+
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base px-8 h-12"
+                >
+                  <a href="#artists">
+                    <Users className="mr-2 size-5" />
+                    View Lineup
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
+
           </div>
         </div>
       </div>
+
+      {/* Bottom Fade Transition */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+
       <LogoCloud />
     </section>
   );
 }
-
-const FestivalStats = () => (
-  <div className="relative space-y-3 rounded-[1rem] bg-white/5 p-4">
-    <div className="flex items-center gap-1.5 text-orange-400">
-      <svg
-        className="size-5"
-        xmlns="http://www.w3.org/2000/svg"
-        width="1em"
-        height="1em"
-        viewBox="0 0 32 32"
-      >
-        <g fill="none">
-          <path
-            fill="#ff6723"
-            d="M26 19.34c0 6.1-5.05 11.005-11.15 10.641c-6.269-.374-10.56-6.403-9.752-12.705c.489-3.833 2.286-7.12 4.242-9.67c.34-.445.689 3.136 1.038 2.742c.35-.405 3.594-6.019 4.722-7.991a.694.694 0 0 1 1.028-.213C18.394 3.854 26 10.277 26 19.34"
-          ></path>
-          <path
-            fill="#ffb02e"
-            d="M23 21.851c0 4.042-3.519 7.291-7.799 7.144c-4.62-.156-7.788-4.384-7.11-8.739C9.07 14.012 15.48 10 15.48 10S23 14.707 23 21.851"
-          ></path>
-        </g>
-      </svg>
-      <div className="text-sm font-medium">Attendees</div>
-    </div>
-    <div className="space-y-3">
-      <div className="space-x-1">
-        <span className="text-foreground align-baseline text-xl font-medium">
-          <CountingNumber
-            number={20000}
-            inView={true}
-            transition={{ stiffness: 100, damping: 30 }}
-          />
-        </span>
-        <span className="text-muted-foreground text-xs">People</span>
-      </div>
-      <div className="flex h-5 items-center rounded bg-gradient-to-l from-emerald-400 to-indigo-600 px-2 text-xs text-white">
-        2025
-      </div>
-
-      <div className="space-x-1 mt-3">
-        <span className="text-foreground align-baseline text-xl font-medium">
-          <CountingNumber
-            number={15}
-            inView={true}
-            transition={{ stiffness: 100, damping: 30 }}
-          />
-        </span>
-        <span className="text-muted-foreground text-xs">DJs & Artists</span>
-      </div>
-      <div className="text-foreground bg-muted flex h-5 w-2/3 items-center rounded px-2 dark:bg-white/20">
-        2025 Lineup
-      </div>
-    </div>
-  </div>
-);
