@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { InfiniteSlider } from "./motion-primitives/infinite-slider";
 import { ProgressiveBlur } from "./motion-primitives/progressive-blur";
 
@@ -12,7 +13,7 @@ export const LogoCloud = () => {
           <div className="relative py-6 md:w-[calc(100%-11rem)]">
             <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-12 w-fit"
                   src="/fightology_logo.png"
                   alt="Fightology logo"
@@ -23,7 +24,7 @@ export const LogoCloud = () => {
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-12 w-fit"
                   src="/reborn_logo.png"
                   alt="Reborn logo"
