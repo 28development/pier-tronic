@@ -55,8 +55,8 @@ export default function DataProtectionPage() {
               <div>
                 <h3 className="font-medium mb-1">No Tracking</h3>
                 <p className="text-sm text-muted-foreground">
-                  We don't use analytics, tracking cookies, or any monitoring
-                  tools on our website.
+                  We don&#39;t use analytics, tracking cookies, or any
+                  monitoring tools on our website.
                 </p>
               </div>
             </div>
@@ -304,7 +304,7 @@ export default function DataProtectionPage() {
                   <span>
                     <strong>Stagedates Privacy Policy applies:</strong> Your
                     data processing during ticket purchase is governed by
-                    Stagedates' privacy policy, which you can review at{" "}
+                    Stagedates&#39; privacy policy, which you can review at{" "}
                     <a
                       href="https://stagedates.com/privacy"
                       target="_blank"
@@ -404,7 +404,7 @@ export default function DataProtectionPage() {
                 You can control and delete cookies through your browser
                 settings. Please note that disabling essential cookies may
                 affect website functionality. For instructions on managing
-                cookies, visit your browser's help section.
+                cookies, visit your browser&#39;s help section.
               </p>
             </div>
           </AccordionContent>
@@ -601,7 +601,7 @@ export default function DataProtectionPage() {
               <p className="text-sm text-muted-foreground">
                 If you believe we have not handled your data properly, you have
                 the right to lodge a complaint with your local data protection
-                supervisory authority. In Germany, this is your state's data
+                supervisory authority. In Germany, this is your state&#39;s data
                 protection authority or the Federal Commissioner for Data
                 Protection and Freedom of Information (BfDI).
               </p>
@@ -687,7 +687,7 @@ export default function DataProtectionPage() {
               <p className="font-medium mb-2">Stagedates Data Transfer</p>
               <p className="text-sm text-muted-foreground">
                 The Stagedates ticketing service may transfer data outside the
-                EU/EEA. Please refer to Stagedates' privacy policy for
+                EU/EEA. Please refer to Stagedates&#39; privacy policy for
                 information about their data transfer practices and safeguards:
               </p>
               <a
@@ -715,7 +715,7 @@ export default function DataProtectionPage() {
           className="border rounded-lg px-6"
         >
           <AccordionTrigger className="text-xl font-normal hover:no-underline">
-            Children's Privacy
+            Children&#39;s Privacy
           </AccordionTrigger>
           <AccordionContent className="text-base space-y-4 pt-4">
             <p>
@@ -758,8 +758,8 @@ export default function DataProtectionPage() {
               <p className="font-medium mb-2">When we update this policy:</p>
               <ul className="space-y-1 text-sm text-muted-foreground">
                 <li>
-                  • We will update the "Last updated" date at the top of this
-                  page
+                  • We will update the &quot;Last updated&quot; date at the top
+                  of this page
                 </li>
                 <li>
                   • Significant changes will be clearly indicated on our website
@@ -788,7 +788,7 @@ export default function DataProtectionPage() {
           <AccordionContent className="text-base space-y-4 pt-4">
             <p>
               If you have any questions about this privacy policy or our data
-              practices, please don't hesitate to contact us:
+              practices, please don&#39;t hesitate to contact us:
             </p>
 
             <div className="grid gap-4 md:grid-cols-2">
@@ -865,7 +865,7 @@ export default function DataProtectionPage() {
                 provide our services and protect our website.
               </p>
               <p>
-                Unlike many websites, we don't track your behavior, build
+                Unlike many websites, we don&#39;t track your behavior, build
                 profiles, or monetize your data. Your privacy matters to us.
               </p>
             </div>
