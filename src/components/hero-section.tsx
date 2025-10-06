@@ -73,80 +73,20 @@ export default function HeroSection() {
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className="relative text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight"
                 >
-                  <span className="relative inline-block">
-                    {/* Pulsing glow backdrop (festival vibe) */}
-                    <motion.span
-                      aria-hidden
-                      className="pointer-events-none absolute -inset-x-16 -inset-y-8 -z-10"
-                      animate={{ opacity: [0.5, 1, 0.5] }}
-                      transition={{
-                        duration: 1.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
-                      <motion.span
-                        className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 size-[42vmin] rounded-full blur-3xl"
-                        style={{
-                          background:
-                            "radial-gradient(closest-side, rgba(236,72,153,0.35), rgba(236,72,153,0.0) 62%)",
-                        }}
-                        animate={{ scale: [1, 1.08, 1] }}
-                        transition={{
-                          duration: 1.8,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                      <motion.span
-                        className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 size-[56vmin] rounded-full blur-3xl"
-                        style={{
-                          background:
-                            "radial-gradient(closest-side, rgba(59,130,246,0.25), rgba(59,130,246,0.0) 65%)",
-                        }}
-                        animate={{ scale: [1.05, 0.98, 1.05] }}
-                        transition={{
-                          duration: 2.2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                      <motion.span
-                        className="absolute left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 size-[64vmin] rounded-full blur-3xl"
-                        style={{
-                          background:
-                            "radial-gradient(closest-side, rgba(147,51,234,0.18), rgba(147,51,234,0.0) 70%)",
-                        }}
-                        animate={{ scale: [0.98, 1.06, 0.98] }}
-                        transition={{
-                          duration: 2.6,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </motion.span>
-
-                    {/* Animated gradient text with subtle beat */}
+                  <span className="relative inline-block text-white">
+                    {/* Minimal animated gradient text */}
                     <motion.span
                       className="relative z-10 bg-clip-text text-transparent"
                       style={{
                         backgroundImage:
-                          "linear-gradient(90deg, oklch(0.78 0.23 330) 0%, oklch(0.80 0.16 30) 25%, oklch(0.78 0.20 120) 50%, oklch(0.78 0.20 260) 75%, oklch(0.78 0.23 330) 100%)",
-                        backgroundSize: "200% 200%",
+                          "linear-gradient(90deg, oklch(0.82 0.12 330), oklch(0.84 0.08 120))",
+                        backgroundSize: "200% 100%",
                       }}
-                      animate={{
-                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                        scale: [1, 1.015, 1],
-                        textShadow: [
-                          "0 0 20px rgba(236,72,153,0.45), 0 0 40px rgba(59,130,246,0.2)",
-                          "0 0 28px rgba(236,72,153,0.75), 0 0 60px rgba(59,130,246,0.35)",
-                          "0 0 20px rgba(236,72,153,0.45), 0 0 40px rgba(59,130,246,0.2)",
-                        ],
-                      }}
+                      animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
                       transition={{
-                        duration: 1.8,
+                        duration: 12,
                         repeat: Infinity,
-                        ease: "easeInOut",
+                        ease: "linear",
                       }}
                     >
                       {t("hero_title")}
@@ -212,7 +152,7 @@ export default function HeroSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:border-white/60 font-semibold text-base px-8 h-12"
+                  className="bg-transparent border-white/40 text-white hover:border-white/60 font-semibold text-base px-8 h-12 hover:bg-white"
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />
