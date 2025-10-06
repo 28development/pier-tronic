@@ -152,7 +152,7 @@ export const HeroHeader = () => {
                 className={cn(
                   "relative z-20 -m-2.5 -mr-4 block p-3 lg:hidden",
                   "rounded-xl transition-all duration-300 overflow-hidden group",
-                  "hover:bg-gradient-to-r hover:from-purple-500/20 hover:via-pink-500/20 hover:to-orange-500/20"
+                  "hover:bg-white/10"
                 )}
               >
                 <motion.div
@@ -166,18 +166,14 @@ export const HeroHeader = () => {
                     <X
                       className={cn(
                         "size-7",
-                        isScrolled
-                          ? "text-foreground"
-                          : "text-white drop-shadow-md"
+                        isScrolled ? "text-white" : "text-white drop-shadow-md"
                       )}
                     />
                   ) : (
                     <Menu
                       className={cn(
                         "size-7",
-                        isScrolled
-                          ? "text-foreground"
-                          : "text-white drop-shadow-md"
+                        isScrolled ? "text-white" : "text-white drop-shadow-md"
                       )}
                     />
                   )}
@@ -296,7 +292,7 @@ export const HeroHeader = () => {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="fixed top-24 left-0 right-0 z-20 px-4 lg:hidden"
           >
-            <div className="bg-background rounded-2xl border shadow-2xl p-6 max-w-md mx-auto">
+            <div className="bg-background rounded-2xl border shadow-2xl p-6 mx-auto">
               <ul className="space-y-2">
                 {menuItems.map((item, index) => {
                   const Icon = item.icon;
