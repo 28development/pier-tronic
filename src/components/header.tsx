@@ -146,7 +146,6 @@ export const HeroHeader = () => {
 
               {/* Mobile Menu Toggle */}
               <motion.button
-                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setMenuState(!menuState)}
                 aria-label={menuState ? "Close Menu" : "Open Menu"}
@@ -207,7 +206,7 @@ export const HeroHeader = () => {
                         className={cn(
                           "relative z-10 transition-colors duration-300",
                           isScrolled
-                            ? "text-muted-foreground group-hover:text-foreground"
+                            ? "text-white/90"
                             : "text-white/90 group-hover:text-white drop-shadow-lg"
                         )}
                       >
@@ -260,39 +259,31 @@ export const HeroHeader = () => {
             {/* CTA Button */}
             <motion.div variants={itemVariants} className="hidden lg:block">
               <AnimatePresence>
-                {isScrolled && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                    animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                    transition={{
-                      duration: 0.4,
-                      ease: [0.22, 1, 0.36, 1] as const,
-                    }}
-                  >
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
+                  animate={{ opacity: 1, scale: 1, x: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, x: 20 }}
+                  transition={{
+                    duration: 0.4,
+                    ease: [0.22, 1, 0.36, 1] as const,
+                  }}
+                >
+                  <motion.div whileTap={{ scale: 0.98 }}>
+                    <Button
+                      asChild
+                      size="default"
+                      className="relative overflow-hidden group font-semibold text-base px-6 h-11"
                     >
-                      <Button
-                        asChild
-                        size="default"
-                        className="relative overflow-hidden group font-semibold text-base px-6 h-11"
-                      >
-                        <Link href="#tickets">
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 opacity-0 group-hover:opacity-100"
-                            transition={{ duration: 0.3 }}
-                          />
-                          <span className="relative z-10 flex items-center">
-                            <Ticket className="mr-2 size-5" />
-                            Get Tickets
-                          </span>
-                        </Link>
-                      </Button>
-                    </motion.div>
+                      <Link href="#tickets">
+                        <motion.div className="absolute inset-0 bg-gradient-to-r from-red-600/70 via-pink-600/70 to-orange-600/70 opacity-0 group-hover:opacity-100 transition-colors" />
+                        <span className="relative z-10 flex items-center">
+                          <Ticket className="mr-2 size-5" />
+                          Get Tickets
+                        </span>
+                      </Link>
+                    </Button>
                   </motion.div>
-                )}
+                </motion.div>
               </AnimatePresence>
             </motion.div>
           </div>

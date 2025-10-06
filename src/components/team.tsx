@@ -16,6 +16,7 @@ const featuredArtist = {
   images: [
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0112.JPG",
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0114.JPG",
+    // Show this image first then a video then continue with the rest
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0577.JPG",
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0578.JPG",
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0841.JPG",
@@ -42,46 +43,33 @@ const featuredArtist = {
 
 const members = [
   {
-    name: "DJ Nova",
-    role: "Deep House / Progressive",
+    name: "Quincy Kluivert",
+    role: "Techhouse",
     avatar:
-      "https://images.unsplash.com/photo-1516873240891-4bf014598ab4?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
+      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/quincy_kluivert/quincy_kluivert_1.png",
+    link: "https://quincy-kluivert.webnode.nl/",
   },
   {
-    name: "Elijah Blaze",
-    role: "Techno / Minimal",
+    name: "Inan Batman",
+    role: "Afro House",
     avatar:
-      "https://plus.unsplash.com/premium_photo-1683134703974-3603f427e988?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
+      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/inan_batman/inan_batman.jpg",
+    link: "https://www.instagram.com/inanbatman/?hl=de",
+    // https://www.instagram.com/inanbatman/?hl=de
+    // https://soundcloud.com/inanbatman
+    // Düsseldorf, Germany
+    // https://de.ra.co/dj/inan
   },
   {
-    name: "Isabella Vibes",
-    role: "R&B / Soul Singer",
+    // https://www.instagram.com/nxn_ofc
+    // https://soundcloud.com/nxn_ofc
+    // https://de.ra.co/dj/nxn-de
+    // Düsseldorf, Germany
+    name: "DJ DUO Nadia x Natalie",
+    role: "Techhouse",
     avatar:
-      "https://images.unsplash.com/photo-1599423424751-54e0c1187a02?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
-  },
-  {
-    name: "MC Orion",
-    role: "Hip Hop / Trap",
-    avatar:
-      "https://plus.unsplash.com/premium_photo-1663040288115-757ad61a36f5?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
-  },
-  {
-    name: "Ava Beats",
-    role: "EDM / Future Bass",
-    avatar:
-      "https://images.unsplash.com/photo-1511222138462-5d03818b409c?q=80&w=2146&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
-  },
-  {
-    name: "Olivia Soundwave",
-    role: "Live Vocalist / Pop",
-    avatar:
-      "https://images.unsplash.com/photo-1617424968117-d8fe85fe5119?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "#",
+      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/nxn/nxn.jpg",
+    link: "http://nxn-official.com/",
   },
 ];
 
@@ -355,13 +343,15 @@ function MemberCard({
           <h3 className="text-base font-medium transition-all duration-500 group-hover:tracking-wider">
             {member.name}
           </h3>
-          <span className="text-xs">_0{index + 1}</span>
+          {/*<span className="text-xs">_0{index + 1}</span>*/}
         </div>
         <div className="mt-1 flex items-center justify-between">
           <span className="text-muted-foreground inline-block translate-y-6 text-sm opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
             {member.role}
           </span>
           <Link
+            target="_blank"
+            rel="noopener noreferrer"
             href={member.link}
             className="group-hover:text-primary-600 dark:group-hover:text-primary-400 inline-block translate-y-8 text-sm tracking-wide opacity-0 transition-all duration-500 hover:underline group-hover:translate-y-0 group-hover:opacity-100"
           >
@@ -442,7 +432,7 @@ export default function TeamSection() {
         <div className="mt-16 md:mt-24">
           <div className="text-center mb-12">
             <h3 className="text-2xl font-bold mb-2">More Artists</h3>
-            <p className="text-muted-foreground">
+            <p className="text-black/80">
               Meet the talented lineup bringing the energy
             </p>
           </div>

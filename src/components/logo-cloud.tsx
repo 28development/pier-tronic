@@ -13,22 +13,10 @@ export const LogoCloud = () => {
             <InfiniteSlider speedOnHover={20} speed={40} gap={112}>
               <div className="flex">
                 <img
-                  className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/nvidia.svg"
-                  alt="Nvidia Logo"
-                  height="20"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="flex">
-                <img
-                  className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/column.svg"
-                  alt="Column Logo"
-                  height="16"
+                  className="mx-auto h-12 w-fit"
+                  src="/fightology_logo.png"
+                  alt="Fightology logo"
+                  height="48"
                   width="200"
                   loading="lazy"
                   decoding="async"
@@ -36,66 +24,10 @@ export const LogoCloud = () => {
               </div>
               <div className="flex">
                 <img
-                  className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/github.svg"
-                  alt="GitHub Logo"
-                  height="16"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="flex">
-                <img
-                  className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/nike.svg"
-                  alt="Nike Logo"
-                  height="20"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="flex">
-                <img
-                  className="mx-auto h-5 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lemonsqueezy.svg"
-                  alt="Lemon Squeezy Logo"
-                  height="20"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="flex">
-                <img
-                  className="mx-auto h-4 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/laravel.svg"
-                  alt="Laravel Logo"
-                  height="16"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <div className="flex">
-                <img
-                  className="mx-auto h-7 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/lilly.svg"
-                  alt="Lilly Logo"
-                  height="28"
-                  width="200"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="flex">
-                <img
-                  className="mx-auto h-6 w-fit dark:invert"
-                  src="https://html.tailus.io/blocks/customers/openai.svg"
-                  alt="OpenAI Logo"
-                  height="24"
+                  className="mx-auto h-12 w-fit"
+                  src="/reborn_logo.png"
+                  alt="Reborn logo"
+                  height="48"
                   width="200"
                   loading="lazy"
                   decoding="async"

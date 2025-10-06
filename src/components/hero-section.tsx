@@ -38,6 +38,7 @@ export default function HeroSection() {
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
         <video
+          src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_1.mp4"
           className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
@@ -45,23 +46,10 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
-        >
-          <source
-            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
-            type="video/webm"
-          />
-          <source
-            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
-            type="video/mp4"
-          />
-          <source
-            src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4"
-            type="video/mp4"
-          />
-        </video>
+        />
 
         {/* Multi-layer gradient overlay */}
-        <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-background" />
+        <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-pink-900/50" />
         <div className="absolute h-dvh inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20" />
       </div>
 
@@ -114,12 +102,12 @@ export default function HeroSection() {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">June 22, 2026</span>
+                  <span className="text-sm font-medium">Juli 18, 2026</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="size-5 text-white/60" />
                   <span className="text-sm font-medium">
-                    Amsterdam, Netherlands
+                    Scheveningen, Netherlands
                   </span>
                 </div>
               </motion.div>

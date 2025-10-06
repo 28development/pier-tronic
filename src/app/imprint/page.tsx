@@ -4,120 +4,307 @@ import type { Metadata } from "next";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  Building2,
+  Copyright,
+  FileText,
+  Gavel,
+  Globe,
+  Image as ImageIcon,
+  Link2,
+  Mail,
+  Palette,
+  Phone,
+  Scale,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Imprint | Pier-Tronic",
-  description: "Mock imprint of Pier-Tronic GmbH",
+  description: "Legal information and imprint of Pier-Tronic GmbH",
 };
 
 export default function ImpressumPage() {
   return (
-    <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24">
-      <h1 className="text-4xl font-normal mb-6 font-victor-serif">Imprint</h1>
+    <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+      {/* Header Section */}
+      <div className="mb-12">
+        <div className="flex items-center gap-3 mb-4">
+          <Building2 className="h-8 w-8 text-primary" />
+          <h1 className="text-4xl font-normal font-victor-serif">Imprint</h1>
+        </div>
+        <p className="text-lg text-muted-foreground">
+          Legal information according to § 5 TMG (German Telemedia Act)
+        </p>
+      </div>
 
-      <Card className="mb-8">
+      {/* Main Company Information */}
+      <Card className="mb-6 border-primary/20">
         <CardContent className="pt-6">
-          <div className="space-y-6">
-            <div>
-              <h2 className="font-normal text-xl mb-2">Pier-Tronic GmbH</h2>
-              <p>Harborstrasse 7</p>
-              <p>20457 Hamburg</p>
-              <p>Germany</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <p>T +49 (0)40 1234 5670</p>
-                <p>E hello@pier-tronic.com</p>
-                <p>W pier-tronic.com</p>
-              </div>
-              <div>
-                <p>Managing Directors: Alex Meyer, Lina Fischer</p>
-                <p>Commercial Register: HRB 123456, District Court Hamburg</p>
-                <p>VAT ID: DE 999999999</p>
-              </div>
-            </div>
-
-            <Separator />
-
-            <div>
-              <h2 className="font-normal text-xl mb-2">
-                Responsible for content
+          <div className="flex items-start gap-3 mb-6">
+            <Building2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h2 className="font-normal text-2xl mb-4 font-victor-serif">
+                Pier-Tronic GmbH
               </h2>
-              <p>Pier-Tronic GmbH</p>
-              <p>(address as above)</p>
+              <div className="grid gap-6 md:grid-cols-2">
+                {/* Address */}
+                <div className="space-y-2">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Address
+                  </p>
+                  <div className="text-base">
+                    <p>Harborstrasse 7</p>
+                    <p>20457 Hamburg</p>
+                    <p>Germany</p>
+                  </div>
+                </div>
+
+                {/* Contact */}
+                <div className="space-y-3">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Contact
+                  </p>
+                  <div className="space-y-2">
+                    <a
+                      href="tel:+49401234567"
+                      className="flex items-center gap-2 text-base hover:text-primary transition-colors"
+                    >
+                      <Phone className="h-4 w-4" />
+                      +49 (0)40 1234 5670
+                    </a>
+                    <a
+                      href="mailto:hello@pier-tronic.com"
+                      className="flex items-center gap-2 text-base hover:text-primary transition-colors"
+                    >
+                      <Mail className="h-4 w-4" />
+                      hello@pier-tronic.com
+                    </a>
+                    <a
+                      href="https://pier-tronic.com"
+                      className="flex items-center gap-2 text-base hover:text-primary transition-colors"
+                    >
+                      <Globe className="h-4 w-4" />
+                      pier-tronic.com
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <Separator />
+          <Separator className="my-6" />
 
-            <div>
-              <h2 className="font-normal text-xl mb-2">References (links)</h2>
-              <p className="mb-4">
-                Despite careful checks, third‑party websites linked from this
-                site are the responsibility of their respective providers. At
-                the time of linking, the content was checked and no legal
-                violations were apparent. If we become aware of any
-                infringement, we will remove the link immediately.
+          {/* Legal Details */}
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-muted-foreground">
+                Management
+              </p>
+              <p className="text-base">Alex Meyer, Lina Fischer</p>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-muted-foreground">
+                Commercial Register
+              </p>
+              <p className="text-base">HRB 123456</p>
+              <p className="text-sm text-muted-foreground">
+                District Court Hamburg
               </p>
             </div>
+            <div className="space-y-2">
+              <p className="text-sm font-medium text-muted-foreground">
+                VAT Identification Number
+              </p>
+              <p className="text-base">DE 999999999</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <Separator />
-
-            <div>
-              <h2 className="font-normal text-xl mb-2">Copyright</h2>
-              <p className="mb-4">
-                © {new Date().getFullYear()} Pier-Tronic GmbH. All rights
-                reserved. Reproduction, distribution or storage in any form
-                requires prior written consent from Pier Tronic GmbH unless
-                otherwise permitted by law.
+      {/* Content Responsibility */}
+      <Card className="mb-6">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <FileText className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h2 className="font-normal text-xl mb-3 font-victor-serif">
+                Responsible for Content
+              </h2>
+              <p className="text-base text-muted-foreground mb-1">
+                According to § 55 Abs. 2 RStV (German Interstate Broadcasting
+                Treaty)
+              </p>
+              <p className="text-base mt-3">Pier-Tronic GmbH</p>
+              <p className="text-sm text-muted-foreground">
+                Address as stated above
               </p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <Separator />
-
-            <div>
-              <h2 className="font-normal text-xl mb-2">
-                EU online dispute resolution
+      {/* Legal Information Grid */}
+      <div className="grid gap-6 md:grid-cols-2 mb-6">
+        {/* External Links */}
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3 mb-3">
+              <Link2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <h2 className="font-normal text-xl font-victor-serif">
+                External Links
               </h2>
-              <p className="mb-4">
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Despite careful content control, we assume no liability for the
+              content of external links. The operators of the linked pages are
+              solely responsible for their content. At the time of linking, no
+              illegal content was recognizable. If we become aware of any legal
+              violations, we will remove such links immediately.
+            </p>
+          </CardContent>
+        </Card>
+
+        {/* Copyright */}
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3 mb-3">
+              <Copyright className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <h2 className="font-normal text-xl font-victor-serif">
+                Copyright
+              </h2>
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              © {new Date().getFullYear()} Pier-Tronic GmbH. All rights
+              reserved. The content and works on these pages are subject to
+              German copyright law. Reproduction, editing, distribution, and any
+              kind of use beyond the limits of copyright law require the written
+              consent of Pier-Tronic GmbH.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* EU Dispute Resolution */}
+      <Card className="mb-6 border-amber-500/20 bg-amber-500/5">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <Gavel className="h-5 w-5 text-amber-600 dark:text-amber-500 mt-0.5 flex-shrink-0" />
+            <div className="flex-1">
+              <h2 className="font-normal text-xl mb-3 font-victor-serif">
+                EU Online Dispute Resolution
+              </h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
                 The European Commission provides a platform for online dispute
-                resolution (ODR):{" "}
-                <Link
-                  href="https://ec.europa.eu/consumers/odr/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary underline"
-                >
-                  https://ec.europa.eu/consumers/odr/
-                </Link>
-                . Pier-Tronic is neither obligated nor willing to participate in
-                dispute resolution proceedings before a consumer arbitration
+                resolution (ODR):
+              </p>
+              <a
+                href="https://ec.europa.eu/consumers/odr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline font-medium inline-flex items-center gap-1 mb-3"
+              >
+                https://ec.europa.eu/consumers/odr/
+                <Scale className="h-3 w-3" />
+              </a>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Pier-Tronic GmbH is neither obligated nor willing to participate
+                in dispute resolution proceedings before a consumer arbitration
                 board.
               </p>
             </div>
+          </div>
+        </CardContent>
+      </Card>
 
-            <Separator />
-
-            <div>
-              <h2 className="font-normal text-xl mb-2">
-                Design and development
+      {/* Credits Grid */}
+      <div className="grid gap-6 md:grid-cols-2">
+        {/* Design & Development */}
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3 mb-4">
+              <Palette className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <h2 className="font-normal text-xl font-victor-serif">
+                Design & Development
               </h2>
-              <ul className="list-disc list-inside pl-4 space-y-1">
-                <li>Pier-Tronic Design Team (mock)</li>
-                <li>nextindex (mock)</li>
-                <li>ingenit GmbH & Co. KG (mock)</li>
-              </ul>
             </div>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <p className="text-sm">Pier-Tronic Design Team</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <p className="text-sm">nextindex</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <p className="text-sm">ingenit GmbH & Co. KG</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
 
-            <Separator />
-
-            <div>
-              <h2 className="font-normal text-xl mb-2">Image credits</h2>
-              <p className="mb-2">
-                Sample images from Unsplash and internal media (mock).
+        {/* Image Credits */}
+        <Card>
+          <CardContent className="pt-6">
+            <div className="flex items-start gap-3 mb-4">
+              <ImageIcon className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+              <h2 className="font-normal text-xl font-victor-serif">
+                Image Credits
+              </h2>
+            </div>
+            <div className="space-y-2">
+              <p className="text-sm text-muted-foreground">
+                Images and visual content from:
               </p>
-              <p className="text-sm text-muted-foreground break-all">
-                unsplash.com/photos/sample-one (mock)
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <a
+                  href="https://unsplash.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm hover:text-primary transition-colors"
+                >
+                  Unsplash
+                </a>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                <p className="text-sm">Pier-Tronic Media Archive</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Footer Note */}
+      <Card className="mt-8 border-primary/20">
+        <CardContent className="pt-6">
+          <div className="flex items-start gap-3">
+            <Scale className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-muted-foreground">
+              <p className="mb-2">
+                <strong className="text-foreground">Legal Notice:</strong> This
+                imprint complies with German legal requirements (§ 5 TMG, § 55
+                RStV). For privacy-related information, please visit our{" "}
+                <Link
+                  href="/data-protection"
+                  className="text-primary hover:underline font-medium"
+                >
+                  Privacy Policy
+                </Link>
+                .
+              </p>
+              <p>
+                If you have any questions regarding this imprint or our legal
+                information, please contact us at{" "}
+                <a
+                  href="mailto:hello@pier-tronic.com"
+                  className="text-primary hover:underline font-medium"
+                >
+                  hello@pier-tronic.com
+                </a>
+                .
               </p>
             </div>
           </div>
