@@ -111,17 +111,17 @@ export const HeroHeader = () => {
         <motion.div
           animate={{
             backgroundColor: isScrolled
-              ? "rgba(var(--background), 0.9)"
+              ? "rgba(0, 0, 0, 0.5)"
               : "rgba(0, 0, 0, 0.3)",
-            backdropFilter: isScrolled ? "blur(24px)" : "blur(12px)",
+            backdropFilter: isScrolled ? "blur(24px)" : "blur(16px)",
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className={cn(
             "mx-auto mt-4 max-w-7xl px-8 transition-all duration-400 lg:px-16",
             "rounded-3xl border shadow-2xl",
             isScrolled
-              ? "border-border/60 shadow-black/10 dark:shadow-black/40 max-w-5xl"
-              : "border-white/20 shadow-black/20"
+              ? "border-white/20 shadow-black/20 max-w-5xl"
+              : "border-white/20 shadow-black/30"
           )}
         >
           <div className="relative flex flex-wrap items-center justify-between gap-8 py-5 lg:gap-0 lg:py-6">
@@ -219,9 +219,7 @@ export const HeroHeader = () => {
                           layoutId="navBackground"
                           className="absolute inset-0 rounded-lg"
                           style={{
-                            background: isScrolled
-                              ? "rgba(0, 0, 0, 0.03)"
-                              : "rgba(255, 255, 255, 0.06)",
+                            background: "rgba(255, 255, 255, 0.1)",
                           }}
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
@@ -236,9 +234,7 @@ export const HeroHeader = () => {
                           layoutId="navIndicator"
                           className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] rounded-full"
                           style={{
-                            background: isScrolled
-                              ? "rgba(0, 0, 0, 0.2)"
-                              : "rgba(255, 255, 255, 0.4)",
+                            background: "rgba(255, 255, 255, 0.5)",
                             width: "40%",
                           }}
                           initial={{ scaleX: 0 }}
