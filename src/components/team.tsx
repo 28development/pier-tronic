@@ -31,8 +31,8 @@ const featuredArtist = {
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_6948.JPG",
   ],
   videos: [
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%205.mp4",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/CLIP%207.mp4",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_1.mp4",
+    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_2.mp4",
   ],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
