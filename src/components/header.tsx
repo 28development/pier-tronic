@@ -117,8 +117,8 @@ export const HeroHeader = () => {
           }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className={cn(
-            "mx-auto mt-4 max-w-7xl px-8 transition-all duration-400 lg:px-16",
-            "rounded-3xl border shadow-2xl",
+            "mx-auto mt-4 max-w-7xl px-8 transition-all duration-400 lg:px-8",
+            "rounded-4xl border shadow-2xl",
             isScrolled
               ? "border-white/20 shadow-black/20 max-w-5xl"
               : "border-white/20 shadow-black/30"
