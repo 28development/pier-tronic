@@ -9,7 +9,6 @@ import {
   Copyright,
   FileText,
   Gavel,
-  Globe,
   Image as ImageIcon,
   Link2,
   Mail,
@@ -20,12 +19,12 @@ import {
 
 export const metadata: Metadata = {
   title: "Imprint | Pier-Tronic",
-  description: "Legal information and imprint of Pier-Tronic GmbH",
+  description: "Legal information and imprint of Pier-Tronic",
 };
 
 export default function ImpressumPage() {
   return (
-    <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-36 pb-16">
       {/* Header Section */}
       <div className="mb-12">
         <div className="flex items-center gap-3 mb-4">
@@ -33,7 +32,7 @@ export default function ImpressumPage() {
           <h1 className="text-4xl font-normal font-victor-serif">Imprint</h1>
         </div>
         <p className="text-lg text-muted-foreground">
-          Legal information according to § 5 TMG (German Telemedia Act)
+          Legal information according to § 5 TMG
         </p>
       </div>
 
@@ -44,7 +43,7 @@ export default function ImpressumPage() {
             <Building2 className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
             <div className="flex-1">
               <h2 className="font-normal text-2xl mb-4 font-victor-serif">
-                Pier-Tronic GmbH
+                Pier-Tronic Events
               </h2>
               <div className="grid gap-6 md:grid-cols-2">
                 {/* Address */}
@@ -53,9 +52,9 @@ export default function ImpressumPage() {
                     Address
                   </p>
                   <div className="text-base">
-                    <p>Harborstrasse 7</p>
-                    <p>20457 Hamburg</p>
-                    <p>Germany</p>
+                    <p>Herengracht 150</p>
+                    <p>1016 BN Amsterdam</p>
+                    <p>The Netherlands</p>
                   </div>
                 </div>
 
@@ -73,18 +72,11 @@ export default function ImpressumPage() {
                       +49 (0)40 1234 5670
                     </a>
                     <a
-                      href="mailto:hello@pier-tronic.com"
+                      href="mailto:info@piertronic.events"
                       className="flex items-center gap-2 text-base hover:text-primary transition-colors"
                     >
                       <Mail className="h-4 w-4" />
-                      hello@pier-tronic.com
-                    </a>
-                    <a
-                      href="https://pier-tronic.com"
-                      className="flex items-center gap-2 text-base hover:text-primary transition-colors"
-                    >
-                      <Globe className="h-4 w-4" />
-                      pier-tronic.com
+                      info@piertronic.events
                     </a>
                   </div>
                 </div>
@@ -96,12 +88,6 @@ export default function ImpressumPage() {
 
           {/* Legal Details */}
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-muted-foreground">
-                Management
-              </p>
-              <p className="text-base">Alex Meyer, Lina Fischer</p>
-            </div>
             <div className="space-y-2">
               <p className="text-sm font-medium text-muted-foreground">
                 Commercial Register
@@ -134,7 +120,7 @@ export default function ImpressumPage() {
                 According to § 55 Abs. 2 RStV (German Interstate Broadcasting
                 Treaty)
               </p>
-              <p className="text-base mt-3">Pier-Tronic GmbH</p>
+              <p className="text-base mt-3">Pier-Tronic</p>
               <p className="text-sm text-muted-foreground">
                 Address as stated above
               </p>
@@ -174,11 +160,11 @@ export default function ImpressumPage() {
               </h2>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              © {new Date().getFullYear()} Pier-Tronic GmbH. All rights
-              reserved. The content and works on these pages are subject to
-              German copyright law. Reproduction, editing, distribution, and any
-              kind of use beyond the limits of copyright law require the written
-              consent of Pier-Tronic GmbH.
+              © {new Date().getFullYear()} Pier-Tronic. All rights reserved. The
+              content and works on these pages are subject to German copyright
+              law. Reproduction, editing, distribution, and any kind of use
+              beyond the limits of copyright law require the written consent of
+              Pier-Tronic.
             </p>
           </CardContent>
         </Card>
@@ -207,8 +193,8 @@ export default function ImpressumPage() {
                 <Scale className="h-3 w-3" />
               </a>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Pier-Tronic GmbH is neither obligated nor willing to participate
-                in dispute resolution proceedings before a consumer arbitration
+                Pier-Tronic is neither obligated nor willing to participate in
+                dispute resolution proceedings before a consumer arbitration
                 board.
               </p>
             </div>
@@ -230,15 +216,17 @@ export default function ImpressumPage() {
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <p className="text-sm">Pier-Tronic Design Team</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <p className="text-sm">nextindex</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <p className="text-sm">ingenit GmbH & Co. KG</p>
+                <p className="text-sm">
+                  Designed and developed with love by{" "}
+                  <a
+                    href="https://www.instagram.com/umut.tufanoglu/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:underline font-medium"
+                  >
+                    Umut Tufanoglu
+                  </a>
+                </p>
               </div>
             </div>
           </CardContent>
@@ -257,17 +245,6 @@ export default function ImpressumPage() {
               <p className="text-sm text-muted-foreground">
                 Images and visual content from:
               </p>
-              <div className="flex items-center gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <a
-                  href="https://unsplash.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm hover:text-primary transition-colors"
-                >
-                  Unsplash
-                </a>
-              </div>
               <div className="flex items-center gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
                 <p className="text-sm">Pier-Tronic Media Archive</p>
@@ -299,10 +276,10 @@ export default function ImpressumPage() {
                 If you have any questions regarding this imprint or our legal
                 information, please contact us at{" "}
                 <a
-                  href="mailto:hello@pier-tronic.com"
+                  href="mailto:info@piertronic.events"
                   className="text-primary hover:underline font-medium"
                 >
-                  hello@pier-tronic.com
+                  info@piertronic.events
                 </a>
                 .
               </p>

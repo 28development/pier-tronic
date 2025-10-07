@@ -11,28 +11,12 @@ export function middleware(request: NextRequest) {
   if (
     pathname.includes("/_next/") ||
     pathname === "/favicon.ico" ||
+    pathname.startsWith("/videos/") ||
+    pathname.startsWith("/images/") ||
     /\.[a-zA-Z0-9]+$/.test(pathname)
   ) {
     return NextResponse.next();
   }
-  const lang = url.searchParams.get("lang")?.toLowerCase();
-
-  if (lang && SUPPORTED.has(lang)) {
-    const current = request.cookies.get(LOCALE_COOKIE)?.value;
-    if (current !== lang) {
-      if (url.pathname !== "/home") {
-        url.pathname = "/home";
-      }
-      const res = NextResponse.redirect(url);
-      res.cookies.set(LOCALE_COOKIE, lang, {
-        path: "/",
-        maxAge: 60 * 60 * 24 * 365,
-      });
-      return res;
-    }
-  }
-
-  return NextResponse.next();
 }
 
 export const config = {

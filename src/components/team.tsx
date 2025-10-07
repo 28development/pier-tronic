@@ -31,10 +31,7 @@ const featuredArtist = {
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5871.PNG",
     "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_6948.JPG",
   ],
-  videos: [
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_1.mp4",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_2.mp4",
-  ],
+  videos: ["/videos/ana_pak/ana_pak_1.mp4", "/videos/ana_pak/ana_pak_2.mp4"],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
     youtube: "https://www.youtube.com/@anapakdj/videos",
@@ -43,22 +40,21 @@ const featuredArtist = {
 
 const members = [
   {
-    name: "Quincy Kluivert",
-    role: "Techhouse",
-    avatar:
-      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/quincy_kluivert/quincy_kluivert_1.png",
-    link: "https://quincy-kluivert.webnode.nl/",
-  },
-  {
     name: "Inan Batman",
     role: "Afro House",
-    avatar:
-      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/inan_batman/inan_batman.jpg",
+    avatar: "/images/inan_batman/inan_batman.jpg",
     link: "https://www.instagram.com/inanbatman/?hl=de",
     // https://www.instagram.com/inanbatman/?hl=de
     // https://soundcloud.com/inanbatman
     // Düsseldorf, Germany
     // https://de.ra.co/dj/inan
+  },
+  {
+    name: "Quincy Kluivert",
+    role: "Techhouse",
+    avatar:
+      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/quincy_kluivert/quincy_kluivert_1.png",
+    link: "https://quincy-kluivert.webnode.nl/",
   },
   {
     // https://www.instagram.com/nxn_ofc

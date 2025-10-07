@@ -10,9 +10,8 @@ const links = [
   {
     groupKey: "groups_company",
     items: [
-      { key: "link_about", href: "#" },
-      { key: "link_contact", href: "#" },
-      { key: "link_help", href: "#" },
+      { key: "link_about", href: "/#about" },
+      { key: "link_contact", href: "mailto:info@piertronic.events" },
     ],
   },
   {

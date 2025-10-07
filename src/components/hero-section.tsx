@@ -38,7 +38,7 @@ export default function HeroSection() {
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
         <video
-          src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/videos/ana_pak/ana_pak_1.mp4"
+          src="/videos/ana_pak/ana_pak_1.mp4"
           className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
@@ -71,7 +71,7 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="relative text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight"
+                  className="relative text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight hidden"
                 >
                   <span className="relative inline-block text-white">
                     {/* Minimal animated gradient text */}
