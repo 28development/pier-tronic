@@ -6,7 +6,7 @@ import { Info, Menu, Ticket, Users, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LogoWordmark } from "./logo";
+import { Logo, LogoIcon } from "./logo";
 
 const menuItems = [
   { key: "team_caption", href: "#artists", icon: Users },
@@ -135,13 +135,8 @@ export const HeroHeader = () => {
                 aria-label="home"
                 className="flex items-center space-x-2"
               >
-                <LogoWordmark
-                  uniColor
-                  className={cn(
-                    "h-7 transition-all duration-300 drop-shadow-lg",
-                    isScrolled ? "text-white" : "text-white"
-                  )}
-                />
+                <Logo uniColor className="h-10 text-white" />
+                <LogoIcon uniColor spin className="h-12 text-white" />
               </Link>
 
               {/* Mobile Menu Toggle */}

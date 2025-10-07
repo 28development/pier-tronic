@@ -3,7 +3,7 @@ import { getServerT } from "@/app/i18n-server";
 import { LanguageSelect } from "@/components/language-select";
 import { headers as getHeaders } from "next/headers";
 import Link from "next/link";
-import { LogoWordmark } from "./logo";
+import { Logo, LogoIcon } from "./logo";
 import { AnimatedGroup } from "./ui/animated-group";
 
 const links = [
@@ -62,8 +62,13 @@ export default async function FooterSection() {
         className="mb-8 border-b md:mb-12"
       >
         <div className="mx-auto flex max-w-5xl flex-wrap items-end justify-between gap-6 px-6 pb-6">
-          <Link href="/" aria-label="go home" className="block size-fit">
-            <LogoWordmark uniColor className="h-6 text-foreground" />
+          <Link
+            href="/"
+            aria-label="go home"
+            className="size-fit flex items-center space-x-2"
+          >
+            <Logo uniColor className="h-10 text-foreground" />
+            <LogoIcon uniColor className="h-12 text-foreground" />
           </Link>
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <Link
