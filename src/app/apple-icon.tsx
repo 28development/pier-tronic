@@ -1,4 +1,5 @@
-import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import path from "path";
 
 // Image metadata
 export const size = {
@@ -9,28 +10,16 @@ export const size = {
 export const contentType = "image/png";
 
 // Image generation
-export default function AppleIcon() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          fontSize: 120,
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-          fontWeight: "bold",
-          fontFamily: "sans-serif",
-        }}
-      >
-        P
-      </div>
-    ),
-    {
-      ...size,
-    }
+export default async function AppleIcon() {
+  // Read the actual apple-icon.png from the public folder
+  const imageBuffer = await readFile(
+    path.join(process.cwd(), "public", "apple-icon.png")
   );
+
+  return new Response(new Uint8Array(imageBuffer), {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=31536000, immutable",
+    },
+  });
 }
