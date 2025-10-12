@@ -17,16 +17,16 @@ export const metadata: Metadata = {
 
 export default function DataProtectionPage() {
   return (
-    <main className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 pt-36 pb-16">
+    <main className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 pt-32 pb-20">
       {/* Header Section */}
-      <div className="mb-12">
-        <div className="flex items-center gap-3 mb-4">
-          <Shield className="h-8 w-8 text-primary" />
+      <div className="py-16">
+        <div className="flex items-center gap-3 mb-3">
+          <Shield className="h-7 w-7 text-primary" />
           <h1 className="text-4xl font-normal font-victor-serif">
             Privacy Policy
           </h1>
         </div>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           Last updated:{" "}
           {new Date().toLocaleDateString("en-US", {
             year: "numeric",
@@ -38,36 +38,34 @@ export default function DataProtectionPage() {
 
       {/* Key Points Card */}
       <Card className="mb-12 border-primary/20 bg-primary/5">
-        <CardContent className="pt-6">
-          <div className="flex items-start gap-3 mb-4">
-            <Info className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-            <div>
-              <h2 className="text-xl font-normal mb-3 font-victor-serif">
-                Privacy at a Glance
-              </h2>
-            </div>
+        <CardContent className="pt-8 pb-8">
+          <div className="flex items-center gap-2 mb-6">
+            <Info className="h-5 w-5 text-primary" />
+            <h2 className="text-xl font-normal font-victor-serif">
+              Privacy at a Glance
+            </h2>
           </div>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div className="flex items-start gap-3">
-              <div className="rounded-full bg-primary/10 p-2 mt-0.5">
+              <div className="rounded-full bg-primary/10 p-2">
                 <Lock className="h-4 w-4 text-primary" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">No Tracking</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="font-medium mb-1.5">No Tracking</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   We don&#39;t use analytics, tracking cookies, or any
-                  monitoring tools on our website.
+                  monitoring tools.
                 </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="rounded-full bg-primary/10 p-2 mt-0.5">
+              <div className="rounded-full bg-primary/10 p-2">
                 <ExternalLink className="h-4 w-4 text-primary" />
               </div>
               <div>
-                <h3 className="font-medium mb-1">Third-Party Ticketing</h3>
-                <p className="text-sm text-muted-foreground">
-                  Ticket purchases are handled securely through Stagedates.com
+                <h3 className="font-medium mb-1.5">Third-Party Ticketing</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Tickets are handled securely through Stagedates.com
                 </p>
               </div>
             </div>
@@ -76,44 +74,41 @@ export default function DataProtectionPage() {
       </Card>
 
       {/* Introduction */}
-      <Card className="mb-8">
-        <CardContent className="pt-6 space-y-4">
-          <p>
-            This privacy policy explains how <strong>Pier-Tronic GmbH</strong>{" "}
-            (&ldquo;Pier-Tronic&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;,
-            &ldquo;our&rdquo;) collects, uses, and protects personal data when
-            you visit our website
-            <strong> pier-tronic.com</strong>.
+      <Card className="mb-10">
+        <CardContent className="pt-8 pb-8 space-y-4">
+          <p className="leading-relaxed">
+            This privacy policy explains how <strong>Pier-Tronic Events</strong>{" "}
+            (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects,
+            uses, and protects personal data when you visit our website{" "}
+            <strong>piertronic.events</strong>.
           </p>
-          <p>
+          <p className="leading-relaxed">
             <strong>Our commitment to privacy:</strong> We believe in minimal
             data collection. Unlike many websites, we do not use analytics
             tools, tracking cookies, or any form of user behavior monitoring.
-            Your visit to our website is private.
           </p>
-          <p className="text-sm text-muted-foreground">
-            We may update this privacy policy from time to time. The latest
-            version is always available on this page. Any changes will be
-            effective immediately upon posting.
+          <p className="text-sm text-muted-foreground leading-relaxed">
+            We may update this policy from time to time. The latest version is
+            always available on this page.
           </p>
         </CardContent>
       </Card>
 
       {/* Table of Contents */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-normal mb-4 font-victor-serif">
+      <div className="mb-10">
+        <h2 className="text-2xl font-normal mb-5 font-victor-serif">
           Quick Navigation
         </h2>
         <Card>
-          <CardContent className="pt-6">
-            <ul className="grid gap-2 md:grid-cols-2">
+          <CardContent className="pt-8 pb-8">
+            <ul className="grid gap-3 md:grid-cols-2">
               {tableOfContents.map((item, index) => (
                 <li key={index}>
                   <a
                     href={`#section-${index + 1}`}
-                    className="text-primary hover:underline flex items-center gap-2 group"
+                    className="text-primary hover:underline flex items-center gap-2.5 group text-sm"
                   >
-                    <span className="text-muted-foreground group-hover:text-primary transition-colors">
+                    <span className="text-muted-foreground group-hover:text-primary transition-colors font-medium">
                       {String(index + 1).padStart(2, "0")}.
                     </span>
                     {item}
@@ -132,53 +127,44 @@ export default function DataProtectionPage() {
           id="section-1"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal text-start hover:no-underline">
-            <span className="flex items-center gap-2">
-              Who is responsible and how can you contact us?
-            </span>
+          <AccordionTrigger className="text-lg font-normal text-start hover:no-underline py-5">
+            Who is responsible and how can you contact us?
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
               The data controller responsible for processing your personal data
               on this website is:
             </p>
-            <div className="bg-muted/50 p-4 rounded-lg border">
-              <p className="font-medium mb-2">Pier-Tronic GmbH</p>
-              <p className="text-sm text-muted-foreground">Harborstrasse 7</p>
-              <p className="text-sm text-muted-foreground">
-                20457 Hamburg, Germany
-              </p>
-              <p className="text-sm text-muted-foreground">
-                T: +49 (0)40 1234 5670
+            <div className="bg-muted/50 p-5 rounded-lg border space-y-1">
+              <p className="font-medium mb-2">Pier-Tronic Events</p>
+              <p className="text-sm text-muted-foreground">Herengracht 150</p>
+              <p className="text-sm text-muted-foreground">1016 BN Amsterdam</p>
+              <p className="text-sm text-muted-foreground">The Netherlands</p>
+              <p className="text-sm text-muted-foreground mt-2">
+                T: +31 (0)20 123 4567
               </p>
               <p className="text-sm text-muted-foreground">
                 E:{" "}
                 <a
-                  href="mailto:info@pier-tronic.com"
+                  href="mailto:info@piertronic.events"
                   className="text-primary hover:underline"
                 >
-                  info@pier-tronic.com
+                  info@piertronic.events
                 </a>
               </p>
             </div>
-            <p>
-              For specific privacy-related questions or to exercise your data
-              protection rights, please contact our Data Protection Officer:
+            <p className="leading-relaxed">
+              For privacy-related questions or to exercise your data protection
+              rights, contact us at:
             </p>
-            <div className="bg-muted/50 p-4 rounded-lg border">
-              <p className="font-medium mb-2">Data Protection Officer</p>
-              <p className="text-sm text-muted-foreground">Pier-Tronic GmbH</p>
-              <p className="text-sm text-muted-foreground">Harborstrasse 7</p>
-              <p className="text-sm text-muted-foreground">
-                20457 Hamburg, Germany
-              </p>
+            <div className="bg-muted/50 p-5 rounded-lg border">
               <p className="text-sm text-muted-foreground">
                 E:{" "}
                 <a
-                  href="mailto:privacy@pier-tronic.com"
-                  className="text-primary hover:underline"
+                  href="mailto:privacy@piertronic.events"
+                  className="text-primary hover:underline font-medium"
                 >
-                  privacy@pier-tronic.com
+                  privacy@piertronic.events
                 </a>
               </p>
             </div>
@@ -190,62 +176,61 @@ export default function DataProtectionPage() {
           id="section-2"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Data We Collect
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p className="font-medium">
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
               We collect minimal data to ensure our website functions properly:
             </p>
 
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-medium mb-2 flex items-center gap-2">
+            <div className="space-y-6">
+              <div className="bg-muted/30 p-5 rounded-lg border">
+                <h4 className="font-medium mb-3">
                   Server Log Data (Automatic)
                 </h4>
-                <p className="text-muted-foreground mb-2">
+                <p className="text-muted-foreground mb-3 leading-relaxed">
                   When you visit our website, our hosting provider automatically
                   collects:
                 </p>
-                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>IP address (anonymized after 7 days)</li>
-                  <li>Date and time of access</li>
-                  <li>Browser type and version</li>
-                  <li>Operating system</li>
-                  <li>Pages visited on our website</li>
-                  <li>Referrer URL (the page you came from)</li>
+                <ul className="space-y-1.5 text-muted-foreground ml-4">
+                  <li>• IP address (anonymized after 7 days)</li>
+                  <li>• Date and time of access</li>
+                  <li>• Browser type and version</li>
+                  <li>• Pages visited</li>
+                  <li>• Referrer URL</li>
                 </ul>
-                <p className="text-sm mt-2">
-                  <strong>Purpose:</strong> This data is necessary for
-                  delivering the website, ensuring security, and troubleshooting
-                  technical issues.
-                </p>
-                <p className="text-sm">
-                  <strong>Retention:</strong> Log files are automatically
-                  deleted after 30 days.
-                </p>
+                <div className="mt-4 pt-4 border-t space-y-2">
+                  <p>
+                    <strong>Purpose:</strong> Security and technical
+                    troubleshooting
+                  </p>
+                  <p>
+                    <strong>Retention:</strong> 30 days
+                  </p>
+                </div>
               </div>
 
-              <div>
-                <h4 className="font-medium mb-2">
+              <div className="bg-muted/30 p-5 rounded-lg border">
+                <h4 className="font-medium mb-3">
                   Contact Information (Voluntary)
                 </h4>
-                <p className="text-muted-foreground mb-2">
-                  If you contact us via email or contact form, we collect:
+                <p className="text-muted-foreground mb-3 leading-relaxed">
+                  If you contact us via email, we collect:
                 </p>
-                <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground ml-4">
-                  <li>Your name</li>
-                  <li>Email address</li>
-                  <li>Any information you provide in your message</li>
+                <ul className="space-y-1.5 text-muted-foreground ml-4">
+                  <li>• Your name</li>
+                  <li>• Email address</li>
+                  <li>• Message content</li>
                 </ul>
-                <p className="text-sm mt-2">
-                  <strong>Purpose:</strong> To respond to your inquiry and
-                  communicate with you.
-                </p>
-                <p className="text-sm">
-                  <strong>Retention:</strong> We keep correspondence for up to 2
-                  years or as required by law, then securely delete it.
-                </p>
+                <div className="mt-4 pt-4 border-t space-y-2">
+                  <p>
+                    <strong>Purpose:</strong> To respond to your inquiry
+                  </p>
+                  <p>
+                    <strong>Retention:</strong> Up to 2 years
+                  </p>
+                </div>
               </div>
             </div>
           </AccordionContent>
@@ -256,81 +241,64 @@ export default function DataProtectionPage() {
           id="section-3"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Third-Party Services: Ticket Sales
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
-              <div className="flex items-start gap-3">
-                <ExternalLink className="h-5 w-5 text-amber-600 dark:text-amber-500 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="font-medium mb-2">
-                    Important: External Service
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Ticket purchases are processed through an embedded service
-                    from{" "}
-                    <a
-                      href="https://stagedates.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline font-medium"
-                    >
-                      Stagedates.com
-                    </a>
-                  </p>
-                </div>
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <ExternalLink className="h-4 w-4 text-amber-600 dark:text-amber-500" />
+                <p className="font-medium">Important: External Service</p>
               </div>
+              <p className="text-muted-foreground leading-relaxed">
+                Tickets are processed through{" "}
+                <a
+                  href="https://stagedates.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium"
+                >
+                  Stagedates.com
+                </a>
+              </p>
             </div>
 
-            <div className="space-y-3">
-              <p>
-                When you purchase tickets through our website, the ticketing
-                interface is provided by Stagedates (an external third-party
-                service). This means:
+            <div className="space-y-4">
+              <p className="leading-relaxed">
+                When you purchase tickets, Stagedates handles all payment and
+                personal data:
               </p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
+              <ul className="space-y-3 ml-4">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
                   <span>
-                    <strong>Data is processed by Stagedates:</strong> Any
-                    personal information you enter during the ticket purchase
-                    (name, email, payment details) is collected and processed
-                    directly by Stagedates, not by us.
+                    Your personal and payment information is processed directly
+                    by Stagedates
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
                   <span>
-                    <strong>Stagedates Privacy Policy applies:</strong> Your
-                    data processing during ticket purchase is governed by
-                    Stagedates&#39; privacy policy, which you can review at{" "}
+                    Their{" "}
                     <a
                       href="https://stagedates.com/privacy"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:underline"
                     >
-                      stagedates.com/privacy
-                    </a>
+                      privacy policy
+                    </a>{" "}
+                    applies to ticket purchases
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
                   <span>
-                    <strong>We receive limited information:</strong> We only
-                    receive necessary order information (ticket type, quantity,
-                    order number) to manage event logistics. We do not receive
-                    your payment details.
+                    We only receive order details (ticket type, quantity, order
+                    number) for event management
                   </span>
                 </li>
               </ul>
-              <p className="text-sm text-muted-foreground pt-2">
-                We have carefully selected Stagedates as our ticketing partner
-                and believe they maintain high standards of data protection.
-                However, we are not responsible for their data processing
-                practices.
-              </p>
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -340,72 +308,52 @@ export default function DataProtectionPage() {
           id="section-4"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Cookies and Tracking
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-4 mb-4">
-              <div className="flex items-start gap-3">
-                <Lock className="h-5 w-5 text-green-600 dark:text-green-500 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="font-medium mb-1">Good News for Privacy</p>
-                  <p className="text-sm text-muted-foreground">
-                    We do not use analytics tools, tracking cookies, or any form
-                    of user behavior monitoring on our website.
-                  </p>
-                </div>
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Lock className="h-4 w-4 text-green-600 dark:text-green-500" />
+                <p className="font-medium">Good News for Privacy</p>
               </div>
-            </div>
-
-            <div className="space-y-3">
-              <h4 className="font-medium">Essential Cookies Only</h4>
-              <p>
-                Our website uses only essential cookies required for basic
-                functionality:
-              </p>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    <strong>Session cookies:</strong> To maintain your session
-                    while browsing (these are deleted when you close your
-                    browser)
-                  </span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>
-                    <strong>Language preference:</strong> To remember your
-                    language selection
-                  </span>
-                </li>
-              </ul>
-              <p className="text-sm text-muted-foreground">
-                These essential cookies are necessary for the website to
-                function and cannot be disabled. They do not track you across
-                other websites.
+              <p className="text-muted-foreground leading-relaxed">
+                We do not use analytics tools, tracking cookies, or any user
+                behavior monitoring.
               </p>
             </div>
 
-            <div>
-              <h4 className="font-medium mb-2">
-                Third-Party Cookies (Stagedates)
-              </h4>
-              <p className="text-sm text-muted-foreground">
-                The embedded Stagedates ticketing service may use its own
-                cookies. These are controlled by Stagedates and subject to their
-                cookie policy. We have no control over these cookies.
-              </p>
-            </div>
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-medium mb-3">Essential Cookies Only</h4>
+                <p className="text-muted-foreground mb-3 leading-relaxed">
+                  We only use essential cookies for basic functionality:
+                </p>
+                <ul className="space-y-2.5 ml-4">
+                  <li className="flex items-start gap-2.5 leading-relaxed">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>Session cookies:</strong> Maintain your browsing
+                      session
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5 leading-relaxed">
+                    <span className="text-primary mt-1">•</span>
+                    <span>
+                      <strong>Language preference:</strong> Remember your
+                      language choice
+                    </span>
+                  </li>
+                </ul>
+              </div>
 
-            <div className="bg-muted/50 p-4 rounded-lg">
-              <h4 className="font-medium mb-2">Managing Cookies</h4>
-              <p className="text-sm text-muted-foreground">
-                You can control and delete cookies through your browser
-                settings. Please note that disabling essential cookies may
-                affect website functionality. For instructions on managing
-                cookies, visit your browser&#39;s help section.
-              </p>
+              <div className="bg-muted/50 p-5 rounded-lg">
+                <h4 className="font-medium mb-2">Third-Party Cookies</h4>
+                <p className="text-muted-foreground leading-relaxed">
+                  Stagedates may use cookies for ticket purchases. These are
+                  controlled by Stagedates and subject to their cookie policy.
+                </p>
+              </div>
             </div>
           </AccordionContent>
         </AccordionItem>
@@ -415,40 +363,39 @@ export default function DataProtectionPage() {
           id="section-5"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal text-start hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal text-start hover:no-underline py-5">
             Legal Basis for Processing
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
               We process your personal data based on the following legal grounds
-              under the General Data Protection Regulation (GDPR):
+              under the GDPR:
             </p>
-            <div className="space-y-3">
-              <div className="border-l-2 border-primary pl-4">
-                <p className="font-medium mb-1">
+            <div className="space-y-4">
+              <div className="border-l-2 border-primary pl-5 py-2">
+                <p className="font-medium mb-2">
                   Legitimate Interests (Art. 6(1)(f) GDPR)
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Server logs and essential cookies: Our legitimate interest in
-                  operating a secure, functional website and preventing abuse.
+                <p className="text-muted-foreground leading-relaxed">
+                  Operating a secure, functional website and preventing abuse
                 </p>
               </div>
-              <div className="border-l-2 border-primary pl-4">
-                <p className="font-medium mb-1">
+              <div className="border-l-2 border-primary pl-5 py-2">
+                <p className="font-medium mb-2">
                   Contract Performance (Art. 6(1)(b) GDPR)
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Processing your inquiries: Necessary to respond to your
-                  requests and provide information about our services.
+                <p className="text-muted-foreground leading-relaxed">
+                  Responding to your inquiries and providing information about
+                  our services
                 </p>
               </div>
-              <div className="border-l-2 border-primary pl-4">
-                <p className="font-medium mb-1">
+              <div className="border-l-2 border-primary pl-5 py-2">
+                <p className="font-medium mb-2">
                   Legal Obligation (Art. 6(1)(c) GDPR)
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  Where we are required by law to retain certain data or respond
-                  to lawful requests from authorities.
+                <p className="text-muted-foreground leading-relaxed">
+                  Complying with legal requirements and lawful requests from
+                  authorities
                 </p>
               </div>
             </div>
@@ -460,62 +407,56 @@ export default function DataProtectionPage() {
           id="section-6"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Data Sharing and Recipients
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p className="font-medium">
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
               We share your data only when necessary:
             </p>
 
-            <div className="space-y-3">
+            <div className="space-y-5">
               <div>
-                <h4 className="font-medium mb-2">Service Providers</h4>
-                <p className="text-sm text-muted-foreground mb-2">
-                  We work with the following categories of service providers who
-                  process data on our behalf:
+                <h4 className="font-medium mb-3">Service Providers</h4>
+                <p className="text-muted-foreground mb-3 leading-relaxed">
+                  We work with these service providers:
                 </p>
-                <ul className="space-y-2 ml-4">
-                  <li className="flex items-start gap-2">
+                <ul className="space-y-2.5 ml-4">
+                  <li className="flex items-start gap-2.5 leading-relaxed">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-sm">
-                      <strong>Web Hosting:</strong> Our website is hosted on
-                      servers in the EU
+                    <span>
+                      <strong>Web Hosting:</strong> Servers in the EU
                     </span>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-2.5 leading-relaxed">
                     <span className="text-primary mt-1">•</span>
-                    <span className="text-sm">
-                      <strong>Ticketing:</strong> Stagedates.com processes
-                      ticket sales (as described above)
+                    <span>
+                      <strong>Ticketing:</strong> Stagedates.com
                     </span>
                   </li>
                 </ul>
-                <p className="text-sm text-muted-foreground mt-2">
-                  All service providers are contractually bound to process data
-                  only according to our instructions and to maintain appropriate
-                  security measures.
-                </p>
               </div>
 
-              <div>
-                <h4 className="font-medium mb-2">Legal Requirements</h4>
-                <p className="text-sm text-muted-foreground">
-                  We may disclose your data if required by law, court order, or
-                  governmental regulation, or when necessary to protect our
-                  legal rights.
-                </p>
-              </div>
-
-              <div className="bg-muted/50 p-4 rounded-lg">
-                <p className="font-medium mb-2">We do not:</p>
-                <ul className="space-y-1 text-sm text-muted-foreground">
-                  <li>• Sell your personal data</li>
-                  <li>• Share data with advertisers</li>
-                  <li>• Use data for marketing purposes without consent</li>
-                  <li>
-                    • Transfer data outside the EU/EEA (except as disclosed with
-                    Stagedates)
+              <div className="bg-muted/50 p-5 rounded-lg">
+                <p className="font-medium mb-3">We do not:</p>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start gap-2.5">
+                    <span>•</span>
+                    <span>Sell your personal data</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span>•</span>
+                    <span>Share data with advertisers</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span>•</span>
+                    <span>Use data for marketing without consent</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span>•</span>
+                    <span>
+                      Transfer data outside EU/EEA (except Stagedates)
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -528,82 +469,75 @@ export default function DataProtectionPage() {
           id="section-7"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Your Rights
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              Under the GDPR, you have the following rights regarding your
-              personal data:
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
+              Under the GDPR, you have the following rights:
             </p>
 
             <div className="grid gap-3 md:grid-cols-2">
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Access</p>
-                <p className="text-sm text-muted-foreground">
-                  Request a copy of the personal data we hold about you
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Access</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Request a copy of your personal data
                 </p>
               </div>
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Rectification</p>
-                <p className="text-sm text-muted-foreground">
-                  Correct inaccurate or incomplete data
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Rectification</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Correct inaccurate data
                 </p>
               </div>
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Erasure</p>
-                <p className="text-sm text-muted-foreground">
-                  Request deletion of your data (&ldquo;right to be
-                  forgotten&rdquo;)
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Erasure</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Request deletion of your data
                 </p>
               </div>
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Restriction</p>
-                <p className="text-sm text-muted-foreground">
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Restriction</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
                   Limit how we process your data
                 </p>
               </div>
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Data Portability</p>
-                <p className="text-sm text-muted-foreground">
-                  Receive your data in a structured, machine-readable format
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Data Portability</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Receive your data in machine-readable format
                 </p>
               </div>
-              <div className="border rounded-lg p-3">
-                <p className="font-medium mb-1">Right to Object</p>
-                <p className="text-sm text-muted-foreground">
-                  Object to processing based on legitimate interests
+              <div className="border rounded-lg p-4">
+                <p className="font-medium mb-1.5">Right to Object</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">
+                  Object to data processing
                 </p>
               </div>
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4">
-              <p className="font-medium mb-2">How to Exercise Your Rights</p>
-              <p className="text-sm mb-2">
-                To exercise any of these rights, please contact us at:
-              </p>
-              <p className="text-sm">
+            <div className="bg-primary/5 border border-primary/20 rounded-lg p-5">
+              <p className="font-medium mb-3">How to Exercise Your Rights</p>
+              <p className="mb-2 leading-relaxed">Contact us at:</p>
+              <p>
                 <a
-                  href="mailto:privacy@pier-tronic.com"
+                  href="mailto:privacy@piertronic.events"
                   className="text-primary hover:underline font-medium"
                 >
-                  privacy@pier-tronic.com
+                  privacy@piertronic.events
                 </a>
               </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                We will respond to your request within 30 days. You will need to
-                verify your identity for security purposes.
+              <p className="text-muted-foreground mt-3 leading-relaxed">
+                We will respond within 30 days.
               </p>
             </div>
 
-            <div className="bg-muted/50 rounded-lg p-4">
+            <div className="bg-muted/50 rounded-lg p-5">
               <p className="font-medium mb-2">Right to Lodge a Complaint</p>
-              <p className="text-sm text-muted-foreground">
-                If you believe we have not handled your data properly, you have
-                the right to lodge a complaint with your local data protection
-                supervisory authority. In Germany, this is your state&#39;s data
-                protection authority or the Federal Commissioner for Data
-                Protection and Freedom of Information (BfDI).
+              <p className="text-muted-foreground leading-relaxed">
+                You can lodge a complaint with your local data protection
+                authority or the Dutch Data Protection Authority (Autoriteit
+                Persoonsgegevens).
               </p>
             </div>
           </AccordionContent>
@@ -614,57 +548,49 @@ export default function DataProtectionPage() {
           id="section-8"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Data Security
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              We take the security of your personal data seriously and implement
-              appropriate technical and organizational measures to protect it
-              against unauthorized access, alteration, disclosure, or
-              destruction.
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
+              We implement appropriate security measures to protect your data:
             </p>
 
             <div className="space-y-3">
-              <h4 className="font-medium">Security Measures Include:</h4>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
+              <ul className="space-y-3 ml-4">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
-                  <span className="text-sm">
-                    <strong>SSL/TLS Encryption:</strong> All data transmitted to
-                    and from our website is encrypted using industry-standard
-                    HTTPS
+                  <span>
+                    <strong>SSL/TLS Encryption:</strong> All data is encrypted
+                    using HTTPS
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
-                  <span className="text-sm">
+                  <span>
                     <strong>Access Controls:</strong> Strict access restrictions
-                    to systems containing personal data
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
-                  <span className="text-sm">
-                    <strong>Regular Updates:</strong> Our systems and software
-                    are regularly updated with security patches
+                  <span>
+                    <strong>Regular Updates:</strong> Systems regularly updated
+                    with security patches
                   </span>
                 </li>
-                <li className="flex items-start gap-2">
+                <li className="flex items-start gap-2.5 leading-relaxed">
                   <span className="text-primary mt-1">•</span>
-                  <span className="text-sm">
-                    <strong>Data Minimization:</strong> We only collect and
-                    retain data that is absolutely necessary
+                  <span>
+                    <strong>Data Minimization:</strong> We only collect
+                    necessary data
                   </span>
                 </li>
               </ul>
             </div>
 
-            <p className="text-sm text-muted-foreground">
-              While we strive to protect your personal data, no method of
-              transmission over the internet or electronic storage is 100%
-              secure. We cannot guarantee absolute security but continuously
-              work to improve our security measures.
+            <p className="text-muted-foreground leading-relaxed">
+              No internet transmission is 100% secure, but we continuously work
+              to improve our security measures.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -674,37 +600,33 @@ export default function DataProtectionPage() {
           id="section-9"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             International Data Transfers
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              Your personal data is primarily processed within the European
-              Union (EU) and European Economic Area (EEA).
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
+              Your data is primarily processed within the EU/EEA.
             </p>
 
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-5">
               <p className="font-medium mb-2">Stagedates Data Transfer</p>
-              <p className="text-sm text-muted-foreground">
-                The Stagedates ticketing service may transfer data outside the
-                EU/EEA. Please refer to Stagedates&#39; privacy policy for
-                information about their data transfer practices and safeguards:
+              <p className="text-muted-foreground mb-3 leading-relaxed">
+                Stagedates may transfer data outside the EU/EEA. Refer to their{" "}
+                <a
+                  href="https://stagedates.com/privacy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary hover:underline font-medium inline-flex items-center gap-1"
+                >
+                  privacy policy
+                  <ExternalLink className="h-3 w-3" />
+                </a>
               </p>
-              <a
-                href="https://stagedates.com/privacy"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline text-sm font-medium inline-flex items-center gap-1 mt-2"
-              >
-                stagedates.com/privacy
-                <ExternalLink className="h-3 w-3" />
-              </a>
             </div>
 
-            <p className="text-sm text-muted-foreground">
-              When we do transfer data outside the EU/EEA, we ensure appropriate
-              safeguards are in place, such as Standard Contractual Clauses
-              approved by the European Commission or adequacy decisions.
+            <p className="text-muted-foreground leading-relaxed">
+              Any data transfers outside the EU/EEA use appropriate safeguards
+              such as Standard Contractual Clauses.
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -714,28 +636,21 @@ export default function DataProtectionPage() {
           id="section-10"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Children&#39;s Privacy
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              Our website is not directed at children under the age of 16. We do
-              not knowingly collect personal data from children under 16.
+          <AccordionContent className="text-sm space-y-4 pt-2 pb-6">
+            <p className="leading-relaxed">
+              We do not knowingly collect data from children under 16.
             </p>
-            <p className="text-sm text-muted-foreground">
-              If you are a parent or guardian and believe your child has
-              provided us with personal data, please contact us at{" "}
+            <p className="text-muted-foreground leading-relaxed">
+              If your child has provided us with personal data, contact us at{" "}
               <a
-                href="mailto:privacy@pier-tronic.com"
+                href="mailto:privacy@piertronic.events"
                 className="text-primary hover:underline"
               >
-                privacy@pier-tronic.com
-              </a>{" "}
-              and we will delete such information from our systems.
-            </p>
-            <p className="text-sm text-muted-foreground">
-              For ticket purchases through Stagedates, please refer to their age
-              requirements and parental consent policies.
+                privacy@piertronic.events
+              </a>
             </p>
           </AccordionContent>
         </AccordionItem>
@@ -745,35 +660,36 @@ export default function DataProtectionPage() {
           id="section-11"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Changes to This Policy
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              We may update this privacy policy from time to time to reflect
-              changes in our practices, technology, legal requirements, or other
-              factors.
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
+              We may update this policy from time to time.
             </p>
-            <div className="bg-muted/50 rounded-lg p-4">
-              <p className="font-medium mb-2">When we update this policy:</p>
-              <ul className="space-y-1 text-sm text-muted-foreground">
-                <li>
-                  • We will update the &quot;Last updated&quot; date at the top
-                  of this page
+            <div className="bg-muted/50 rounded-lg p-5">
+              <p className="font-medium mb-3">When we update:</p>
+              <ul className="space-y-2 text-muted-foreground">
+                <li className="flex items-start gap-2.5">
+                  <span>•</span>
+                  <span className="leading-relaxed">
+                    The &quot;Last updated&quot; date will change
+                  </span>
                 </li>
-                <li>
-                  • Significant changes will be clearly indicated on our website
+                <li className="flex items-start gap-2.5">
+                  <span>•</span>
+                  <span className="leading-relaxed">
+                    Significant changes will be highlighted
+                  </span>
                 </li>
-                <li>
-                  • The updated policy will be effective immediately upon
-                  posting
+                <li className="flex items-start gap-2.5">
+                  <span>•</span>
+                  <span className="leading-relaxed">
+                    Updates are effective immediately
+                  </span>
                 </li>
               </ul>
             </div>
-            <p className="text-sm text-muted-foreground">
-              We encourage you to review this privacy policy periodically to
-              stay informed about how we protect your data.
-            </p>
           </AccordionContent>
         </AccordionItem>
 
@@ -782,93 +698,72 @@ export default function DataProtectionPage() {
           id="section-12"
           className="border rounded-lg px-6"
         >
-          <AccordionTrigger className="text-xl font-normal hover:no-underline">
+          <AccordionTrigger className="text-lg font-normal hover:no-underline py-5">
             Contact Us
           </AccordionTrigger>
-          <AccordionContent className="text-base space-y-4 pt-4">
-            <p>
-              If you have any questions about this privacy policy or our data
-              practices, please don&#39;t hesitate to contact us:
+          <AccordionContent className="text-sm space-y-5 pt-2 pb-6">
+            <p className="leading-relaxed">
+              For questions about this privacy policy:
             </p>
 
             <div className="grid gap-4 md:grid-cols-2">
-              <Card>
-                <CardContent className="pt-6">
-                  <p className="font-medium mb-3">General Inquiries</p>
-                  <div className="space-y-2 text-sm">
-                    <p className="text-muted-foreground">Pier-Tronic GmbH</p>
-                    <p className="text-muted-foreground">Harborstrasse 7</p>
-                    <p className="text-muted-foreground">
-                      20457 Hamburg, Germany
-                    </p>
-                    <p>
-                      <a
-                        href="mailto:info@pier-tronic.com"
-                        className="text-primary hover:underline"
-                      >
-                        info@pier-tronic.com
-                      </a>
-                    </p>
-                    <p className="text-muted-foreground">+49 (0)40 1234 5670</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="bg-muted/30 p-5 rounded-lg border">
+                <p className="font-medium mb-3">General Inquiries</p>
+                <div className="space-y-2">
+                  <p className="text-muted-foreground">Pier-Tronic Events</p>
+                  <p className="text-muted-foreground">Herengracht 150</p>
+                  <p className="text-muted-foreground">1016 BN Amsterdam</p>
+                  <p className="text-muted-foreground">The Netherlands</p>
+                  <p className="mt-3">
+                    <a
+                      href="mailto:info@piertronic.events"
+                      className="text-primary hover:underline"
+                    >
+                      info@piertronic.events
+                    </a>
+                  </p>
+                  <p className="text-muted-foreground">+31 (0)20 123 4567</p>
+                </div>
+              </div>
 
-              <Card className="border-primary/20">
-                <CardContent className="pt-6">
-                  <p className="font-medium mb-3">Privacy & Data Protection</p>
-                  <div className="space-y-2 text-sm">
-                    <p className="text-muted-foreground">
-                      Data Protection Officer
-                    </p>
-                    <p className="text-muted-foreground">Pier-Tronic GmbH</p>
-                    <p className="text-muted-foreground">Harborstrasse 7</p>
-                    <p className="text-muted-foreground">
-                      20457 Hamburg, Germany
-                    </p>
-                    <p>
-                      <a
-                        href="mailto:privacy@pier-tronic.com"
-                        className="text-primary hover:underline"
-                      >
-                        privacy@pier-tronic.com
-                      </a>
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4">
-              <p className="text-sm">
-                <strong>Response Time:</strong> We aim to respond to all
-                privacy-related inquiries within 5 business days, and to formal
-                data subject requests within 30 days as required by GDPR.
-              </p>
+              <div className="bg-muted/30 p-5 rounded-lg border border-primary/20">
+                <p className="font-medium mb-3">Privacy & Data Protection</p>
+                <div className="space-y-2">
+                  <p>
+                    <a
+                      href="mailto:privacy@piertronic.events"
+                      className="text-primary hover:underline"
+                    >
+                      privacy@piertronic.events
+                    </a>
+                  </p>
+                  <p className="text-muted-foreground mt-4 leading-relaxed">
+                    We respond to privacy inquiries within 5 business days and
+                    formal requests within 30 days.
+                  </p>
+                </div>
+              </div>
             </div>
           </AccordionContent>
         </AccordionItem>
       </Accordion>
 
       {/* Footer Note */}
-      <Card className="mt-12 border-primary/20">
-        <CardContent className="pt-6">
-          <div className="flex items-start gap-3">
-            <Shield className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
-            <div className="text-sm text-muted-foreground">
-              <p className="mb-2">
-                <strong className="text-foreground">
-                  Our Privacy Commitment:
-                </strong>{" "}
-                At Pier-Tronic, we believe in transparency and minimal data
-                collection. We only process the data absolutely necessary to
-                provide our services and protect our website.
-              </p>
-              <p>
-                Unlike many websites, we don&#39;t track your behavior, build
-                profiles, or monetize your data. Your privacy matters to us.
-              </p>
-            </div>
+      <Card className="mt-10 border-primary/10">
+        <CardContent className="pt-8 pb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <Shield className="h-5 w-5 text-primary" />
+            <p className="font-medium">Our Privacy Commitment</p>
+          </div>
+          <div className="text-sm text-muted-foreground space-y-3">
+            <p className="leading-relaxed">
+              We believe in transparency and minimal data collection. We only
+              process what&#39;s absolutely necessary.
+            </p>
+            <p className="leading-relaxed">
+              Unlike many websites, we don&#39;t track your behavior, build
+              profiles, or monetize your data.
+            </p>
           </div>
         </CardContent>
       </Card>

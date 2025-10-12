@@ -2,33 +2,12 @@
 
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/contexts/locale-context";
 import { Calendar, MapPin, Ticket, Users } from "lucide-react";
 import { motion } from "motion/react";
-import { useEffect, useState } from "react";
 
 export default function HeroSection() {
-  const [dict, setDict] = useState<Record<string, string> | null>(null);
-
-  useEffect(() => {
-    let isActive = true;
-    (async () => {
-      try {
-        const lang = new URLSearchParams(window.location.search).get("lang");
-        const res = await fetch(
-          `/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ""}`,
-          { cache: "no-store" }
-        );
-        if (!res.ok) return;
-        const json = await res.json();
-        if (isActive) setDict(json);
-      } catch {}
-    })();
-    return () => {
-      isActive = false;
-    };
-  }, []);
-
-  const t = (k: string) => dict?.[k] ?? k;
+  const { t } = useLocale();
 
   return (
     <section

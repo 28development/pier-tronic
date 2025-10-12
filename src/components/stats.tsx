@@ -1,5 +1,6 @@
-import { getRequestLocale } from "@/app/i18n-request";
-import { getServerT } from "@/app/i18n-server";
+"use client";
+
+import { useLocale } from "@/contexts/locale-context";
 import { AnimatedGroup } from "./ui/animated-group";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
 import { TextEffect } from "./ui/text-effect";
@@ -16,9 +17,9 @@ const transitionVariants = {
   },
 };
 
-export default async function StatsSection() {
-  const locale = await getRequestLocale();
-  const t = await getServerT(locale);
+export default function StatsSection() {
+  const { t } = useLocale();
+
   return (
     <section id="about" className="py-12 md:py-20">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-16">

@@ -5,35 +5,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useLocale } from "@/contexts/locale-context";
 import { Lightbulb, Music, Sun, Ticket } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
 import { TextEffect } from "./ui/text-effect";
 
 export default function Features() {
-  const [dict, setDict] = useState<Record<string, string> | null>(null);
-  useEffect(() => {
-    let isActive = true;
-    (async () => {
-      try {
-        const lang = new URLSearchParams(window.location.search).get("lang");
-        const res = await fetch(
-          `/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ""}`,
-          { cache: "no-store" }
-        );
-        if (!res.ok) return;
-        const json = await res.json();
-        if (isActive) setDict(json);
-      } catch {}
-    })();
-    return () => {
-      isActive = false;
-    };
-  }, []);
-  const t = (k: string) => dict?.[k] ?? k;
+  const { t } = useLocale();
   type ImageKey = "item-1" | "item-2" | "item-3" | "item-4";
   const [activeItem, setActiveItem] = useState<ImageKey>("item-1");
 

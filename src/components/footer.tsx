@@ -1,12 +1,16 @@
-import { getRequestLocale } from "@/app/i18n-request";
-import { getServerT } from "@/app/i18n-server";
-import { LanguageSelect } from "@/components/language-select";
-import { headers as getHeaders } from "next/headers";
+"use client";
+
+import { useLocale } from "@/contexts/locale-context";
+import type { TranslationKey } from "@/lib/translations";
 import Link from "next/link";
+import { LanguageSwitcher } from "./language-switcher";
 import { Logo, LogoIcon } from "./logo";
 import { AnimatedGroup } from "./ui/animated-group";
 
-const links = [
+const links: Array<{
+  groupKey: TranslationKey;
+  items: Array<{ key: TranslationKey; href: string }>;
+}> = [
   {
     groupKey: "groups_company",
     items: [
@@ -35,18 +39,10 @@ const transitionVariants = {
   },
 };
 
-export default async function FooterSection() {
-  const locale = await getRequestLocale();
-  const t = await getServerT(locale);
+export default function FooterSection() {
+  const { t } = useLocale();
   const year = new Date().getFullYear();
-  const headersList = await getHeaders();
-  const host =
-    headersList.get("x-forwarded-host") ??
-    headersList.get("host") ??
-    "localhost:3000";
-  const protocol = headersList.get("x-forwarded-proto") ?? "https";
-  const origin = `${protocol}://${host}`;
-  const shareUrl = origin;
+
   return (
     <footer className="border-b pt-20 dark:bg-transparent border-black/30">
       <AnimatedGroup
@@ -144,7 +140,7 @@ export default async function FooterSection() {
         }}
         className="mx-auto max-w-5xl px-6"
       >
-        <div className="grid gap-12 md:grid-cols-3 md:gap-0">
+        <div className="grid gap-12 md:grid-cols-2 md:gap-0">
           <div className="grid grid-cols-2 gap-6 md:col-span-2 lg:col-span-2">
             {links.map((link, index) => (
               <div key={index} className="space-y-4 text-sm">
@@ -162,11 +158,13 @@ export default async function FooterSection() {
             ))}
           </div>
         </div>
-        <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
-          <small className="text-muted-foreground order-last block text-center text-sm md:order-first">
-            {t("footer_rights", { year })}
+        <div className="mt-12 grid grid-cols-6 items-center justify-between gap-6 border-t py-6">
+          <small className="text-muted-foreground col-span-4 block text-center text-sm">
+            {t("footer_rights").replace("{{year}}", year.toString())}
           </small>
-          <LanguageSelect value={locale} />
+          <div className="col-span-2">
+            <LanguageSwitcher />
+          </div>
         </div>
       </AnimatedGroup>
     </footer>

@@ -1,5 +1,7 @@
 "use client";
 
+import { useLocale } from "@/contexts/locale-context";
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,22 +16,22 @@ const featuredArtist = {
   role: "DJ / PRODUCER",
   location: "Tenerife, Spain",
   images: [
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0112.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0114.JPG",
+    "/images/ana_pak/IMG_0112.JPG",
+    "/images/ana_pak/IMG_0114.JPG",
     // Show this image first then a video then continue with the rest
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0577.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0578.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0841.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0845.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_0878.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_3253.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_3987.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_4987.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5014.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5085.JPG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5870.PNG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_5871.PNG",
-    "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/ana_pak/IMG_6948.JPG",
+    "/images/ana_pak/IMG_0577.JPG",
+    "/images/ana_pak/IMG_0578.JPG",
+    "/images/ana_pak/IMG_0841.JPG",
+    "/images/ana_pak/IMG_0845.JPG",
+    "/images/ana_pak/IMG_0878.JPG",
+    "/images/ana_pak/IMG_3253.JPG",
+    "/images/ana_pak/IMG_3987.JPG",
+    "/images/ana_pak/IMG_4987.JPG",
+    "/images/ana_pak/IMG_5014.JPG",
+    "/images/ana_pak/IMG_5085.JPG",
+    "/images/ana_pak/IMG_5870.PNG",
+    "/images/ana_pak/IMG_5871.PNG",
+    "/images/ana_pak/IMG_6948.JPG",
   ],
   videos: ["/videos/ana_pak/ana_pak_1.mp4", "/videos/ana_pak/ana_pak_2.mp4"],
   links: {
@@ -42,30 +44,35 @@ const members = [
   {
     name: "Inan Batman",
     role: "Afro House",
+    location: "Düsseldorf, Germany",
     avatar: "/images/inan_batman/inan_batman.jpg",
-    link: "https://www.instagram.com/inanbatman/?hl=de",
-    // https://www.instagram.com/inanbatman/?hl=de
-    // https://soundcloud.com/inanbatman
-    // Düsseldorf, Germany
-    // https://de.ra.co/dj/inan
+    clip: "/videos/inan_batman/inan_batman_1.mp4",
+    links: {
+      instagram: "https://www.instagram.com/inanbatman/?hl=de",
+      soundcloud: "https://soundcloud.com/inanbatman",
+    },
   },
   {
     name: "Quincy Kluivert",
     role: "Techhouse",
-    avatar:
-      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/quincy_kluivert/quincy_kluivert_1.png",
-    link: "https://quincy-kluivert.webnode.nl/",
+    location: "Amsterdam, Netherlands",
+    avatar: "/images/quincy_kluivert/quincy_kluivert_1.jpg",
+    clip: "/videos/quincy_kluivert/quincy_kluivert_1.mp4",
+    links: {
+      website: "https://quincy-kluivert.webnode.nl/",
+      instagram: "https://www.instagram.com/quincy_kluivert/",
+    },
   },
   {
-    // https://www.instagram.com/nxn_ofc
-    // https://soundcloud.com/nxn_ofc
-    // https://de.ra.co/dj/nxn-de
-    // Düsseldorf, Germany
     name: "DJ DUO Nadia x Natalie",
     role: "Techhouse",
-    avatar:
-      "https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/nxn/nxn.jpg",
-    link: "http://nxn-official.com/",
+    location: "Düsseldorf, Germany",
+    avatar: "/images/nxn/nxn.jpg",
+    links: {
+      website: "http://nxn-official.com/",
+      instagram: "https://www.instagram.com/nxn_ofc",
+      soundcloud: "https://soundcloud.com/nxn_ofc",
+    },
   },
 ];
 
@@ -260,8 +267,14 @@ function FeaturedArtistCard() {
               rel="noopener noreferrer"
               className="group/link flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M7 6.99c-.5.3-.9.7-1.3 1.2-.4.5-.7 1-.9 1.6-.2.6-.3 1.2-.3 1.8 0 .6.1 1.2.3 1.8.2.6.5 1.1.9 1.6.4.5.8.9 1.3 1.2.5.3 1 .5 1.6.6v-3.6c-.3-.1-.5-.2-.7-.4-.2-.2-.3-.4-.3-.7 0-.3.1-.5.3-.7.2-.2.4-.3.7-.4V6.4c-.6.1-1.1.3-1.6.6zm8 .6v4.6c.3.1.5.2.7.4.2.2.3.4.3.7 0 .3-.1.5-.3.7-.2.2-.4.3-.7.4v3.6c.6-.1 1.1-.3 1.6-.6.5-.3.9-.7 1.3-1.2.4-.5.7-1 .9-1.6.2-.6.3-1.2.3-1.8 0-.6-.1-1.2-.3-1.8-.2-.6-.5-1.1-.9-1.6-.4-.5-.8-.9-1.3-1.2-.5-.3-1-.5-1.6-.6zm5 4.6c0-.9-.1-1.7-.4-2.5-.3-.8-.7-1.5-1.2-2.1-.5-.6-1.2-1.1-1.9-1.5-.7-.4-1.5-.6-2.4-.7V2h-1v3.4c-.9.1-1.7.3-2.4.7-.7.4-1.4.9-1.9 1.5-.5.6-.9 1.3-1.2 2.1-.3.8-.4 1.6-.4 2.5 0 .9.1 1.7.4 2.5.3.8.7 1.5 1.2 2.1.5.6 1.2 1.1 1.9 1.5.7.4 1.5.6 2.4.7V22h1v-3.4c.9-.1 1.7-.3 2.4-.7.7-.4 1.4-.9 1.9-1.5.5-.6.9-1.3 1.2-2.1.3-.8.4-1.6.4-2.5z" />
+              <svg
+                className="w-4 h-4"
+                fill="currentColor"
+                viewBox="0 0 75 33.51"
+              >
+                <g>
+                  <path d="M75 23.6a10.5 10.5 0 0 1-10.63 9.91H38.82a2.14 2.14 0 0 1-2.12-2.13V3.87a2.34 2.34 0 0 1 1.41-2.24S40.46 0 45.41 0A16.74 16.74 0 0 1 54 2.36a17 17 0 0 1 8 11.08 9.8 9.8 0 0 1 2.71-.37A10.23 10.23 0 0 1 75 23.6ZM33.51 5.61a.83.83 0 1 0-1.65 0c-.7 9.25-1.24 17.92 0 27.14a.83.83 0 0 0 1.65 0c1.33-9.3.77-17.81 0-27.14ZM28.35 8.81a.87.87 0 0 0-1.73 0 103.7 103.7 0 0 0 0 23.95.87.87 0 0 0 1.72 0 93.2 93.2 0 0 0 .01-23.95ZM23.16 8a.84.84 0 0 0-1.67 0c-.79 8.44-1.19 16.32 0 24.74a.83.83 0 0 0 1.66 0c1.23-8.53.85-16.19.01-24.74ZM18 10.41a.86.86 0 0 0-1.72 0 87.61 87.61 0 0 0 0 22.36.85.85 0 0 0 1.69 0A81.68 81.68 0 0 0 18 10.41ZM12.79 16a.85.85 0 0 0-1.7 0c-1.23 5.76-.65 11 .05 16.83a.81.81 0 0 0 1.6 0c.77-5.91 1.36-11.03.05-16.83ZM7.62 15.12a.88.88 0 0 0-1.75 0C4.78 21 5.14 26.18 5.9 32.05c.08.89 1.59.88 1.69 0 .84-5.96 1.23-10.99.03-16.93ZM2.4 18a.88.88 0 0 0-1.75 0c-1 3.95-.69 7.22.07 11.18a.82.82 0 0 0 1.63 0c.88-4.04 1.31-7.24.05-11.18Z" />
+                </g>
               </svg>
               <span className="hidden sm:inline">SoundCloud</span>
             </Link>
@@ -271,7 +284,7 @@ function FeaturedArtistCard() {
               rel="noopener noreferrer"
               className="group/link flex items-center gap-2 px-5 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white text-sm font-medium transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
               </svg>
               <span className="hidden sm:inline">YouTube</span>
@@ -290,11 +303,11 @@ function FeaturedArtistCard() {
             <button
               key={index}
               onClick={() => setCurrentMediaIndex(index)}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                index === currentMediaIndex
-                  ? "w-8 bg-white"
-                  : "w-4 bg-white/30 hover:bg-white/50"
-              }`}
+              className={cn("h-1 rounded-full transition-all duration-300", {
+                "w-8 bg-white": index === currentMediaIndex,
+                "w-4 bg-white/30 hover:bg-white/50":
+                  index !== currentMediaIndex,
+              })}
               aria-label={`View media ${index + 1}`}
             />
           ))}
@@ -312,7 +325,47 @@ function MemberCard({
   index: number;
 }) {
   const [isHovered, setIsHovered] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const palette = beamPalettes[index % beamPalettes.length];
+  const hasClip = Boolean(member.clip);
+
+  // Handle video playback and 5-second timer
+  useEffect(() => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+
+    if (isHovered && hasClip) {
+      // Show video and play it
+      setShowVideo(true);
+
+      // Wait for video to be ready and play
+      const timer = setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = 0;
+          videoRef.current.play().catch(console.error);
+        }
+      }, 50);
+
+      // Set timer to hide video after 5 seconds
+      timeoutRef.current = setTimeout(() => {
+        setShowVideo(false);
+      }, 5000);
+
+      return () => {
+        clearTimeout(timer);
+        if (timeoutRef.current) {
+          clearTimeout(timeoutRef.current);
+        }
+      };
+    } else {
+      setShowVideo(false);
+    }
+  }, [isHovered, hasClip]);
 
   return (
     <motion.div
@@ -325,35 +378,127 @@ function MemberCard({
       onHoverEnd={() => setIsHovered(false)}
       className="relative size-full rounded-2xl border shadow-md p-2 group overflow-hidden"
     >
-      <Image
-        className="h-96 w-full rounded-md object-cover object-top grayscale transition-all duration-500 hover:grayscale-0 group-hover:h-[22.5rem] group-hover:rounded-xl"
-        src={member.avatar}
-        alt={`${member.name} – ${member.role}`}
-        width="826"
-        height="1239"
-        loading="lazy"
-        decoding="async"
-      />
-      <div className="px-2 pt-2 sm:pb-0 sm:pt-4">
-        <div className="flex justify-between">
-          <h3 className="text-base font-medium transition-all duration-500 group-hover:tracking-wider">
+      <div className="relative h-96 w-full rounded-md overflow-hidden group-hover:h-[22.5rem] group-hover:rounded-xl transition-all duration-500">
+        <AnimatePresence initial={false}>
+          {showVideo && hasClip ? (
+            <motion.div
+              key="video"
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="absolute inset-0 h-full w-full"
+            >
+              <video
+                ref={videoRef}
+                src={member.clip}
+                loop
+                muted
+                playsInline
+                className="h-full w-full object-cover object-top"
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="image"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="h-full w-full"
+            >
+              <Image
+                className="h-full w-full object-cover object-top grayscale transition-all duration-500 hover:grayscale-0"
+                src={member.avatar}
+                alt={`${member.name} – ${member.role}`}
+                width="826"
+                height="1239"
+                loading="lazy"
+                decoding="async"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="px-2 pt-2 sm:pb-0 sm:pt-4 overflow-hidden">
+        <div className="flex flex-col">
+          <h3 className="text-lg font-bold transition-all duration-500 group-hover:tracking-wider mb-2">
             {member.name}
           </h3>
-          {/*<span className="text-xs">_0{index + 1}</span>*/}
-        </div>
-        <div className="mt-1 flex items-center justify-between">
-          <span className="text-muted-foreground inline-block translate-y-6 text-sm opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-            {member.role}
-          </span>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href={member.link}
-            className="group-hover:text-primary-600 dark:group-hover:text-primary-400 inline-block translate-y-8 text-sm tracking-wide opacity-0 transition-all duration-500 hover:underline group-hover:translate-y-0 group-hover:opacity-100"
-          >
-            {" "}
-            Visit artist profile
-          </Link>
+
+          {/* Expandable content on hover */}
+          <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+            <div className="overflow-hidden">
+              <div className="flex flex-col gap-3 pb-2">
+                <div className="flex flex-col gap-1 opacity-0 translate-y-2 transition-all duration-500 delay-75 group-hover:opacity-100 group-hover:translate-y-0">
+                  <p className="text-sm font-medium text-foreground/90">
+                    {member.role}
+                  </p>
+                  {member.location && (
+                    <p className="text-xs text-muted-foreground">
+                      📍 {member.location}
+                    </p>
+                  )}
+                </div>
+
+                {/* Social Links */}
+                <div className="flex gap-2 opacity-0 translate-y-2 transition-all duration-500 delay-150 group-hover:opacity-100 group-hover:translate-y-0">
+                  {member.links.soundcloud && (
+                    <Link
+                      href={member.links.soundcloud}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-8 h-8 bg-foreground/10 hover:bg-foreground/20 rounded-full text-foreground text-xs transition-all duration-300 hover:scale-110"
+                      aria-label="SoundCloud"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 75 33.51"
+                      >
+                        <g>
+                          <path d="M75 23.6a10.5 10.5 0 0 1-10.63 9.91H38.82a2.14 2.14 0 0 1-2.12-2.13V3.87a2.34 2.34 0 0 1 1.41-2.24S40.46 0 45.41 0A16.74 16.74 0 0 1 54 2.36a17 17 0 0 1 8 11.08 9.8 9.8 0 0 1 2.71-.37A10.23 10.23 0 0 1 75 23.6ZM33.51 5.61a.83.83 0 1 0-1.65 0c-.7 9.25-1.24 17.92 0 27.14a.83.83 0 0 0 1.65 0c1.33-9.3.77-17.81 0-27.14ZM28.35 8.81a.87.87 0 0 0-1.73 0 103.7 103.7 0 0 0 0 23.95.87.87 0 0 0 1.72 0 93.2 93.2 0 0 0 .01-23.95ZM23.16 8a.84.84 0 0 0-1.67 0c-.79 8.44-1.19 16.32 0 24.74a.83.83 0 0 0 1.66 0c1.23-8.53.85-16.19.01-24.74ZM18 10.41a.86.86 0 0 0-1.72 0 87.61 87.61 0 0 0 0 22.36.85.85 0 0 0 1.69 0A81.68 81.68 0 0 0 18 10.41ZM12.79 16a.85.85 0 0 0-1.7 0c-1.23 5.76-.65 11 .05 16.83a.81.81 0 0 0 1.6 0c.77-5.91 1.36-11.03.05-16.83ZM7.62 15.12a.88.88 0 0 0-1.75 0C4.78 21 5.14 26.18 5.9 32.05c.08.89 1.59.88 1.69 0 .84-5.96 1.23-10.99.03-16.93ZM2.4 18a.88.88 0 0 0-1.75 0c-1 3.95-.69 7.22.07 11.18a.82.82 0 0 0 1.63 0c.88-4.04 1.31-7.24.05-11.18Z" />
+                        </g>
+                      </svg>
+                    </Link>
+                  )}
+                  {member.links.instagram && (
+                    <Link
+                      href={member.links.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-8 h-8 bg-foreground/10 hover:bg-foreground/20 rounded-full text-foreground text-xs transition-all duration-300 hover:scale-110"
+                      aria-label="Instagram"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3" />
+                      </svg>
+                    </Link>
+                  )}
+                  {member.links.website && (
+                    <Link
+                      href={member.links.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-8 h-8 bg-foreground/10 hover:bg-foreground/20 rounded-full text-foreground text-xs transition-all duration-300 hover:scale-110"
+                      aria-label="Website"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M16.36 14c.08-.66.14-1.32.14-2s-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2m-5.15 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56M14.34 14H9.66c-.1-.66-.16-1.32-.16-2s.06-1.35.16-2h4.68c.09.65.16 1.32.16 2s-.07 1.34-.16 2M12 19.96c-.83-1.2-1.5-2.53-1.91-3.96h3.82c-.41 1.43-1.08 2.76-1.91 3.96M8 8H5.08A7.92 7.92 0 0 1 9.4 4.44C8.8 5.55 8.35 6.75 8 8m-2.92 8H8c.35 1.25.8 2.45 1.4 3.56A8 8 0 0 1 5.08 16m-.82-2C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2s.06 1.34.14 2M12 4.03c.83 1.2 1.5 2.54 1.91 3.97h-3.82c.41-1.43 1.08-2.77 1.91-3.97M18.92 8h-2.95a15.7 15.7 0 0 0-1.38-3.56c1.84.63 3.37 1.9 4.33 3.56M12 2C6.47 2 2 6.5 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10A10 10 0 0 0 12 2" />
+                      </svg>
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {isHovered && (
@@ -370,26 +515,8 @@ function MemberCard({
 }
 
 export default function TeamSection() {
-  const [dict, setDict] = useState<Record<string, string> | null>(null);
-  useEffect(() => {
-    let isActive = true;
-    (async () => {
-      try {
-        const lang = new URLSearchParams(window.location.search).get("lang");
-        const res = await fetch(
-          `/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ""}`,
-          { cache: "no-store" }
-        );
-        if (!res.ok) return;
-        const json = await res.json();
-        if (isActive) setDict(json);
-      } catch {}
-    })();
-    return () => {
-      isActive = false;
-    };
-  }, []);
-  const t = (k: string) => dict?.[k] ?? k;
+  const { t } = useLocale();
+
   return (
     <section id="artists" className="py-16 dark:bg-transparent">
       <div className="mx-auto max-w-5xl border-t px-6">

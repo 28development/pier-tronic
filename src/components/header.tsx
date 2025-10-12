@@ -1,14 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { useLocale } from "@/contexts/locale-context";
+import type { TranslationKey } from "@/lib/translations";
 import { cn } from "@/lib/utils";
 import { Info, Menu, Ticket, Users, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { LanguageSwitcher } from "./language-switcher";
 import { Logo, LogoIcon } from "./logo";
 
-const menuItems = [
+const menuItems: Array<{
+  key: TranslationKey;
+  href: string;
+  icon: typeof Users;
+}> = [
   { key: "team_caption", href: "#artists", icon: Users },
   { key: "tickets_title", href: "#tickets", icon: Ticket },
   { key: "link_about", href: "#about", icon: Info },
@@ -41,7 +47,7 @@ export const HeroHeader = () => {
   const [menuState, setMenuState] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
-  const [dict, setDict] = useState<Record<string, string> | null>(null);
+  const { t } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,25 +55,6 @@ export const HeroHeader = () => {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    let isActive = true;
-    (async () => {
-      try {
-        const lang = new URLSearchParams(window.location.search).get("lang");
-        const res = await fetch(
-          `/api/i18n/get?ns=common${lang ? `&lang=${lang}` : ""}`,
-          { cache: "no-store" }
-        );
-        if (!res.ok) return;
-        const json = await res.json();
-        if (isActive) setDict(json);
-      } catch {}
-    })();
-    return () => {
-      isActive = false;
-    };
   }, []);
 
   // Prevent body scroll when mobile menu is open
@@ -81,8 +68,6 @@ export const HeroHeader = () => {
       document.body.style.overflow = "unset";
     };
   }, [menuState]);
-
-  const t = (k: string) => dict?.[k] ?? k;
 
   return (
     <header>
@@ -201,7 +186,7 @@ export const HeroHeader = () => {
                             : "text-white/90 group-hover:text-white drop-shadow-lg"
                         )}
                       >
-                        {t(item.key)}
+                        {t(item.key as TranslationKey)}
                       </span>
 
                       {/* Subtle background fade */}
@@ -243,9 +228,13 @@ export const HeroHeader = () => {
               </ul>
             </motion.div>
 
-            {/* CTA Button */}
-            <motion.div variants={itemVariants} className="hidden lg:block">
-              <AnimatePresence>
+            {/* Language Switcher & CTA Button */}
+            <motion.div
+              variants={itemVariants}
+              className="hidden lg:flex lg:items-center lg:gap-3"
+            >
+              <LanguageSwitcher variant="header" />
+              {/*<AnimatePresence>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, x: 20 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
@@ -265,13 +254,13 @@ export const HeroHeader = () => {
                         <motion.div className="absolute inset-0 bg-gradient-to-r from-red-600/70 via-pink-600/70 to-orange-600/70 opacity-0 group-hover:opacity-100 transition-colors" />
                         <span className="relative z-10 flex items-center">
                           <Ticket className="mr-2 size-5" />
-                          Get Tickets
+                          {t("hero_cta")}
                         </span>
                       </Link>
                     </Button>
                   </motion.div>
                 </motion.div>
-              </AnimatePresence>
+              </AnimatePresence>*/}
             </motion.div>
           </div>
         </motion.div>
@@ -304,19 +293,22 @@ export const HeroHeader = () => {
                         )}
                       >
                         <Icon className="size-5 opacity-70 group-hover:opacity-100 transition-opacity" />
-                        <span>{t(item.key)}</span>
+                        <span>{t(item.key as TranslationKey)}</span>
                       </Link>
                     </li>
                   );
                 })}
               </ul>
-              <div className="pt-6 border-t mt-4">
-                <Button asChild size="lg" className="w-full">
+              <div className="pt-6 border-t mt-4 space-y-3">
+                <div className="flex justify-center">
+                  <LanguageSwitcher />
+                </div>
+                {/*<Button asChild size="lg" className="w-full">
                   <Link href="#tickets" onClick={() => setMenuState(false)}>
                     <Ticket className="mr-2 size-4" />
-                    <span>Get Tickets</span>
+                    <span>{t("hero_cta")}</span>
                   </Link>
-                </Button>
+                </Button>*/}
               </div>
             </div>
           </motion.div>
