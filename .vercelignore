@@ -1,0 +1,12 @@
+# Vercel
+.vercel
+
+# Dependencies
+node_modules
+
+# Next.js
+.next
+
+# Don't ignore public folder - we need our images!
+# public/
+
