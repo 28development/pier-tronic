@@ -1,4 +1,4 @@
-import { defaultLocale, locales } from "@/lib/translations";
+import { locales } from "@/lib/translations";
 import type { MetadataRoute } from "next";
 
 // Generate a sitemap with localized alternates for key static routes
@@ -14,39 +14,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const locale of locales) {
       languages[locale] = `${baseUrl}/${locale}${path === "/" ? "" : path}`;
     }
-    // canonical (x-default) points to default locale
-    const canonical = `${baseUrl}/${defaultLocale}${path === "/" ? "" : path}`;
-    return { languages, canonical } as const;
+    return { languages } as const;
   };
 
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of staticPaths) {
-    // Default non-locale root entry with alternates
+    if (path === "/") {
+      // Home: list the default entry once with localized alternates
+      entries.push({
+        url: `${baseUrl}`,
+        lastModified,
+        changeFrequency: "weekly",
+        priority: 1.0,
+        alternates: {
+          languages: makeAlternates(path).languages,
+        },
+      });
+      continue;
+    }
+
+    // Other static pages exist only without locale prefixes
     entries.push({
       url: `${baseUrl}${path}`,
       lastModified,
-      changeFrequency: path === "/" ? "weekly" : "monthly",
-      priority: path === "/" ? 1.0 : 0.5,
-      alternates: {
-        languages: makeAlternates(path).languages,
-        canonical: makeAlternates(path).canonical,
-      },
+      changeFrequency: "monthly",
+      priority: 0.5,
     });
-
-    // Locale-prefixed entries
-    for (const locale of locales) {
-      entries.push({
-        url: `${baseUrl}/${locale}${path === "/" ? "" : path}`,
-        lastModified,
-        changeFrequency: path === "/" ? "weekly" : "monthly",
-        priority: path === "/" ? 1.0 : 0.5,
-        alternates: {
-          languages: makeAlternates(path).languages,
-          canonical: makeAlternates(path).canonical,
-        },
-      });
-    }
   }
 
   return entries;
