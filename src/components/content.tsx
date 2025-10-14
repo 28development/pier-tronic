@@ -38,7 +38,7 @@ export default function ContentSection() {
           >
             <Image
               className="rounded-(--radius) grayscale hover:grayscale-0 transition-all duration-300"
-              src="/images/party.jpg"
+              src="/images/party.webp"
               alt="crowd enjoying live music"
               loading="lazy"
               width={1600}
