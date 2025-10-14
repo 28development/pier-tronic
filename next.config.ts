@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    unoptimized: true, // Temporarily disable image optimization to debug
     remotePatterns: [
       {
         protocol: "https",
@@ -15,10 +14,6 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "g3wlvawphh1gdavi.public.blob.vercel-storage.com",
-      },
-      {
-        protocol: "https",
-        hostname: "9c28efe46f.cbaul-cdnwnd.com",
       },
     ],
   },

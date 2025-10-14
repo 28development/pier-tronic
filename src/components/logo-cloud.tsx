@@ -15,7 +15,7 @@ export const LogoCloud = () => {
               <div className="flex">
                 <Image
                   className="mx-auto h-12 w-auto object-contain"
-                  src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/fightology_logo.png"
+                  src="/images/fightology.webp"
                   alt="Fightology logo"
                   height="48"
                   width="200"
@@ -26,7 +26,7 @@ export const LogoCloud = () => {
               <div className="flex">
                 <Image
                   className="mx-auto h-12 w-auto object-contain"
-                  src="https://g3wlvawphh1gdavi.public.blob.vercel-storage.com/images/reborn_logo.png"
+                  src="/images/reborn_logo.png"
                   alt="Reborn logo"
                   height="48"
                   width="200"

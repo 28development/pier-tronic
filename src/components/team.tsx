@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
 import { TextEffect } from "./ui/text-effect";
@@ -101,20 +101,21 @@ function FeaturedArtistCard() {
   const [isHovered, setIsHovered] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);
-  const [isLoaded, setIsLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Combine videos and selected images for rotation
-  const mediaItems = [
-    ...featuredArtist.videos.map((v) => ({ type: "video" as const, src: v })),
-    ...featuredArtist.images
-      .slice(0, 6)
-      .map((i) => ({ type: "image" as const, src: i })),
-  ];
+  const mediaItems = useMemo(
+    () => [
+      ...featuredArtist.videos.map((v) => ({ type: "video" as const, src: v })),
+      ...featuredArtist.images
+        .slice(0, 6)
+        .map((i) => ({ type: "image" as const, src: i })),
+    ],
+    []
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setIsLoaded(false);
       setCurrentMediaIndex((prev) => (prev + 1) % mediaItems.length);
     }, 5000);
 
@@ -123,7 +124,6 @@ function FeaturedArtistCard() {
 
   useEffect(() => {
     setIsVideo(mediaItems[currentMediaIndex].type === "video");
-    setIsLoaded(false);
   }, [currentMediaIndex, mediaItems]);
 
   // Preload next image
@@ -185,7 +185,6 @@ function FeaturedArtistCard() {
                 muted
                 playsInline
                 className="h-full w-full object-cover object-center"
-                onLoadedData={() => setIsLoaded(true)}
                 onError={(e) => {
                   console.error("Video failed to load", e);
                   setCurrentMediaIndex(
@@ -201,7 +200,6 @@ function FeaturedArtistCard() {
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 priority={currentMediaIndex === 0}
-                onLoad={() => setIsLoaded(true)}
               />
             )}
           </motion.div>
