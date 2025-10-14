@@ -87,7 +87,7 @@ export default function ImpressumPage() {
                 <p className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
                   Chamber of Commerce
                 </p>
-                <p>KvK number: 12345678</p>
+                <p>KvK number: 98406884</p>
                 <p className="text-sm text-muted-foreground">
                   Amsterdam, The Netherlands
                 </p>

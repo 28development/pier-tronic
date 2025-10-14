@@ -87,7 +87,7 @@ export default function FooterSection() {
               </svg>
             </Link>
             <Link
-              href="#"
+              href="https://www.instagram.com/pier_tronic_events/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
