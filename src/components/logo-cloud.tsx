@@ -26,7 +26,7 @@ export const LogoCloud = () => {
               <div className="flex">
                 <Image
                   className="mx-auto h-12 w-auto object-contain"
-                  src="/images/reborn_logo.png"
+                  src="/images/reborn_logo.webp"
                   alt="Reborn logo"
                   height="48"
                   width="200"
