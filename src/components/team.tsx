@@ -33,7 +33,7 @@ const featuredArtist = {
     "/images/ana_pak/IMG_5871.webp",
     "/images/ana_pak/IMG_6948.webp",
   ],
-  videos: ["/videos/ana_pak/ana_pak_1.mp4", "/videos/ana_pak/ana_pak_2.mp4"],
+  videos: ["/videos/ana_pak/ana_pak_1-h264.mp4", "/videos/ana_pak/ana_pak_2-h264.mp4"],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
     youtube: "https://www.youtube.com/@anapakdj/videos",
@@ -46,7 +46,7 @@ const members = [
     role: "Afro House",
     location: "Düsseldorf, Germany",
     avatar: "/images/inan_batman/inan_batman.webp",
-    clip: "/videos/inan_batman/inan_batman_1.mp4",
+    clip: "/videos/inan_batman/inan_batman_1-h264.mp4",
     links: {
       instagram: "https://www.instagram.com/inanbatman/?hl=de",
       soundcloud: "https://soundcloud.com/inanbatman",
@@ -57,7 +57,7 @@ const members = [
     role: "Techhouse",
     location: "Amsterdam, Netherlands",
     avatar: "/images/quincy_kluivert/quincy_kluivert_1.webp",
-    clip: "/videos/quincy_kluivert/quincy_kluivert_1.mp4",
+    clip: "/videos/quincy_kluivert/quincy_kluivert_1-h264.mp4",
     links: {
       website: "https://quincy-kluivert.webnode.nl/",
       instagram: "https://www.instagram.com/quincy_kluivert/",

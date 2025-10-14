@@ -7,7 +7,8 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "images:webp": "tsx scripts/convert-to-webp.ts"
+    "images:webp": "tsx scripts/convert-to-webp.ts",
+    "videos:optimize": "tsx scripts/optimize-videos.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -37,6 +38,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.2",
+    "ffmpeg-static": "^5.2.0",
     "shadcn": "^3.0.0",
     "sharp": "^0.34.4",
     "tailwindcss": "^4",

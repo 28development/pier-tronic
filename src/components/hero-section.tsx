@@ -17,14 +17,14 @@ export default function HeroSection() {
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
         <video
-          src="/videos/ana_pak/ana_pak_1.mp4"
+          src="/videos/ana_pak/ana_pak_1-h264.mp4"
           className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
           muted
           playsInline
           preload="metadata"
-          poster="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=2747&auto=format&fit=crop&ixlib=rb-4.0.3"
+          poster="/images/party.webp"
         />
 
         {/* Multi-layer gradient overlay */}
