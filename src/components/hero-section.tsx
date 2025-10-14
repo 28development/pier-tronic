@@ -17,7 +17,6 @@ export default function HeroSection() {
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
         <video
-          src="/videos/ana_pak/ana_pak_1-h264.mp4"
           className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
@@ -25,7 +24,9 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           poster="/images/party.webp"
-        />
+        >
+          <source src="/videos/ana_pak/ana_pak_1-h264.mp4" type="video/mp4" />
+        </video>
 
         {/* Multi-layer gradient overlay */}
         <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-pink-900/50" />

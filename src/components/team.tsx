@@ -33,7 +33,10 @@ const featuredArtist = {
     "/images/ana_pak/IMG_5871.webp",
     "/images/ana_pak/IMG_6948.webp",
   ],
-  videos: ["/videos/ana_pak/ana_pak_1-h264.mp4", "/videos/ana_pak/ana_pak_2-h264.mp4"],
+  videos: [
+    "/videos/ana_pak/ana_pak_1-h264.mp4",
+    "/videos/ana_pak/ana_pak_2-h264.mp4",
+  ],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
     youtube: "https://www.youtube.com/@anapakdj/videos",
@@ -177,21 +180,26 @@ function FeaturedArtistCard() {
             className="absolute inset-0"
           >
             {isVideo ? (
-              <video
-                ref={videoRef}
-                src={mediaItems[currentMediaIndex].src}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="h-full w-full object-cover object-center"
-                onError={(e) => {
-                  console.error("Video failed to load", e);
-                  setCurrentMediaIndex(
-                    (prev) => (prev + 1) % mediaItems.length
-                  );
-                }}
-              />
+              <>
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="h-full w-full object-cover object-center"
+                  onError={(e) => {
+                    console.error("Video failed to load", e);
+                    setCurrentMediaIndex(
+                      (prev) => (prev + 1) % mediaItems.length
+                    );
+                  }}
+                />
+                <source
+                  src={mediaItems[currentMediaIndex].src}
+                  type="video/mp4"
+                />
+              </>
             ) : (
               <Image
                 src={mediaItems[currentMediaIndex].src}
