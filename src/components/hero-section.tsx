@@ -3,6 +3,7 @@
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
+import { getBunnyStreamUrl, VIDEO_IDS } from "@/lib/bunny-cdn";
 import { Calendar, MapPin, Ticket, Users } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -26,8 +27,8 @@ export default function HeroSection() {
           poster="/images/party.webp"
         >
           <source
-            src="https://vz-9b35a891-b60.b-cdn.net/a9f79476-87ca-49cf-83bd-c212d90db0f6/playlist.m3u8"
-            type="video/mp4"
+            src={getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1)}
+            type="application/x-mpegURL"
           />
         </video>
 

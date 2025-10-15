@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
+import { getBunnyStreamUrl, VIDEO_IDS } from "@/lib/bunny-cdn";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
@@ -34,10 +35,8 @@ const featuredArtist = {
     "/images/ana_pak/IMG_6948.webp",
   ],
   videos: [
-    //"/videos/ana_pak/ana_pak_1-h264.mp4",
-    //"/videos/ana_pak/ana_pak_2-h264.mp4",
-    "https://vz-9b35a891-b60.b-cdn.net/a9f79476-87ca-49cf-83bd-c212d90db0f6/playlist.m3u8",
-    "https://vz-9b35a891-b60.b-cdn.net/3e92fe92-44e9-4df7-be95-8f4751988b9d/playlist.m3u8",
+    getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1),
+    getBunnyStreamUrl(VIDEO_IDS.anaPak.clip2),
   ],
   links: {
     soundcloud: "https://soundcloud.com/anapak_dj",
@@ -51,7 +50,7 @@ const members = [
     role: "Afro House",
     location: "Düsseldorf, Germany",
     avatar: "/images/inan_batman/inan_batman.webp",
-    clip: "https://vz-9b35a891-b60.b-cdn.net/1d54506b-e198-4265-8b7c-36bd633a5b67/playlist.m3u8",
+    clip: getBunnyStreamUrl(VIDEO_IDS.inanBatman.clip1),
     links: {
       instagram: "https://www.instagram.com/inanbatman/?hl=de",
       soundcloud: "https://soundcloud.com/inanbatman",
@@ -62,7 +61,7 @@ const members = [
     role: "Techhouse",
     location: "Amsterdam, Netherlands",
     avatar: "/images/quincy_kluivert/quincy_kluivert_1.webp",
-    clip: "https://vz-9b35a891-b60.b-cdn.net/9d3e97d0-910c-46a5-b862-1e2e8b37c116/playlist.m3u8",
+    clip: getBunnyStreamUrl(VIDEO_IDS.quincyKluivert.clip1),
     links: {
       website: "https://quincy-kluivert.webnode.nl/",
       instagram: "https://www.instagram.com/quincy_kluivert/",
@@ -182,26 +181,25 @@ function FeaturedArtistCard() {
             className="absolute inset-0"
           >
             {isVideo ? (
-              <>
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="h-full w-full object-cover object-center"
-                  onError={(e) => {
-                    console.error("Video failed to load", e);
-                    setCurrentMediaIndex(
-                      (prev) => (prev + 1) % mediaItems.length
-                    );
-                  }}
-                />
+              <video
+                ref={videoRef}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-full w-full object-cover object-center"
+                onError={(e) => {
+                  console.error("Video failed to load", e);
+                  setCurrentMediaIndex(
+                    (prev) => (prev + 1) % mediaItems.length
+                  );
+                }}
+              >
                 <source
                   src={mediaItems[currentMediaIndex].src}
-                  type="video/mp4"
+                  type="application/x-mpegURL"
                 />
-              </>
+              </video>
             ) : (
               <Image
                 src={mediaItems[currentMediaIndex].src}
