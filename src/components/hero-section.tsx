@@ -25,7 +25,10 @@ export default function HeroSection() {
           preload="metadata"
           poster="/images/party.webp"
         >
-          <source src="/videos/ana_pak/ana_pak_1-h264.mp4" type="video/mp4" />
+          <source
+            src="https://vz-9b35a891-b60.b-cdn.net/a9f79476-87ca-49cf-83bd-c212d90db0f6/playlist.m3u8"
+            type="video/mp4"
+          />
         </video>
 
         {/* Multi-layer gradient overlay */}
