@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { HlsVideo } from "./hls-video";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
 import { TextEffect } from "./ui/text-effect";
@@ -105,7 +106,6 @@ function FeaturedArtistCard() {
   const [isHovered, setIsHovered] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
   const [isVideo, setIsVideo] = useState(true);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Combine videos and selected images for rotation
   const mediaItems = useMemo(
@@ -181,8 +181,8 @@ function FeaturedArtistCard() {
             className="absolute inset-0"
           >
             {isVideo ? (
-              <video
-                ref={videoRef}
+              <HlsVideo
+                src={mediaItems[currentMediaIndex].src}
                 autoPlay
                 loop
                 muted
@@ -194,12 +194,7 @@ function FeaturedArtistCard() {
                     (prev) => (prev + 1) % mediaItems.length
                   );
                 }}
-              >
-                <source
-                  src={mediaItems[currentMediaIndex].src}
-                  type="application/x-mpegURL"
-                />
-              </video>
+              />
             ) : (
               <Image
                 src={mediaItems[currentMediaIndex].src}
@@ -394,9 +389,9 @@ function MemberCard({
               exit={{ opacity: 0, scale: 0.95 }}
               className="absolute inset-0 h-full w-full"
             >
-              <video
+              <HlsVideo
                 ref={videoRef}
-                src={member.clip}
+                src={member.clip ?? ""}
                 loop
                 muted
                 playsInline

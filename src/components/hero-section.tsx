@@ -1,5 +1,6 @@
 "use client";
 
+import { HlsVideo } from "@/components/hls-video";
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
@@ -17,7 +18,8 @@ export default function HeroSection() {
     >
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
-        <video
+        <HlsVideo
+          src={getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1)}
           className="absolute inset-0 h-dvh w-full object-cover"
           autoPlay
           loop
@@ -25,12 +27,7 @@ export default function HeroSection() {
           playsInline
           preload="metadata"
           poster="/images/party.webp"
-        >
-          <source
-            src={getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1)}
-            type="application/x-mpegURL"
-          />
-        </video>
+        />
 
         {/* Multi-layer gradient overlay */}
         <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-pink-900/50" />
