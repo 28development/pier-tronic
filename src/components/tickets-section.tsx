@@ -3,6 +3,7 @@
 import { useLocale } from "@/contexts/locale-context";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
+import { useEffect } from "react";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { Button } from "./ui/button";
 import { TextEffect } from "./ui/text-effect";
@@ -149,6 +150,21 @@ function TicketCard({ item }: TicketCardProps) {
 export default function TicketsSection() {
   const { t } = useLocale();
 
+  useEffect(() => {
+    // Dynamically load and initialize the StageDates iframe module
+    const script = document.createElement("script");
+    script.type = "module";
+    script.textContent = `
+      import { init } from 'https://stagedates.com/dist/iframe/sd-iframe-latest.min.js';
+      init('stagedates-iframe-event-1');
+    `;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <section id="tickets" className="py-12 md:py-20 lg:py-32">
       <div className="bg-linear-to-b absolute inset-0 -z-10 sm:inset-6 sm:rounded-b-3xl dark:block dark:to-[color-mix(in_oklab,var(--color-zinc-900)_75%,var(--color-background))]"></div>
@@ -174,22 +190,21 @@ export default function TicketsSection() {
           </TextEffect>
         </div>
 
-        <iframe
-          title="StageDates ticket shop embed"
-          style={{
-            border: "none",
-            borderRadius: "20px",
-            height: "1216px",
-            width: "100%",
-            overflowY: "hidden",
-          }}
-          src="https://stagedates.com/events/docklands-2026-docklands-20260606-btFET?embedded=true"
-          id="stagedates-iframe-shop-1"
-          allow="fullscreen; encrypt-media; payment;"
-          loading="lazy"
-          referrerPolicy="strict-origin-when-cross-origin"
-          scrolling="no"
-        />
+        <div className="iframe-container" id="iframe-container">
+          <iframe
+            style={{
+              border: "none",
+              borderRadius: "20px",
+              height: "500px",
+              width: "100%",
+              overflowY: "hidden",
+            }}
+            src="https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true"
+            id="stagedates-iframe-event-1"
+            allow="fullscreen; encrypt-media; payment;"
+            scrolling="no"
+          />
+        </div>
         {/*
                     <div
                     className="grid auto-rows-[14rem] grid-cols-1 gap-6 sm:grid-cols-2 lg:auto-rows-[16rem] lg:grid-cols-6"
