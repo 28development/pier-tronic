@@ -18,7 +18,7 @@ const artists = [
     name: "Ana Pak",
     role: "DJ / PRODUCER",
     location: "Tenerife, Spain",
-    isFeatured: true,
+    isFeatured: false,
     images: [
       "/images/ana_pak/IMG_0112.webp",
       "/images/ana_pak/IMG_0114.webp",
@@ -72,7 +72,7 @@ const artists = [
   },
   {
     name: "DJ DUO Nadia x Natalie",
-    role: "Techhouse",
+    role: "Afro House",
     location: "Düsseldorf, Germany",
     images: [
       "/images/nxn/nxn.webp",

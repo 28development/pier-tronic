@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pier-tronic.com"),
+  metadataBase: new URL("https://https://piertronic.events/"),
   title: {
     default: "Pier-Tronic",
     template: "%s | Pier-Tronic",
@@ -43,10 +43,16 @@ export const metadata: Metadata = {
       "Pier-Tronic – the ultimate electronic music festival in Germany.",
     images: [
       {
-        url: "/window.svg",
-        width: 1200,
-        height: 630,
-        alt: "Pier-Tronic Festival",
+        url: "/web-app-manifest-512x512.png",
+        width: 512,
+        height: 512,
+        alt: "Pier-Tronic Logo",
+      },
+      {
+        url: "/apple-icon.png",
+        width: 180,
+        height: 180,
+        alt: "Pier-Tronic Logo",
       },
     ],
     locale: "en",
@@ -56,7 +62,7 @@ export const metadata: Metadata = {
     title: "Pier-Tronic",
     description:
       "Pier-Tronic – the ultimate electronic music festival in Germany.",
-    images: ["/window.svg"],
+    images: ["/web-app-manifest-512x512.png"],
   },
   alternates: {
     canonical: "/",
@@ -100,16 +106,16 @@ export default function RootLayout({
         </LocaleProvider>
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Pier-Tronic",
-              url: "https://pier-tronic.com/",
+              url: "https://piertronic.events/",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "https://pier-tronic.com/search?q={search_term_string}",
+                target:
+                  "https://piertronic.events/search?q={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),

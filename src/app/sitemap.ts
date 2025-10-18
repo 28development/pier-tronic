@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 
 // Generate a sitemap with localized alternates for key static routes
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://pier-tronic.com";
+  const baseUrl = "https://piertronic.events";
 
   const staticPaths = ["/", "/imprint", "/data-protection"] as const;
 
