@@ -88,4 +88,7 @@ export const VIDEO_IDS = {
   quincyKluivert: {
     clip1: "9d3e97d0-910c-46a5-b862-1e2e8b37c116",
   },
+  nxn: {
+    clip1: "0327c280-be08-4aa1-9ad5-8a3b76a94aff",
+  },
 } as const;

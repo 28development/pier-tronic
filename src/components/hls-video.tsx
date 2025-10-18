@@ -35,7 +35,12 @@ export const HlsVideo = forwardRef<HTMLVideoElement, HlsVideoProps>(
         const hls = new Hls({
           enableWorker: true,
           lowLatencyMode: false,
-          backBufferLength: 90,
+          // Optimize buffering to reduce bandwidth usage
+          maxBufferLength: 10, // Buffer only 10 seconds ahead
+          maxMaxBufferLength: 20, // Maximum buffer length
+          backBufferLength: 10, // Keep only 10 seconds of back buffer
+          maxBufferSize: 10 * 1000 * 1000, // 10MB max buffer size
+          maxBufferHole: 0.5, // Handle buffer holes quickly
         });
 
         hls.loadSource(src);

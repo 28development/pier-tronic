@@ -6,10 +6,32 @@ import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
 import { getBunnyStreamUrl, VIDEO_IDS } from "@/lib/bunny-cdn";
 import { Calendar, MapPin, Ticket, Users } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection() {
   const { t } = useLocale();
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+
+  // Array of video URLs to rotate
+  const videoUrls = useMemo(
+    () => [
+      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1),
+      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip2),
+      getBunnyStreamUrl(VIDEO_IDS.inanBatman.clip1),
+      // getBunnyStreamUrl(VIDEO_IDS.quincyKluivert.clip1), // schlechte qualität
+    ],
+    []
+  );
+
+  // Rotate videos every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVideoIndex((prev) => (prev + 1) % videoUrls.length);
+    }, 10_000);
+
+    return () => clearInterval(interval);
+  }, [videoUrls.length]);
 
   return (
     <section
@@ -18,16 +40,41 @@ export default function HeroSection() {
     >
       {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
-        <HlsVideo
-          src={getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1)}
-          className="absolute inset-0 h-dvh w-full object-cover"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
-          poster="/images/party.webp"
-        />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentVideoIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            {/* Blurred background video layer - fills viewport */}
+            <HlsVideo
+              src={videoUrls[currentVideoIndex]}
+              className="absolute inset-0 h-dvh w-full object-cover scale-110 blur-3xl brightness-50"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              poster="/images/party.webp"
+              aria-hidden="true"
+            />
+
+            {/* Main video layer - preserves aspect ratio */}
+            <HlsVideo
+              src={videoUrls[currentVideoIndex]}
+              className="absolute inset-0 h-dvh w-full object-contain"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              poster="/images/party.webp"
+            />
+          </motion.div>
+        </AnimatePresence>
 
         {/* Multi-layer gradient overlay */}
         <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-pink-900/50" />
@@ -101,12 +148,12 @@ export default function HeroSection() {
               >
                 <div className="flex items-center gap-2">
                   <Calendar className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">Juli 18, 2026</span>
+                  <span className="text-sm font-medium">{t("event_date")}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <MapPin className="size-5 text-white/60" />
                   <span className="text-sm font-medium">
-                    Scheveningen, Netherlands
+                    {t("event_location")}
                   </span>
                 </div>
               </motion.div>
@@ -137,7 +184,7 @@ export default function HeroSection() {
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />
-                    Lineup ansehen
+                    {t("content_lineup")}
                   </a>
                 </Button>
               </motion.div>
