@@ -49,7 +49,7 @@ const artists = [
   {
     name: "Inan Batman",
     role: "Afro House",
-    location: "Düsseldorf, Germany",
+    location: "Berlin, Germany",
     images: ["/images/inan_batman/inan_batman.webp"],
     videos: [getBunnyStreamUrl(VIDEO_IDS.inanBatman.clip1)],
     links: {
@@ -73,7 +73,7 @@ const artists = [
   {
     name: "DJ DUO Nadia x Natalie",
     role: "Afro House",
-    location: "Düsseldorf, Germany",
+    location: "Berlin, Germany",
     images: [
       "/images/nxn/nxn.webp",
       "/images/nxn/nxn_1.webp",
