@@ -70,7 +70,7 @@ const artists = [
       soundcloud: "https://soundcloud.com/quincy-kluivert",
     },
   },
-  {
+  /*{
     name: "DJ DUO Nadia x Natalie",
     role: "Afro House",
     location: "Berlin, Germany",
@@ -85,7 +85,7 @@ const artists = [
       instagram: "https://www.instagram.com/nxn_ofc",
       soundcloud: "https://soundcloud.com/nxn_ofc",
     },
-  },
+  },*/
 ];
 
 const transitionVariants = {
