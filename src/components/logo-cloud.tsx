@@ -34,6 +34,17 @@ export const LogoCloud = () => {
                   decoding="async"
                 />
               </div>
+              <div className="flex">
+                <Image
+                  className="mx-auto h-40 w-auto object-contain"
+                  src="/images/DePier_Scheveningen_logo.svg"
+                  alt="DePier Scheveningen logo"
+                  height="48"
+                  width="200"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </InfiniteSlider>
 
             <div className="from-background absolute inset-y-0 left-0 w-20"></div>
