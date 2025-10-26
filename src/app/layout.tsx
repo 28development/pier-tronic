@@ -18,12 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://piertronic.events/"),
-  title: {
-    default: "Pier-Tronic",
-    template: "%s | Pier-Tronic",
-  },
-  description:
-    "Pier-Tronic – the ultimate music festival.",
+  title: "Pier-Tronic",
+  description: "Pier-Tronic – the ultimate music festival.",
   applicationName: "Pier-Tronic",
   robots: {
     index: true,
@@ -34,38 +30,30 @@ export const metadata: Metadata = {
     initialScale: 1,
     viewportFit: "cover",
   },
+  alternates: {
+    canonical: "https://piertronic.events/",
+  },
   openGraph: {
-    type: "website",
-    url: "/",
-    siteName: "Pier-Tronic",
     title: "Pier-Tronic",
-    description:
-      "Pier-Tronic – the ultimate music festival.",
+    description: "Pier-Tronic – the ultimate music festival.",
+    type: "website",
+    locale: "en",
+    url: "https://piertronic.events/",
+    siteName: "Pier-Tronic",
     images: [
       {
-        url: "/web-app-manifest-512x512.png",
-        width: 512,
-        height: 512,
-        alt: "Pier-Tronic Logo",
-      },
-      {
-        url: "/apple-icon.png",
-        width: 180,
-        height: 180,
+        url: "/images/PierTronic_Logo.png",
+        width: 1200,
+        height: 630,
         alt: "Pier-Tronic Logo",
       },
     ],
-    locale: "en",
   },
   twitter: {
     card: "summary_large_image",
     title: "Pier-Tronic",
-    description:
-      "Pier-Tronic – the ultimate music festival.",
-    images: ["/web-app-manifest-512x512.png"],
-  },
-  alternates: {
-    canonical: "/",
+    description: "Pier-Tronic – the ultimate music festival.",
+    images: ["/images/PierTronic_Logo.png"],
   },
 };
 
@@ -74,6 +62,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // JSON-LD Schema for Music Festival Event
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MusicEvent",
+    name: "Pier-Tronic",
+    description: "Pier-Tronic – the ultimate music festival.",
+    url: "https://piertronic.events/",
+    image: "/images/PierTronic_Logo.png",
+    organizer: {
+      "@type": "Organization",
+      name: "Pier-Tronic",
+      url: "https://piertronic.events/",
+      logo: {
+        "@type": "ImageObject",
+        url: "/images/PierTronic_Logo.png",
+      },
+    },
+  };
   return (
     <html lang="en">
       <body
@@ -107,19 +113,9 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Pier-Tronic",
-              url: "https://piertronic.events/",
-              potentialAction: {
-                "@type": "SearchAction",
-                target:
-                  "https://piertronic.events/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
-            }),
+            __html: JSON.stringify(jsonLd),
           }}
+          suppressHydrationWarning
         />
       </body>
     </html>
