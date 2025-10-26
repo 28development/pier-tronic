@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://https://piertronic.events/"),
+  metadataBase: new URL("https://piertronic.events/"),
   title: {
     default: "Pier-Tronic",
     template: "%s | Pier-Tronic",
