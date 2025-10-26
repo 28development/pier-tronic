@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Pier-Tronic",
   },
   description:
-    "Pier-Tronic – the ultimate electronic music festival in Germany.",
+    "Pier-Tronic – the ultimate music festival.",
   applicationName: "Pier-Tronic",
   robots: {
     index: true,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: "Pier-Tronic",
     title: "Pier-Tronic",
     description:
-      "Pier-Tronic – the ultimate electronic music festival in Germany.",
+      "Pier-Tronic – the ultimate music festival.",
     images: [
       {
         url: "/web-app-manifest-512x512.png",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pier-Tronic",
     description:
-      "Pier-Tronic – the ultimate electronic music festival in Germany.",
+      "Pier-Tronic – the ultimate music festival.",
     images: ["/web-app-manifest-512x512.png"],
   },
   alternates: {
