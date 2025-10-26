@@ -66,7 +66,7 @@ export default function ImpressumPage() {
                     className="flex items-center gap-2 hover:text-primary transition-colors"
                   >
                     <Phone className="h-4 w-4" />
-                    +31 (0)20 123 4567
+                    +31634392524
                   </a>
                   <a
                     href="mailto:info@piertronic.events"
