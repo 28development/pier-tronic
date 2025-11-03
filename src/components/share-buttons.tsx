@@ -26,7 +26,7 @@ export function ShareButtons({
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch {}
+    } catch { }
   }, [shareUrl]);
 
   return (
