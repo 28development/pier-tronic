@@ -1,4 +1,5 @@
 import { BubbleBackground } from "@/components/animate-ui/components/backgrounds/bubble";
+import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import FooterSection from "@/components/footer";
 import { HeroHeader } from "@/components/header";
 import { LocaleProvider } from "@/contexts/locale-context";
@@ -109,6 +110,7 @@ export default function RootLayout({
             {children}
             <FooterSection />
           </div>
+          <FloatingWhatsApp />
         </LocaleProvider>
         <script
           type="application/ld+json"

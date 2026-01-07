@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="" />
+    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,7 +73,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.26775.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
       </set>
     </attachedChunks>
   </component>
@@ -91,6 +93,7 @@
       <workItem from="1760297882504" duration="17000" />
       <workItem from="1760298043220" duration="85000" />
       <workItem from="1760476688141" duration="8802000" />
+      <workItem from="1765912012961" duration="1834000" />
     </task>
     <task id="LOCAL-00001" summary="Update header component.">
       <option name="closed" value="true" />
