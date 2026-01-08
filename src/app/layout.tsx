@@ -1,4 +1,5 @@
 import { BubbleBackground } from "@/components/animate-ui/components/backgrounds/bubble";
+import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import FooterSection from "@/components/footer";
 import { HeroHeader } from "@/components/header";
@@ -111,6 +112,7 @@ export default function RootLayout({
             <FooterSection />
           </div>
           <FloatingWhatsApp />
+          <CookieConsentBanner />
         </LocaleProvider>
         <script
           type="application/ld+json"

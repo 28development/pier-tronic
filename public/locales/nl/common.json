@@ -56,7 +56,16 @@
   "stats_blurb": "Een nacht vol muziek, licht en onvergetelijke vibes. Beleef de energie van top-DJ's, live-optredens en een publiek dat nooit stilstaat.",
   "stats_card1": "Internationale DJ's & Artiesten",
   "stats_card2": "Muziekliefhebbers aanwezig",
-  "stats_card3": "Non-stop muziek & optredens"
+  "stats_card3": "Non-stop muziek & optredens",
+  "cookie_title": "Cookietoestemming",
+  "cookie_description": "We gebruiken cookies om uw ervaring te verbeteren. Deze website gebruikt Google AdSense om advertenties weer te geven. Door te accepteren, stemt u in met het gebruik van cookies voor gepersonaliseerde advertenties en analyses. U kunt uw voorkeuren op elk moment wijzigen.",
+  "cookie_privacy_link": "Meer informatie in ons privacybeleid",
+  "cookie_details_toggle": "Toon details over cookies",
+  "cookie_adsense_title": "Google AdSense",
+  "cookie_adsense_description": "We gebruiken Google AdSense om relevante advertenties weer te geven. Deze cookies helpen ons bij het leveren van gepersonaliseerde advertentie-ervaringen en het meten van advertentieprestaties.",
+  "cookie_types": "Gebruikte cookies: _ga, _gid, _gat, __gads, __gpi, DSID, IDE, ANID, NID",
+  "cookie_accept": "Cookies accepteren",
+  "cookie_reject": "Weigeren"
 }
 
 

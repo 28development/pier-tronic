@@ -56,7 +56,16 @@
   "stats_blurb": "A night full of music, lights, and unforgettable vibes. Experience the energy of world-class DJs, live performances, and a crowd that never stops moving.",
   "stats_card1": "International DJs & Artists",
   "stats_card2": "Music Lovers Attending",
-  "stats_card3": "Non-stop Music & Performances"
+  "stats_card3": "Non-stop Music & Performances",
+  "cookie_title": "Cookie Consent",
+  "cookie_description": "We use cookies to enhance your experience. This website uses Google AdSense to display advertisements. By accepting, you consent to the use of cookies for personalized ads and analytics. You can change your preferences at any time.",
+  "cookie_privacy_link": "Learn more in our Privacy Policy",
+  "cookie_details_toggle": "Show details about cookies",
+  "cookie_adsense_title": "Google AdSense",
+  "cookie_adsense_description": "We use Google AdSense to display relevant advertisements. These cookies help us deliver personalized ad experiences and measure ad performance.",
+  "cookie_types": "Cookies used: _ga, _gid, _gat, __gads, __gpi, DSID, IDE, ANID, NID",
+  "cookie_accept": "Accept Cookies",
+  "cookie_reject": "Reject"
 }
 
 
