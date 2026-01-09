@@ -1,7 +1,8 @@
 "use client";
 
+import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { getBunnyStreamUrl, VIDEO_IDS } from "@/lib/bunny-cdn";
+import { ARTISTS, Artist, EVENTS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
@@ -11,102 +12,6 @@ import { HlsVideo } from "./hls-video";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
 import { TextEffect } from "./ui/text-effect";
-
-// All Artists
-const artists = [
-  {
-    name: "Ana Pak",
-    role: "DJ / PRODUCER",
-    location: "Tenerife, Spain",
-    isFeatured: false,
-    images: [
-      "/images/ana_pak/IMG_0112.webp",
-      "/images/ana_pak/IMG_0114.webp",
-      "/images/ana_pak/IMG_0577.webp",
-      "/images/ana_pak/IMG_0578.webp",
-      "/images/ana_pak/IMG_0841.webp",
-      "/images/ana_pak/IMG_0845.webp",
-      "/images/ana_pak/IMG_0878.webp",
-      "/images/ana_pak/IMG_3253.webp",
-      "/images/ana_pak/IMG_3987.webp",
-      "/images/ana_pak/IMG_4987.webp",
-      "/images/ana_pak/IMG_5014.webp",
-      "/images/ana_pak/IMG_5085.webp",
-      "/images/ana_pak/IMG_5870.webp",
-      "/images/ana_pak/IMG_5871.webp",
-      "/images/ana_pak/IMG_6948.webp",
-    ],
-    videos: [
-      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1),
-      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip2),
-    ],
-    links: {
-      instagram: "https://www.instagram.com/anapak__/",
-      soundcloud: "https://soundcloud.com/anapak_dj",
-      youtube: "https://www.youtube.com/@anapakdj/videos",
-    },
-  },
-  {
-    name: "Inan Batman",
-    role: "Afro House",
-    location: "Berlin, Germany",
-    images: ["/images/inan_batman/inan_batman.webp"],
-    videos: [getBunnyStreamUrl(VIDEO_IDS.inanBatman.clip1)],
-    links: {
-      instagram: "https://www.instagram.com/inanbatman/?hl=de",
-      soundcloud: "https://soundcloud.com/inanbatman",
-      youtube: "https://www.youtube.com/@inanbatman",
-    },
-  },
-  {
-    name: "Quincy Kluivert",
-    role: "Techhouse",
-    location: "Amsterdam, Netherlands",
-    images: ["/images/quincy_kluivert/quincy_kluivert_1.webp"],
-    videos: [getBunnyStreamUrl(VIDEO_IDS.quincyKluivert.clip1)],
-    links: {
-      website: "https://quincy-kluivert.webnode.nl/",
-      instagram: "https://www.instagram.com/quincy_kluivert/",
-      soundcloud: "https://soundcloud.com/quincy-kluivert",
-    },
-  },
-  {
-    name: "Claudia León",
-    role: "Afro House / Latin House",
-    location: "Madrid, Spain",
-    images: [
-      "/images/claudia_leon/claudia_leon_1.webp",
-      "/images/claudia_leon/claudia_leon_2.webp",
-      "/images/claudia_leon/claudia_leon_3.webp",
-    ],
-    videos: [
-      getBunnyStreamUrl(VIDEO_IDS.claudia_leon.clip1),
-      getBunnyStreamUrl(VIDEO_IDS.claudia_leon.clip2),
-    ],
-    links: {
-      spotify: "https://open.spotify.com/artist/0n6py2ZuBUL7f2qYjaAUTh",
-      youtube: "https://www.youtube.com/@djclaudialeon",
-      instagram: "https://www.instagram.com/djclaudialeon/",
-      tiktok: "https://www.tiktok.com/@djclaudialeon",
-    },
-  },
-  /*{
-    name: "DJ DUO Nadia x Natalie",
-    role: "Afro House",
-    location: "Berlin, Germany",
-    images: [
-      "/images/nxn/nxn.webp",
-      "/images/nxn/nxn_1.webp",
-      "/images/nxn/nxn_2.webp",
-    ],
-    videos: [getBunnyStreamUrl(VIDEO_IDS.nxn.clip1)],
-    links: {
-      website: "http://nxn-official.com/",
-      instagram: "https://www.instagram.com/nxn_ofc",
-      soundcloud: "https://soundcloud.com/nxn_ofc",
-    },
-  },*/
-];
 
 const transitionVariants = {
   item: {
@@ -129,13 +34,7 @@ const beamPalettes = [
   { from: "#FFD166", to: "#EF476F" },
 ];
 
-function ArtistCard({
-  artist,
-  index,
-}: {
-  artist: (typeof artists)[number];
-  index: number;
-}) {
+function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
   const { t } = useLocale();
   const [isHovered, setIsHovered] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -482,6 +381,40 @@ function ArtistCard({
                 </svg>
               </Link>
             )}
+            {artist.links.ra && (
+              <Link
+                href={artist.links.ra}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                aria-label="Resident Advisor"
+              >
+                <svg
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M3.75 3.75v16.5h3.75V3.75H3.75zm12.75 0v3.75h3.75V3.75H16.5zm-6.375 0v16.5H13.875V3.75h-3.75zm6.375 6.375v3.75h3.75V10.125H16.5zm0 6.375v3.75h3.75V16.5H16.5z" />
+                </svg>
+              </Link>
+            )}
+            {artist.links.facebook && (
+              <Link
+                href={artist.links.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full text-white transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                aria-label="Facebook"
+              >
+                <svg
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 3.656 10.99 8.793 12.07v-8.535H5.01V12.07h3.117V9.605c0-3.077 1.833-4.777 4.637-4.777 1.343 0 2.75.24 2.75.24v3.023H14.05c-1.525 0-2 .947-2 1.92v2.399h3.407l-.544 3.398h-2.863V24.14c5.137-1.08 8.793-6.08 8.793-12.07z" />
+                </svg>
+              </Link>
+            )}
             {artist.links.youtube && (
               <Link
                 href={artist.links.youtube}
@@ -564,56 +497,107 @@ function ArtistCard({
 }
 
 export default function TeamSection() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+
+  const activeArtists = activeEvent.artists.map((id) => ARTISTS[id]);
 
   return (
     <section id="artists" className="py-16 dark:bg-transparent">
       <div className="mx-auto max-w-7xl border-t px-6">
-        <span className="text-caption -ml-6 -mt-3.5 block w-max bg-gray-50 rounded-4xl px-6 dark:bg-gray-950">
-          {t("team_caption")}
-        </span>
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 -mt-4 mb-8">
+          <span className="text-caption block w-max bg-gray-50 rounded-4xl px-6 dark:bg-gray-950">
+            {t("team_caption")}
+          </span>
+          <div className="flex gap-2 bg-gray-100 dark:bg-gray-900 p-1 rounded-full">
+            {EVENTS.map((event, idx) => (
+              <button
+                key={event.id}
+                onClick={() => setActiveEventIndex(idx)}
+                className={cn(
+                  "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
+                  activeEventIndex === idx
+                    ? "bg-white dark:bg-gray-800 text-black dark:text-white shadow-sm"
+                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                )}
+              >
+                {event.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">
           <div className="sm:w-2/5">
-            <TextEffect
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              as="h2"
-              className="text-3xl font-bold sm:text-4xl"
-            >
-              {t("team_title")}
-            </TextEffect>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeEvent.id}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.5 }}
+              >
+                <TextEffect
+                  preset="fade-in-blur"
+                  speedSegment={0.3}
+                  as="h2"
+                  className="text-3xl font-bold sm:text-4xl"
+                >
+                  {activeEvent.name}
+                </TextEffect>
+              </motion.div>
+            </AnimatePresence>
           </div>
           <div className="mt-6 sm:mt-0">
-            <TextEffect
-              per="line"
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              delay={0.3}
-              as="p"
-            >
-              {t("team_blurb")}
-            </TextEffect>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeEvent.id}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <p className="text-lg text-gray-600 dark:text-gray-400">
+                  {activeEvent.description[locale as "en" | "de"] ||
+                    activeEvent.description.en}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
 
         {/* All Artists Grid */}
         <div className="mt-12 md:mt-24">
-          <AnimatedGroup
-            variants={{
-              container: {
-                visible: {
-                  transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-                },
-              },
-              ...transitionVariants,
-            }}
-          >
-            <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
-              {artists.map((artist, index) => (
-                <ArtistCard key={artist.name} artist={artist} index={index} />
-              ))}
-            </div>
-          </AnimatedGroup>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeEvent.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+                    },
+                  },
+                  ...transitionVariants,
+                }}
+              >
+                <div className="grid gap-6 sm:grid-cols-2 lg:gap-8">
+                  {activeArtists.map((artist, index) => (
+                    <ArtistCard
+                      key={`${activeEvent.id}-${artist.id}`}
+                      artist={artist}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              </AnimatedGroup>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>

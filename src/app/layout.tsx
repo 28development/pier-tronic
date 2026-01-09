@@ -3,6 +3,7 @@ import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import FooterSection from "@/components/footer";
 import { HeroHeader } from "@/components/header";
+import { EventProvider } from "@/contexts/event-context";
 import { LocaleProvider } from "@/contexts/locale-context";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -88,31 +89,33 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LocaleProvider>
-          <a
-            href="#main-content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:shadow-md"
-          >
-            Skip to main content
-          </a>
-          <BubbleBackground
-            interactive={true}
-            className="fixed inset-0 z-0 pointer-events-none bg-white bg-none"
-            colors={{
-              first: "255, 220, 220", // soft red
-              second: "255, 235, 205", // soft orange/peach
-              third: "210, 230, 255", // soft blue
-              fourth: "255, 245, 235", // very light orange
-              fifth: "240, 240, 255", // very light violet (neutral)
-              sixth: "255, 230, 240", // very light pink
-            }}
-          />
-          <div className="relative z-10">
-            <HeroHeader />
-            {children}
-            <FooterSection />
-          </div>
-          <FloatingWhatsApp />
-          <CookieConsentBanner />
+          <EventProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-background focus:px-3 focus:py-2 focus:shadow-md"
+            >
+              Skip to main content
+            </a>
+            <BubbleBackground
+              interactive={true}
+              className="fixed inset-0 z-0 pointer-events-none bg-white bg-none"
+              colors={{
+                first: "255, 220, 220", // soft red
+                second: "255, 235, 205", // soft orange/peach
+                third: "210, 230, 255", // soft blue
+                fourth: "255, 245, 235", // very light orange
+                fifth: "240, 240, 255", // very light violet (neutral)
+                sixth: "255, 230, 240", // very light pink
+              }}
+            />
+            <div className="relative z-10">
+              <HeroHeader />
+              {children}
+              <FooterSection />
+            </div>
+            <FloatingWhatsApp />
+            <CookieConsentBanner />
+          </EventProvider>
         </LocaleProvider>
         <script
           type="application/ld+json"

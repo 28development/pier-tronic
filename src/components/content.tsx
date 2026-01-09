@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
 import { ChevronRight } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -22,14 +23,15 @@ const transitionVariants = {
 };
 
 export default function ContentSection() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const { activeEvent } = useEvent();
 
   return (
     <section className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
         <AnimatePresence mode="wait">
           <motion.div
-            key={`content-id`}
+            key={`content-${activeEvent.id}`}
             initial={{ opacity: 0, y: 6, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
@@ -38,8 +40,8 @@ export default function ContentSection() {
           >
             <Image
               className="rounded-(--radius) grayscale hover:grayscale-0 transition-all duration-300"
-              src="/images/party.webp"
-              alt="crowd enjoying live music"
+              src={activeEvent.heroImage || "/images/party.webp"}
+              alt={activeEvent.name}
               loading="lazy"
               width={1600}
               height={1200}
@@ -49,23 +51,28 @@ export default function ContentSection() {
 
         <div className="grid gap-6 md:grid-cols-2 md:gap-12">
           <TextEffect
+            key={activeEvent.id + "-content-title"}
             preset="fade-in-blur"
             speedSegment={0.3}
             delay={0.4}
             as="h2"
             className="text-4xl font-medium"
           >
-            {t("content_title")}
+            {activeEvent.name === "Pulse of the Pier"
+              ? t("content_title")
+              : activeEvent.name}
           </TextEffect>
           <div className="space-y-6">
             <TextEffect
+              key={activeEvent.id + "-content-blurb"}
               per="line"
               preset="fade-in-blur"
               speedSegment={0.3}
               delay={0.6}
               as="p"
             >
-              {t("content_blurb")}
+              {activeEvent.description[locale as "en" | "de"] ||
+                activeEvent.description.en}
             </TextEffect>
 
             <AnimatedGroup
@@ -84,7 +91,7 @@ export default function ContentSection() {
                 size="sm"
                 className="gap-1 pr-1.5"
               >
-                <Link href="#">
+                <Link href="#artists">
                   <span>{t("content_lineup")}</span>
                   <ChevronRight className="size-2" />
                 </Link>

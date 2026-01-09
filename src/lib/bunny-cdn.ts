@@ -95,4 +95,8 @@ export const VIDEO_IDS = {
     clip1: "da38cd85-07ea-441a-8638-539037d2311a",
     clip2: "1148cc80-cfc7-4b4b-9719-164b1f26229e",
   },
+  noorSanchez: {
+    clip1: "2eb19e55-a434-403c-9ba4-5e58ee233767",
+    clip2: "22127e9c-e6bb-4783-8186-60702d9828d7",
+  },
 } as const;

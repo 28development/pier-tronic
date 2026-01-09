@@ -38,6 +38,7 @@
   "feat_vip": "VIP Lounge",
   "feat_vip_desc": "Relax in the exclusive VIP area with premium amenities, better views, and special access to meet-and-greet events.",
   "tickets_title": "Upcoming Tickets",
+  "tickets_title_suffix": "Tickets",
   "tickets_blurb": "Get your spot for the next Pier-Tronic experiences. Hover a card to peek details, pricing and venue.",
   "tickets_buy": "Buy Ticket",
   "tickets_button": "Open in new window",

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
 import { useEffect } from "react";
 import { Button } from "./ui/button";
@@ -7,6 +8,7 @@ import { TextEffect } from "./ui/text-effect";
 
 export default function TicketsSection() {
   const { t } = useLocale();
+  const { activeEvent } = useEvent();
 
   useEffect(() => {
     // Dynamically load and initialize the StageDates iframe module
@@ -14,14 +16,14 @@ export default function TicketsSection() {
     script.type = "module";
     script.textContent = `
       import { init } from 'https://stagedates.com/dist/iframe/sd-iframe-latest.min.js';
-      init('stagedates-iframe-event-1');
+      init('${activeEvent.stageDatesId}');
     `;
     document.body.appendChild(script);
 
     return () => {
       document.body.removeChild(script);
     };
-  }, []);
+  }, [activeEvent.stageDatesId]);
 
   return (
     <section id="tickets" className="py-12 md:py-20 lg:py-32">
@@ -29,14 +31,16 @@ export default function TicketsSection() {
       <div className="mx-auto max-w-6xl space-y-10 px-6 md:space-y-16 lg:space-y-20">
         <div className="relative z-10 mx-auto max-w-2xl space-y-6 text-center">
           <TextEffect
+            key={activeEvent.id + "-title"}
             preset="fade-in-blur"
             speedSegment={0.3}
             as="h2"
             className="text-balance text-4xl font-semibold lg:text-6xl"
           >
-            {t("tickets_title")}
+            {`${activeEvent.name} ${t("tickets_title_suffix") || "Tickets"}`}
           </TextEffect>
           <TextEffect
+            key={activeEvent.id + "-blurb"}
             per="line"
             preset="fade-in-blur"
             speedSegment={0.3}
@@ -50,18 +54,14 @@ export default function TicketsSection() {
 
         <div className="flex flex-col gap-2">
           <Button
-            onClick={() =>
-              window.open(
-                "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
-                "_blank"
-              )
-            }
+            onClick={() => window.open(activeEvent.ticketsUrl, "_blank")}
             className="py-2 w-fit self-end"
           >
             {t("tickets_button")}
           </Button>
           <div className="iframe-container" id="iframe-container">
             <iframe
+              key={activeEvent.id}
               style={{
                 border: "none",
                 borderRadius: "20px",
@@ -69,8 +69,8 @@ export default function TicketsSection() {
                 width: "100%",
                 overflowY: "hidden",
               }}
-              src="https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true"
-              id="stagedates-iframe-event-1"
+              src={activeEvent.ticketsUrl}
+              id={activeEvent.stageDatesId}
               allow="fullscreen; encrypt-media; payment;"
               scrolling="no"
             />

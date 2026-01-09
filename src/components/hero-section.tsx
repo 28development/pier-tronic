@@ -3,28 +3,40 @@
 import { HlsVideo } from "@/components/hls-video";
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
+import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { getBunnyStreamUrl, VIDEO_IDS } from "@/lib/bunny-cdn";
+import { ARTISTS, EVENTS } from "@/lib/data";
+import { cn } from "@/lib/utils";
 import { Calendar, MapPin, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection() {
-  const { t } = useLocale();
+  const { t, locale } = useLocale();
+  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  // Array of video URLs to rotate
-  const videoUrls = useMemo(
-    () => [
-      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip1),
-      getBunnyStreamUrl(VIDEO_IDS.anaPak.clip2),
-      getBunnyStreamUrl(VIDEO_IDS.inanBatman.clip1),
-      // getBunnyStreamUrl(VIDEO_IDS.quincyKluivert.clip1), // schlechte qualität
-    ],
-    []
-  );
+  // Array of video URLs to rotate based on active event artists
+  const videoUrls = useMemo(() => {
+    const urls: string[] = [];
+    activeEvent.artists.forEach((artistId) => {
+      const artist = ARTISTS[artistId];
+      if (artist && artist.videos && artist.videos.length > 0) {
+        urls.push(...artist.videos);
+      }
+    });
 
-  // Rotate videos every 5 seconds
+    // Fallback if no videos
+    if (urls.length === 0) {
+      urls.push(
+        "https://vz-9b35a891-b60.b-cdn.net/a9f79476-87ca-49cf-83bd-c212d90db0f6/playlist.m3u8"
+      );
+    }
+
+    return urls;
+  }, [activeEvent.artists]);
+
+  // Rotate videos every 10 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % videoUrls.length);
@@ -42,7 +54,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 z-0 h-dvh">
         <AnimatePresence mode="wait">
           <motion.div
-            key={currentVideoIndex}
+            key={`${activeEvent.id}-${currentVideoIndex}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -85,8 +97,32 @@ export default function HeroSection() {
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="mx-auto max-w-6xl px-6 py-32 lg:px-12 lg:py-40 w-full">
           <div className="max-w-4xl">
+            {/* Event Switcher in Hero */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="flex gap-2 mb-12 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-full w-fit"
+            >
+              {EVENTS.map((event, idx) => (
+                <button
+                  key={event.id}
+                  onClick={() => setActiveEventIndex(idx)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
+                    activeEventIndex === idx
+                      ? "bg-white text-black shadow-lg scale-105"
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  )}
+                >
+                  {event.name}
+                </button>
+              ))}
+            </motion.div>
+
             {/* Main Content */}
             <motion.div
+              key={activeEvent.id}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -117,7 +153,7 @@ export default function HeroSection() {
                         ease: "linear",
                       }}
                     >
-                      {t("hero_title")}
+                      {activeEvent.name}
                     </motion.span>
                   </span>
                 </motion.h1>
@@ -125,17 +161,20 @@ export default function HeroSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.6 }}
-                  className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white/90 leading-tight"
+                  className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
                 >
-                  {t("hero_subtitle")}
+                  {activeEvent.name === "Pier-Tronic"
+                    ? t("hero_subtitle")
+                    : activeEvent.name}
                 </motion.h2>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4, duration: 0.6 }}
-                  className="text-lg lg:text-xl text-white/70 max-w-2xl leading-relaxed"
+                  className="text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed"
                 >
-                  {t("hero_blurb")}
+                  {activeEvent.description[locale as "en" | "de"] ||
+                    activeEvent.description.en}
                 </motion.p>
               </div>
 
@@ -144,16 +183,18 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="flex flex-wrap items-center gap-6 text-white/80"
+                className="flex flex-wrap items-center gap-6 text-white"
               >
                 <div className="flex items-center gap-2">
-                  <Calendar className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">{t("event_date")}</span>
+                  <Calendar className="size-5 text-white/70" />
+                  <span className="text-sm sm:text-base font-semibold">
+                    {activeEvent.date}
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="size-5 text-white/60" />
-                  <span className="text-sm font-medium">
-                    {t("event_location")}
+                  <MapPin className="size-5 text-white/70" />
+                  <span className="text-sm sm:text-base font-semibold">
+                    {activeEvent.location}
                   </span>
                 </div>
               </motion.div>
@@ -168,7 +209,7 @@ export default function HeroSection() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12"
+                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12 rounded-full"
                 >
                   <a href="#tickets">
                     <Ticket className="mr-2 size-5" />
@@ -180,7 +221,7 @@ export default function HeroSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="bg-transparent border-white/40 text-white hover:border-white/60 font-semibold text-base px-8 h-12 hover:bg-white"
+                  className="bg-white/10 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300"
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />

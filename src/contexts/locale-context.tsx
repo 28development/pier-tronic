@@ -47,7 +47,11 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
   };
 
   const t = (key: TranslationKey): string => {
-    return translations[locale][key] || key;
+    // Use keyof typeof translations[locale] to satisfy type checking,
+    // fallback to key if translation is missing
+    const translation =
+      translations[locale][key as keyof (typeof translations)[typeof locale]];
+    return typeof translation === "string" ? translation : key;
   };
 
   // Prevent hydration mismatch by rendering with default locale first
@@ -57,7 +61,13 @@ export function LocaleProvider({ children }: LocaleProviderProps) {
         value={{
           locale: defaultLocale,
           setLocale,
-          t: (key) => translations[defaultLocale][key] || key,
+          t: (key: TranslationKey) => {
+            const translation =
+              translations[defaultLocale][
+                key as keyof (typeof translations)[typeof defaultLocale]
+              ];
+            return typeof translation === "string" ? translation : key;
+          },
         }}
       >
         {children}
