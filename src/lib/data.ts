@@ -56,7 +56,7 @@ export const ARTISTS: Record<string, Artist> = {
   anaPak: {
     id: "anaPak",
     name: "Ana Pak",
-    role: "DJ / PRODUCER",
+    role: "Afro House",
     location: "Tenerife, Spain",
     images: [
       "/images/ana_pak/IMG_0112.webp",
@@ -181,13 +181,44 @@ export const ARTISTS: Record<string, Artist> = {
     bio: {
       en: {
         short:
-          "Namito is a Berlin-based DJ and producer known for 'Stone Flower', Beatport’s top-selling Electronica track. Founder of Ubersee Music, he blends deep house with Persian vocals.",
-        long: "Namito is a Berlin-based DJ and producer known for 'Stone Flower', Beatport’s top-selling Electronica track of all time. As the founder of Ubersee Music, he masterfully blends deep house with Persian vocals and organic textures. With global tours and acclaimed releases on top-tier labels, he recently received the Global Recognition Award. Describing his style as the 'acoustic crystallisation' of his being, Namito builds on a foundation of classic house music while infusing the soul of his Iranian heritage. He continues to push the boundaries of Iranian dance music by blending Berlin’s electronic pulse with his Persian roots.",
+          "Namito is a Berlin-based DJ and producer known for 'Stone Flower', Beatport's top-selling Electronica track. Founder of Ubersee Music, he blends deep house with Persian vocals.",
+        long: "Namito is a Berlin-based DJ and producer known for 'Stone Flower', Beatport's top-selling Electronica track of all time. As the founder of Ubersee Music, he masterfully blends deep house with Persian vocals and organic textures. With global tours and acclaimed releases on top-tier labels, he recently received the Global Recognition Award. Describing his style as the 'acoustic crystallisation' of his being, Namito builds on a foundation of classic house music while infusing the soul of his Iranian heritage. He continues to push the boundaries of Iranian dance music by blending Berlin's electronic pulse with his Persian roots.",
       },
       de: {
         short:
           "Namito ist ein in Berlin ansässiger DJ und Produzent, bekannt für 'Stone Flower', den meistverkauften Electronica-Track auf Beatport. Als Gründer von Ubersee Music verbindet er Deep House mit persischem Gesang.",
         long: "Namito ist ein in Berlin ansässiger DJ und Produzent, bekannt für 'Stone Flower', den meistverkauften Electronica-Track in der Geschichte von Beatport. Als Gründer von Ubersee Music verbindet er meisterhaft Deep House mit persischen Vocals und organischen Elementen. Mit weltweiten Touren und zahlreichen gefeierten Veröffentlichungen auf renommierten Labels wurde er kürzlich mit dem Global Recognition Award ausgezeichnet. Sein Stil ist eine akustische Kristallisation seines Seins: Das Fundament ist klassische House-Musik, aber die Seele kommt aus seiner Geburtsstätte im Iran. Er prägt die Zukunft der iranischen Dance Music, indem er Berliner Beats mit seinen persischen Wurzeln vereint.",
+      },
+    },
+  },
+  colle: {
+    id: "colle",
+    name: "Collé",
+    role: "Melodic Organic House",
+    location: "Netherlands",
+    images: [
+      "/images/colle/colle_1.webp",
+      "/images/colle/colle_2.webp",
+      "/images/colle/colle_3.webp",
+      "/images/colle/colle_4.webp",
+      "/images/colle/colle_5.webp",
+      "/images/colle/colle_6.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/collemusic/",
+      soundcloud: "https://soundcloud.com/collemusic",
+      spotify: "https://open.spotify.com/artist/5QTxFnGygVM4jFQiBovmRo",
+    },
+    bio: {
+      en: {
+        short:
+          "Collé is a versatile producer with a unique, emotional sound. His breakthrough came in 2018 with the anthem 'Owami,' heavily supported by Solomun, Âme, and Black Coffee.",
+        long: "Collé is a versatile producer with a unique, emotional sound that reflects years of musical experience and cultural influences. His breakthrough came in 2018 with the anthem 'Owami,' heavily supported by major names like Solomun, Âme, and Black Coffee. With releases on renowned labels such as Human by Default, Calamar Records, Siamese, and Zamna, Collé continues to evolve. He is also one of the driving forces behind the label Point in Time, which focuses on vocal electronic music while avoiding clichés. His track 'Kupata' was heavily supported by Keinemusik. Collé has delivered incredible performances at Tomorrowland, Pacha, and Mysteryland, to name just a few. Always in search of timeless originality, exciting new projects are on the horizon.",
+      },
+      de: {
+        short:
+          "Collé ist ein vielseitiger Produzent mit einem einzigartigen, emotionalen Sound. Sein Durchbruch kam 2018 mit der Hymne 'Owami', stark unterstützt von Solomun, Âme und Black Coffee.",
+        long: "Collé ist ein vielseitiger Produzent mit einem einzigartigen, emotionalen Sound, der jahrelange musikalische Erfahrung und kulturelle Einflüsse widerspiegelt. Sein Durchbruch kam 2018 mit der Hymne 'Owami', die von großen Namen wie Solomun, Âme und Black Coffee stark unterstützt wurde. Mit Veröffentlichungen auf renommierten Labels wie Human by Default, Calamar Records, Siamese und Zamna entwickelt sich Collé stetig weiter. Er ist auch eine der treibenden Kräfte hinter dem Label Point in Time, das sich auf vokale elektronische Musik konzentriert und dabei Klischees vermeidet. Sein Track 'Kupata' wurde von Keinemusik stark unterstützt. Collé hat unglaubliche Auftritte bei Tomorrowland, Pacha und Mysteryland abgeliefert, um nur einige zu nennen. Immer auf der Suche nach zeitloser Originalität stehen spannende neue Projekte am Horizont.",
       },
     },
   },
@@ -220,7 +251,7 @@ export const EVENTS: Event[] = [
         "Immersives Erlebnis",
       ],
     },
-    artists: ["anaPak", "inanBatman", "quincyKluivert", "claudiaLeon"],
+    artists: ["anaPak", "inanBatman", "quincyKluivert", "claudiaLeon", "colle"],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
     stageDatesId: "stagedates-iframe-event-1",
