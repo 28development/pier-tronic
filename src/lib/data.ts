@@ -226,6 +226,39 @@ export const ARTISTS: Record<string, Artist> = {
 
 export const EVENTS: Event[] = [
   {
+    id: "namito-x-noor-sanchez",
+    name: "Namito x Noor Sanchez",
+    slug: "namito-noor",
+    date: "28 February 2026",
+    time: "21:00 – 04:00",
+    location: "EVE, Scheveningen – The Hague",
+    locationFull: "EVE – Oceanfront Venue",
+    description: {
+      en: "For the first time, Namito performs live in Scheveningen — joined by Noor Sanchez for an unforgettable night of deep, melodic, and oriental house at EVE, directly by the North Sea.",
+      de: "Zum ersten Mal tritt Namito live in Scheveningen auf – gemeinsam mit Noor Sanchez für eine unvergessliche Nacht voller Deep, Melodic und Oriental House bei EVE, direkt an der Nordsee.",
+    },
+    highlights: {
+      en: [
+        "First-ever Namito performance in the Netherlands",
+        "Stunning oceanfront location at EVE, Scheveningen",
+        "Deep, melodic & oriental house music",
+        "High-quality sound, intimate atmosphere",
+      ],
+      de: [
+        "Namitos erster Auftritt in den Niederlanden",
+        "Atemberaubende Lage direkt am Meer bei EVE, Scheveningen",
+        "Deep, Melodic & Oriental House Music",
+        "Hochwertiger Sound, intime Atmosphäre",
+      ],
+    },
+    artists: ["namito", "noorSanchez"],
+    ticketsUrl:
+      "https://stagedates.com/events/namito-x-noor-sanchez-the-hague-eve-scheveningen-20260228-kZrGl?embedded=true",
+    stageDatesId:
+      "stagedates-iframe-event-b7ca208c-d7bc-42d6-9743-d213697e7581",
+    heroImage: "/images/namito/namito_3.webp",
+  },
+  {
     id: "pulse-of-the-pier",
     name: "Pulse of the Pier",
     slug: "pulse-of-the-pier",
@@ -255,37 +288,5 @@ export const EVENTS: Event[] = [
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
     stageDatesId: "stagedates-iframe-event-1",
-  },
-  {
-    id: "namito-x-noor-sanchez",
-    name: "Namito x Noor Sanchez",
-    slug: "namito-noor",
-    date: "28 February 2026",
-    time: "21:00 – 04:00",
-    location: "EVE, Scheveningen – The Hague",
-    locationFull: "EVE – Oceanfront Venue",
-    description: {
-      en: "For the first time in history, internationally acclaimed DJ and producer Namito performs live in Scheveningen, Den Haag — joined by Noor Sanchez for an unforgettable night of electronic music at the stunning seaside venue EVE.\n\nSet against a breathtaking view of the North Sea, this exclusive event brings together deep, melodic, and oriental house music, blending hypnotic rhythms with emotional soundscapes.",
-      de: "Zum ersten Mal in der Geschichte tritt der international gefeierte DJ und Produzent Namito live in Scheveningen auf – gemeinsam mit Noor Sanchez für eine unvergessliche Nacht elektronischer Musik in der atemberaubenden Location EVE.\n\nVor der Kulisse der Nordsee vereint dieses exklusive Event Deep, Melodic und Oriental House Music und mischt hypnotische Rhythmen mit emotionalen Soundscapes.",
-    },
-    highlights: {
-      en: [
-        "First-ever Namito performance in the Netherlands",
-        "Stunning oceanfront location at EVE, Scheveningen",
-        "Deep, melodic & oriental house music",
-        "High-quality sound, intimate atmosphere",
-      ],
-      de: [
-        "Namitos erster Auftritt in den Niederlanden",
-        "Atemberaubende Lage direkt am Meer bei EVE, Scheveningen",
-        "Deep, Melodic & Oriental House Music",
-        "Hochwertiger Sound, intime Atmosphäre",
-      ],
-    },
-    artists: ["namito", "noorSanchez"],
-    ticketsUrl:
-      "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true", // Use existing for now as placeholder
-    stageDatesId: "stagedates-iframe-event-1", // Use existing for now as placeholder
-    heroImage: "/images/namito/namito_3.webp",
   },
 ];
