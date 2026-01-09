@@ -91,4 +91,8 @@ export const VIDEO_IDS = {
   nxn: {
     clip1: "0327c280-be08-4aa1-9ad5-8a3b76a94aff",
   },
+  claudia_leon: {
+    clip1: "da38cd85-07ea-441a-8638-539037d2311a",
+    clip2: "1148cc80-cfc7-4b4b-9719-164b1f26229e",
+  },
 } as const;
