@@ -51,22 +51,22 @@
   "stats_attendees": "Teilnehmer",
   "stats_people": "Personen",
   "stats_djs": "DJs & Artists",
-  "stats_lineup": "2025 Lineup"
-  ,
+  "stats_lineup": "2025 Lineup",
   "stats_title": "Das Event in Zahlen",
   "stats_blurb": "Eine Nacht voller Musik, Licht und unvergesslicher Vibes. Erleben Sie die Energie von Weltklasse-DJs, Live-Performances und einer Crowd, die niemals stillsteht.",
   "stats_card1": "Internationale DJs & Artists",
   "stats_card2": "Musikliebhaber vor Ort",
   "stats_card3": "Nonstop Musik & Shows",
   "cookie_title": "Cookie-Zustimmung",
-  "cookie_description": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Diese Website verwendet Google AdSense zur Anzeige von Werbung. Durch Akzeptieren stimmen Sie der Verwendung von Cookies für personalisierte Anzeigen und Analysen zu. Sie können Ihre Einstellungen jederzeit ändern.",
+  "cookie_description": "Wir verwenden Cookies und Tracking-Technologien zur Analyse der Website-Nutzung und Messung der Werbewirksamkeit. Durch Akzeptieren stimmen Sie der Verwendung von Cookies für Analysen und Kampagnen-Tracking zu. Sie können Ihre Einstellungen jederzeit ändern.",
   "cookie_privacy_link": "Mehr erfahren in unserer Datenschutzerklärung",
   "cookie_details_toggle": "Details zu Cookies anzeigen",
-  "cookie_adsense_title": "Google AdSense",
-  "cookie_adsense_description": "Wir verwenden Google AdSense zur Anzeige relevanter Werbung. Diese Cookies helfen uns, personalisierte Werbeerlebnisse zu liefern und die Anzeigenleistung zu messen.",
-  "cookie_types": "Verwendete Cookies: _ga, _gid, _gat, __gads, __gpi, DSID, IDE, ANID, NID",
+  "cookie_gtm_title": "Google Tag Manager",
+  "cookie_gtm_description": "Wir verwenden Google Tag Manager zur Steuerung von Scripts und Ereignisbehandlung. Dies hilft uns zu analysieren, wie Besucher unsere Website nutzen.",
+  "cookie_gtm_cookies": "Cookies: _ga, _gat, _gid (Laufzeit: 2 Jahre)",
+  "cookie_stroeer_title": "Ströer Kampagnen-Tracking",
+  "cookie_stroeer_description": "Wir verwenden Ströer Online Marketing zur Website-Analyse und Werbewirksamkeitsermittlung. Erzeugt statistische Daten darüber, wie Besucher die Website nutzen.",
+  "cookie_stroeer_cookies": "Cookies: campaignId (Laufzeit: 14 Tage)",
   "cookie_accept": "Cookies akzeptieren",
   "cookie_reject": "Ablehnen"
 }
-
-

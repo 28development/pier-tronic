@@ -50,22 +50,22 @@
   "stats_attendees": "Bezoekers",
   "stats_people": "Mensen",
   "stats_djs": "DJ's & Artiesten",
-  "stats_lineup": "2025 Line-up"
-  ,
+  "stats_lineup": "2025 Line-up",
   "stats_title": "Het evenement in cijfers",
   "stats_blurb": "Een nacht vol muziek, licht en onvergetelijke vibes. Beleef de energie van top-DJ's, live-optredens en een publiek dat nooit stilstaat.",
   "stats_card1": "Internationale DJ's & Artiesten",
   "stats_card2": "Muziekliefhebbers aanwezig",
   "stats_card3": "Non-stop muziek & optredens",
   "cookie_title": "Cookietoestemming",
-  "cookie_description": "We gebruiken cookies om uw ervaring te verbeteren. Deze website gebruikt Google AdSense om advertenties weer te geven. Door te accepteren, stemt u in met het gebruik van cookies voor gepersonaliseerde advertenties en analyses. U kunt uw voorkeuren op elk moment wijzigen.",
+  "cookie_description": "We gebruiken cookies en trackingtechnologieën om het websitegebruik te analyseren en de effectiviteit van advertenties te meten. Door te accepteren, stemt u in met het gebruik van cookies voor analytics en campagnetracking. U kunt uw voorkeuren op elk moment wijzigen.",
   "cookie_privacy_link": "Meer informatie in ons privacybeleid",
   "cookie_details_toggle": "Toon details over cookies",
-  "cookie_adsense_title": "Google AdSense",
-  "cookie_adsense_description": "We gebruiken Google AdSense om relevante advertenties weer te geven. Deze cookies helpen ons bij het leveren van gepersonaliseerde advertentie-ervaringen en het meten van advertentieprestaties.",
-  "cookie_types": "Gebruikte cookies: _ga, _gid, _gat, __gads, __gpi, DSID, IDE, ANID, NID",
+  "cookie_gtm_title": "Google Tag Manager",
+  "cookie_gtm_description": "We gebruiken Google Tag Manager om scripts en eventafhandeling te beheren. Dit helpt ons analyseren hoe bezoekers onze website gebruiken.",
+  "cookie_gtm_cookies": "Cookies: _ga, _gat, _gid (Bewaartermijn: 2 jaar)",
+  "cookie_stroeer_title": "Ströer Campagne Tracking",
+  "cookie_stroeer_description": "We gebruiken Ströer Online Marketing voor website-analyse en het meten van advertentie-effectiviteit. Dit genereert statistische gegevens over hoe bezoekers de website gebruiken.",
+  "cookie_stroeer_cookies": "Cookies: campaignId (Bewaartermijn: 14 dagen)",
   "cookie_accept": "Cookies accepteren",
   "cookie_reject": "Weigeren"
 }
-
-
