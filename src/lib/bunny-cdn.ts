@@ -99,4 +99,8 @@ export const VIDEO_IDS = {
     clip1: "2eb19e55-a434-403c-9ba4-5e58ee233767",
     clip2: "22127e9c-e6bb-4783-8186-60702d9828d7",
   },
+  malive: {
+    clip1: "ccd80ca7-1214-4350-83e2-d9c8339b170d",
+    clip2: "57766d85-7693-43b0-9e06-30011b451192",
+  },
 } as const;

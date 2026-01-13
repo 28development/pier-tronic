@@ -3,9 +3,11 @@
 import { useLocale } from "@/contexts/locale-context";
 import {
   getCookieConsent,
+  initializeGoogleConsentMode,
   loadTrackingScripts,
   removeTrackingCookies,
   setCookieConsent,
+  updateGoogleConsentMode,
   type CookieConsent,
 } from "@/lib/cookie-consent";
 import { AnimatePresence, motion } from "motion/react";
@@ -19,6 +21,10 @@ export function CookieConsentBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Initialize Google Consent Mode V2 with default denied state
+    // This MUST happen before any Google scripts load
+    initializeGoogleConsentMode();
+
     // Check if user has already given consent
     const existingConsent = getCookieConsent();
     setConsent(existingConsent);
@@ -26,6 +32,9 @@ export function CookieConsentBanner() {
     // If user has already accepted, load tracking scripts
     if (existingConsent === "accepted") {
       loadTrackingScripts();
+    } else if (existingConsent === "rejected") {
+      // Update consent mode to denied if previously rejected
+      updateGoogleConsentMode(false);
     }
 
     // Show banner if no consent has been given
@@ -49,6 +58,8 @@ export function CookieConsentBanner() {
     setCookieConsent("rejected");
     setConsent("rejected");
     setIsVisible(false);
+    // Update Google Consent Mode to denied
+    updateGoogleConsentMode(false);
     removeTrackingCookies();
   };
 

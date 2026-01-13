@@ -4,6 +4,82 @@ export type CookieConsent = "accepted" | "rejected" | null;
 
 const COOKIE_CONSENT_KEY = "piertronic_cookie_consent";
 
+// Type for dataLayer - can contain objects or arrays (gtag commands)
+type DataLayerItem = Record<string, unknown> | unknown[];
+declare global {
+  interface Window {
+    dataLayer?: DataLayerItem[];
+  }
+}
+
+/**
+ * Google Consent Mode V2 - Set default consent state (denied)
+ * This should be called as early as possible, before GTM loads
+ * @see https://developers.google.com/tag-platform/security/guides/consent
+ */
+export const initializeGoogleConsentMode = (): void => {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+
+  // Push default consent state - all denied by default (GDPR compliant)
+  window.dataLayer.push({
+    event: "consent_default",
+    "gtm.start": new Date().getTime(),
+  });
+
+  // Set default consent to denied for all Google services
+  window.dataLayer.push([
+    "consent",
+    "default",
+    {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "denied",
+      functionality_storage: "denied",
+      personalization_storage: "denied",
+      security_storage: "granted", // Always needed for security
+      wait_for_update: 500, // Wait 500ms for consent update
+    },
+  ]);
+
+  // Enable URL passthrough for better conversion tracking without cookies
+  window.dataLayer.push(["set", "url_passthrough", true]);
+
+  // Enable ads data redaction when consent is denied
+  window.dataLayer.push(["set", "ads_data_redaction", true]);
+};
+
+/**
+ * Google Consent Mode V2 - Update consent state after user choice
+ */
+export const updateGoogleConsentMode = (granted: boolean): void => {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+
+  const consentState = granted ? "granted" : "denied";
+
+  window.dataLayer.push([
+    "consent",
+    "update",
+    {
+      ad_storage: consentState,
+      ad_user_data: consentState,
+      ad_personalization: consentState,
+      analytics_storage: consentState,
+      functionality_storage: consentState,
+      personalization_storage: consentState,
+    },
+  ]);
+
+  // Push consent event for GTM triggers
+  window.dataLayer.push({
+    event: granted ? "consent_granted" : "consent_denied",
+  });
+};
+
 export const getCookieConsent = (): CookieConsent => {
   if (typeof window === "undefined") return null;
 
@@ -31,10 +107,9 @@ export const loadGoogleTagManager = (): void => {
   );
   if (existingScript) return;
 
-  // Initialize dataLayer
-  (window as Window & { dataLayer?: unknown[] }).dataLayer =
-    (window as Window & { dataLayer?: unknown[] }).dataLayer || [];
-  (window as Window & { dataLayer?: unknown[] }).dataLayer!.push({
+  // Initialize dataLayer (consent mode should already be initialized)
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
     "gtm.start": new Date().getTime(),
     event: "gtm.js",
   });
@@ -83,6 +158,8 @@ export const loadStroeerTracking = (): void => {
 
 // Function to load all tracking scripts when consent is given
 export const loadTrackingScripts = (): void => {
+  // Update Google Consent Mode to granted before loading scripts
+  updateGoogleConsentMode(true);
   loadGoogleTagManager();
   loadStroeerTracking();
 };
