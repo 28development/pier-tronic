@@ -2,7 +2,7 @@
 
 import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, Artist, EVENTS } from "@/lib/data";
+import { ARTISTS, Artist } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
@@ -498,7 +498,7 @@ function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
 
 export default function TeamSection() {
   const { t, locale } = useLocale();
-  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+  const { activeEvent, activeEventIndex, setActiveEventIndex, events } = useEvent();
 
   const activeArtists = activeEvent.artists.map((id) => ARTISTS[id]);
 
@@ -510,7 +510,7 @@ export default function TeamSection() {
             {t("team_caption")}
           </span>
           <div className="flex gap-2 bg-gray-100 dark:bg-gray-900 p-1 rounded-full">
-            {EVENTS.map((event, idx) => (
+            {events.map((event, idx) => (
               <button
                 key={event.id}
                 onClick={() => setActiveEventIndex(idx)}

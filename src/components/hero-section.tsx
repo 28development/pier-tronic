@@ -5,7 +5,7 @@ import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
 import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, EVENTS } from "@/lib/data";
+import { ARTISTS } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Calendar, MapPin, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -13,7 +13,7 @@ import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection() {
   const { t, locale } = useLocale();
-  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+  const { activeEvent, activeEventIndex, setActiveEventIndex, events } = useEvent();
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   // Array of video URLs to rotate based on active event artists
@@ -104,7 +104,7 @@ export default function HeroSection() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="flex gap-2 mb-12 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-full w-fit"
             >
-              {EVENTS.map((event, idx) => (
+              {events.map((event, idx) => (
                 <button
                   key={event.id}
                   onClick={() => setActiveEventIndex(idx)}

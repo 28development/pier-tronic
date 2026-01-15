@@ -50,6 +50,8 @@ export interface Event {
   ticketsUrl: string;
   stageDatesId: string;
   heroImage?: string;
+  /** Feature flag: set to false to hide the event from the site */
+  enabled?: boolean;
 }
 
 export const ARTISTS: Record<string, Artist> = {
@@ -290,6 +292,7 @@ export const EVENTS: Event[] = [
     stageDatesId:
       "stagedates-iframe-event-b7ca208c-d7bc-42d6-9743-d213697e7581",
     heroImage: "/images/namito/namito_3.webp",
+    enabled: false, // Temporarily disabled - flip to true to show this event
   },
   {
     id: "pulse-of-the-pier",
@@ -323,3 +326,7 @@ export const EVENTS: Event[] = [
     stageDatesId: "stagedates-iframe-event-1",
   },
 ];
+
+/** Returns only events that are enabled (or have no enabled flag set) */
+export const getEnabledEvents = (): Event[] =>
+  EVENTS.filter((event) => event.enabled !== false);

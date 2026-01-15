@@ -1,24 +1,26 @@
 "use client";
 
-import { EVENTS, Event } from "@/lib/data";
-import { ReactNode, createContext, useContext, useState } from "react";
+import { getEnabledEvents, Event } from "@/lib/data";
+import { ReactNode, createContext, useContext, useMemo, useState } from "react";
 
 interface EventContextType {
   activeEvent: Event;
   setActiveEvent: (event: Event) => void;
   activeEventIndex: number;
   setActiveEventIndex: (index: number) => void;
+  events: Event[];
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
 
 export function EventProvider({ children }: { children: ReactNode }) {
+  const events = useMemo(() => getEnabledEvents(), []);
   const [activeEventIndex, setActiveEventIndex] = useState(0);
 
-  const activeEvent = EVENTS[activeEventIndex];
+  const activeEvent = events[activeEventIndex];
 
   const setActiveEvent = (event: Event) => {
-    const index = EVENTS.findIndex((e) => e.id === event.id);
+    const index = events.findIndex((e) => e.id === event.id);
     if (index !== -1) {
       setActiveEventIndex(index);
     }
@@ -31,6 +33,7 @@ export function EventProvider({ children }: { children: ReactNode }) {
         setActiveEvent,
         activeEventIndex,
         setActiveEventIndex,
+        events,
       }}
     >
       {children}
