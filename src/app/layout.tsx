@@ -83,8 +83,33 @@ export default function RootLayout({
       },
     },
   };
+  // Google Consent Mode V2 - Default denied state (must load before GTM)
+  const consentModeScript = `
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'denied',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+    gtag('set', 'ads_data_redaction', true);
+    gtag('set', 'url_passthrough', true);
+  `;
+
   return (
     <html lang="en">
+      <head>
+        {/* Google Consent Mode V2 - Initialize with default denied state */}
+        <script
+          dangerouslySetInnerHTML={{ __html: consentModeScript }}
+          suppressHydrationWarning
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

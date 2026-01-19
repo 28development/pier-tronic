@@ -4,6 +4,16 @@ export type CookieConsent = "accepted" | "rejected" | null;
 
 const COOKIE_CONSENT_KEY = "piertronic_cookie_consent";
 
+// Extend Window interface for tracking objects
+declare global {
+  interface Window {
+    dataLayer: unknown[];
+    gtag: (...args: unknown[]) => void;
+    OnSiteObject?: string;
+    onsite?: ((...args: unknown[]) => void) & { q?: unknown[] };
+  }
+}
+
 export const getCookieConsent = (): CookieConsent => {
   if (typeof window === "undefined") return null;
 
@@ -21,6 +31,62 @@ export const setCookieConsent = (consent: CookieConsent): void => {
   }
 };
 
+// Initialize gtag function and dataLayer
+const initializeGtag = (): void => {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag(...args: unknown[]) {
+    window.dataLayer.push(args);
+  };
+};
+
+// Initialize Google Consent Mode V2 with default denied state
+// This MUST be called before GTM loads
+export const initializeGoogleConsentMode = (): void => {
+  if (typeof window === "undefined") return;
+
+  // Initialize gtag
+  initializeGtag();
+
+  // Set default consent state - DENIED by default (GDPR compliant)
+  window.gtag("consent", "default", {
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    analytics_storage: "denied",
+    functionality_storage: "denied",
+    personalization_storage: "denied",
+    security_storage: "granted", // Always granted for security purposes
+    wait_for_update: 500, // Wait 500ms for consent update
+  });
+
+  // Set data redaction for denied consent
+  window.gtag("set", "ads_data_redaction", true);
+  window.gtag("set", "url_passthrough", true);
+};
+
+// Update Google Consent Mode when user accepts
+export const updateGoogleConsent = (granted: boolean): void => {
+  if (typeof window === "undefined") return;
+
+  // Ensure gtag is initialized
+  if (!window.gtag) {
+    initializeGtag();
+  }
+
+  const consentState = granted ? "granted" : "denied";
+
+  window.gtag("consent", "update", {
+    ad_storage: consentState,
+    ad_user_data: consentState,
+    ad_personalization: consentState,
+    analytics_storage: consentState,
+    functionality_storage: consentState,
+    personalization_storage: consentState,
+  });
+};
+
 // Function to load Google Tag Manager when consent is given
 export const loadGoogleTagManager = (): void => {
   if (typeof window === "undefined") return;
@@ -31,10 +97,9 @@ export const loadGoogleTagManager = (): void => {
   );
   if (existingScript) return;
 
-  // Initialize dataLayer
-  (window as Window & { dataLayer?: unknown[] }).dataLayer =
-    (window as Window & { dataLayer?: unknown[] }).dataLayer || [];
-  (window as Window & { dataLayer?: unknown[] }).dataLayer!.push({
+  // Initialize dataLayer with gtm.start event
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
     "gtm.start": new Date().getTime(),
     event: "gtm.js",
   });
@@ -58,16 +123,11 @@ export const loadStroeerTracking = (): void => {
   if (existingScript) return;
 
   // Initialize OnSite object
-  const w = window as Window & {
-    OnSiteObject?: string;
-    onsite?: ((action: string, id: string) => void) & { q?: unknown[] };
-  };
-
-  w.OnSiteObject = "onsite";
-  w.onsite =
-    w.onsite ||
+  window.OnSiteObject = "onsite";
+  window.onsite =
+    window.onsite ||
     function (...args: unknown[]) {
-      (w.onsite!.q = w.onsite!.q || []).push(args);
+      (window.onsite!.q = window.onsite!.q || []).push(args);
     };
 
   // Add OnSite-Tracking script
@@ -77,12 +137,16 @@ export const loadStroeerTracking = (): void => {
   const firstScript = document.getElementsByTagName("script")[0];
   firstScript.parentNode?.insertBefore(script, firstScript);
 
-  // Create tracking instance
-  w.onsite!("create", "RH-077-305-956");
+  // Create tracking instance with the provided ID
+  window.onsite!("create", "RH-077-305-956");
 };
 
 // Function to load all tracking scripts when consent is given
 export const loadTrackingScripts = (): void => {
+  // First update consent mode to granted
+  updateGoogleConsent(true);
+
+  // Then load the tracking scripts
   loadGoogleTagManager();
   loadStroeerTracking();
 };
@@ -90,6 +154,9 @@ export const loadTrackingScripts = (): void => {
 // Function to remove tracking cookies when rejected
 export const removeTrackingCookies = (): void => {
   if (typeof window === "undefined") return;
+
+  // Update consent mode to denied
+  updateGoogleConsent(false);
 
   const cookies = document.cookie.split(";");
   const hostname = window.location.hostname;
