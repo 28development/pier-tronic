@@ -87,58 +87,50 @@ export const updateGoogleConsent = (granted: boolean): void => {
   });
 };
 
+// EXACT Google Tag Manager snippet as provided by Ströer
+const GTM_SNIPPET = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MQZSWD74');`;
+
+// EXACT Ströer OnSite-Tracking snippet as provided
+const STROEER_SNIPPET = `(function(o,n,s,i,t,e){o['OnSiteObject']=s;o[s]=o[s]||function(h){(
+o[s].q=o[s].q||[]).push(arguments)};t=n.createElement('script');t.async=true;
+t.src=i;e=n.getElementsByTagName('script')[0];e.parentNode.insertBefore(t,e)
+})(window, document, 'onsite', 'https://trk.herofil.es/onsite/onsite.js');
+
+onsite('create', 'RH-077-305-956');`;
+
+// Function to inject an inline script with the exact snippet
+const injectInlineScript = (id: string, code: string): void => {
+  // Check if script already exists
+  if (document.getElementById(id)) return;
+
+  const script = document.createElement("script");
+  script.id = id;
+  script.type = "text/javascript";
+  script.textContent = code;
+
+  // Insert at the beginning of head for earliest execution
+  const head = document.head || document.getElementsByTagName("head")[0];
+  head.appendChild(script);
+};
+
 // Function to load Google Tag Manager when consent is given
+// Uses the EXACT snippet provided by Ströer
 export const loadGoogleTagManager = (): void => {
   if (typeof window === "undefined") return;
 
-  // Check if GTM script already exists
-  const existingScript = document.querySelector(
-    'script[src*="googletagmanager.com/gtm.js"]'
-  );
-  if (existingScript) return;
-
-  // Initialize dataLayer with gtm.start event
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    "gtm.start": new Date().getTime(),
-    event: "gtm.js",
-  });
-
-  // Add Google Tag Manager script
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://www.googletagmanager.com/gtm.js?id=GTM-MQZSWD74";
-  const firstScript = document.getElementsByTagName("script")[0];
-  firstScript.parentNode?.insertBefore(script, firstScript);
+  injectInlineScript("gtm-script", GTM_SNIPPET);
 };
 
 // Function to load Ströer OnSite-Tracking when consent is given
+// Uses the EXACT snippet provided by Ströer
 export const loadStroeerTracking = (): void => {
   if (typeof window === "undefined") return;
 
-  // Check if OnSite script already exists
-  const existingScript = document.querySelector(
-    'script[src*="trk.herofil.es/onsite"]'
-  );
-  if (existingScript) return;
-
-  // Initialize OnSite object
-  window.OnSiteObject = "onsite";
-  window.onsite =
-    window.onsite ||
-    function (...args: unknown[]) {
-      (window.onsite!.q = window.onsite!.q || []).push(args);
-    };
-
-  // Add OnSite-Tracking script
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://trk.herofil.es/onsite/onsite.js";
-  const firstScript = document.getElementsByTagName("script")[0];
-  firstScript.parentNode?.insertBefore(script, firstScript);
-
-  // Create tracking instance with the provided ID
-  window.onsite!("create", "RH-077-305-956");
+  injectInlineScript("stroeer-onsite-script", STROEER_SNIPPET);
 };
 
 // Function to load all tracking scripts when consent is given
@@ -146,7 +138,7 @@ export const loadTrackingScripts = (): void => {
   // First update consent mode to granted
   updateGoogleConsent(true);
 
-  // Then load the tracking scripts
+  // Then load the EXACT tracking scripts as provided by Ströer
   loadGoogleTagManager();
   loadStroeerTracking();
 };
