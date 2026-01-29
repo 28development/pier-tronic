@@ -222,6 +222,39 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  malive: {
+    id: "malive",
+    name: "Malive",
+    role: "House / Techno",
+    location: "Brazil",
+    images: [
+      "/images/malive/Malive_Presskit_01.webp",
+      "/images/malive/Malive_Presskit_02.webp",
+      "/images/malive/TomBarreto_1819.webp",
+      "/images/malive/1F1E8C6F-F572-45DB-BA16-EB36DB074511.webp",
+    ],
+    videos: [
+      getBunnyStreamUrl(VIDEO_IDS.malive.clip1),
+      getBunnyStreamUrl(VIDEO_IDS.malive.clip2),
+    ],
+    links: {
+      instagram: "https://www.instagram.com/maliveofficial/?hl=de",
+      soundcloud: "https://soundcloud.com/maliveofficial",
+      spotify: "https://open.spotify.com/intl-de/artist/5JsnFhU4OqgEtNXs7Sq1Vm",
+    },
+    bio: {
+      en: {
+        short:
+          "Award-nominated Brazilian musician and artist, Malive deftly mines the cross-sections of waves, frequencies, and sophisticated vibes in his house and techno productions.",
+        long: "A polymathic creative force, award-nominated Brazilian musician and artist, Malive deftly mines the cross-sections of waves, frequencies, and sophisticated vibes relationships in the formulation of his works. Navigating themes located in most iconic parts of the house and techno contemporary trends — Vinicius's distinctly multidisciplinary vision is present in every polishing touch of his music and productions unbound by the need for symmetry.\n\nThe young prodigy gained teenage notoriety through his award-nominated productions with the most renowned artists in the Brazilian Hip Hop scene, a partnership that yielded one of the national anthems in the fight against racism, the masterpiece by Djonga 'Olho de Tigre' which afforded millions of plays for the producer who always had a special passion for showtime.\n\nWith passages through festivals and clubs such as X by Adriatique, No Art Festival, Keinemusik Showcases, El Cielo by Pacha, Green Valley, Laroc among many other venues from the 4 corners of the globe. His millions of streams also accompanied him in this transition from hip hop to the electronic world and Malive scored releases on some of the most renowned record labels in the world: Diynamic, Moblack, Monaberry, Kompakt, Organic Tunes, Armada Music, Universal Music are part of his extensive list of releases.\n\nThe support of Solomun, Desiree, Rampa, &ME, Adam Port, Meduza, Carlita, Gorgon City, Adam Ten, Super Flu among others validates his value on the journey.",
+      },
+      de: {
+        short:
+          "Der preisgekrönte brasilianische Musiker und Künstler Malive verbindet gekonnt Wellen, Frequenzen und anspruchsvolle Vibes in seinen House- und Techno-Produktionen.",
+        long: "Malive ist eine vielseitige kreative Kraft – ein preisgekrönter brasilianischer Musiker und Künstler, der die Schnittstellen von Wellen, Frequenzen und anspruchsvollen Vibes in seinen Werken meisterhaft verbindet. Vinicius' ausgeprägt multidisziplinäre Vision zeigt sich in jedem Detail seiner Musik und Produktionen, die sich nicht an Symmetrie gebunden fühlen.\n\nDas junge Wunderkind erlangte als Teenager Bekanntheit durch seine preisgekrönten Produktionen mit den renommiertesten Künstlern der brasilianischen Hip-Hop-Szene. Diese Zusammenarbeit brachte eine der nationalen Hymnen im Kampf gegen Rassismus hervor – Djongas Meisterwerk 'Olho de Tigre', das dem Produzenten Millionen von Streams einbrachte.\n\nMit Auftritten auf Festivals und in Clubs wie X by Adriatique, No Art Festival, Keinemusik Showcases, El Cielo by Pacha, Green Valley, Laroc und vielen weiteren Locations aus allen Ecken der Welt. Seine Millionen von Streams begleiteten ihn auch beim Übergang vom Hip Hop in die elektronische Welt, und Malive veröffentlichte auf einigen der renommiertesten Labels der Welt: Diynamic, Moblack, Monaberry, Kompakt, Organic Tunes, Armada Music, Universal Music gehören zu seiner umfangreichen Veröffentlichungsliste.\n\nDie Unterstützung von Solomun, Desiree, Rampa, &ME, Adam Port, Meduza, Carlita, Gorgon City, Adam Ten, Super Flu und anderen bestätigt seinen Wert auf dieser Reise.",
+      },
+    },
+  },
 };
 
 export const EVENTS: Event[] = [
@@ -251,7 +284,7 @@ export const EVENTS: Event[] = [
         "Immersives Erlebnis",
       ],
     },
-    artists: ["anaPak", "inanBatman", "quincyKluivert", "claudiaLeon", "colle"],
+    artists: ["anaPak", "inanBatman", "quincyKluivert", "claudiaLeon", "colle", "malive"],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
     stageDatesId: "stagedates-iframe-event-1",
