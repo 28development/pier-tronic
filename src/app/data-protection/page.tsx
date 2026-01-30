@@ -211,7 +211,15 @@ export default function DataProtectionPage() {
                       <div className="p-5 rounded-2xl bg-muted/50 border border-border/50">
                         <p className="font-semibold mb-2">Direct Contact</p>
                         <div className="text-sm text-muted-foreground space-y-2">
-                          <p>T: +31 (0)20 123 4567</p>
+                          <p>
+                            T:{" "}
+                            <a
+                              href="tel:+31634392524"
+                              className="text-primary hover:underline"
+                            >
+                              +31 6 34392524
+                            </a>
+                          </p>
                           <p>
                             E:{" "}
                             <a

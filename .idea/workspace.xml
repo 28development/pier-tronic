@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="fix: show only Pulse of the Pier event, hide Namito event&#10;&#10;- Remove Namito x Noor Sanchez event from EVENTS array&#10;- Hide event switcher when only one event exists">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="Add Malive">
+      <change beforePath="$PROJECT_DIR$/src/app/data-protection/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/data-protection/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +99,7 @@
       <workItem from="1768847202168" duration="1835000" />
       <workItem from="1768905459315" duration="51000" />
       <workItem from="1769171316699" duration="754000" />
+      <workItem from="1769698979802" duration="619000" />
     </task>
     <task id="LOCAL-00001" summary="Update header component.">
       <option name="closed" value="true" />
@@ -172,7 +173,15 @@
       <option name="project" value="LOCAL" />
       <updated>1768847822309</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add Malive">
+      <option name="closed" value="true" />
+      <created>1769698988708</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1769698988708</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +210,7 @@
     <MESSAGE value=".idea files" />
     <MESSAGE value="Update tracking implementation." />
     <MESSAGE value="fix: show only Pulse of the Pier event, hide Namito event&#10;&#10;- Remove Namito x Noor Sanchez event from EVENTS array&#10;- Hide event switcher when only one event exists" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: show only Pulse of the Pier event, hide Namito event&#10;&#10;- Remove Namito x Noor Sanchez event from EVENTS array&#10;- Hide event switcher when only one event exists" />
+    <MESSAGE value="Add Malive" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Malive" />
   </component>
 </project>
