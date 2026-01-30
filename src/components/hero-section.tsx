@@ -7,7 +7,7 @@ import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
 import { ARTISTS, EVENTS } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { Calendar, MapPin, Ticket, Users } from "lucide-react";
+import { Calendar, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -128,51 +128,25 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="space-y-8"
+              className="space-y-6"
             >
-              {/* Main Headline */}
-              <div className="space-y-6">
+              {/* Main Headline Group */}
+              <div className="space-y-4">
                 <motion.h1
                   id="hero-heading"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="relative text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight hidden"
-                >
-                  <span className="relative inline-block text-white">
-                    {/* Minimal animated gradient text */}
-                    <motion.span
-                      className="relative z-10 bg-clip-text text-transparent"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(90deg, oklch(0.82 0.12 330), oklch(0.84 0.08 120))",
-                        backgroundSize: "200% 100%",
-                      }}
-                      animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
-                      transition={{
-                        duration: 12,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                    >
-                      {activeEvent.name}
-                    </motion.span>
-                  </span>
-                </motion.h1>
-                <motion.h2
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
                   className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
                 >
                   {activeEvent.name === "Pier-Tronic"
                     ? t("hero_subtitle")
                     : activeEvent.name}
-                </motion.h2>
+                </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.6 }}
+                  transition={{ delay: 0.3, duration: 0.6 }}
                   className="text-lg lg:text-xl text-white/80 max-w-2xl leading-relaxed"
                 >
                   {activeEvent.description[locale as "en" | "de"] ||
@@ -180,22 +154,22 @@ export default function HeroSection() {
                 </motion.p>
               </div>
 
-              {/* Event Info - Inline */}
+              {/* Event Info - Enhanced */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="flex flex-wrap items-center gap-6 text-white"
+                transition={{ delay: 0.4, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-4 text-white"
               >
-                <div className="flex items-center gap-2">
-                  <Calendar className="size-5 text-white/70" />
-                  <span className="text-sm sm:text-base font-semibold">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
+                  <Calendar className="size-4 text-white" />
+                  <span className="text-sm font-semibold">
                     {activeEvent.date}
                   </span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="size-5 text-white/70" />
-                  <span className="text-sm sm:text-base font-semibold">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
+                  <MapPin className="size-4 text-white" />
+                  <span className="text-sm font-semibold">
                     {activeEvent.location}
                   </span>
                 </div>
@@ -205,13 +179,13 @@ export default function HeroSection() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="flex flex-wrap gap-4"
+                transition={{ delay: 0.5, duration: 0.6 }}
+                className="flex flex-wrap gap-3 pt-2"
               >
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12 rounded-full"
+                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12 rounded-full shadow-lg shadow-white/20"
                 >
                   <a href="#tickets">
                     <Ticket className="mr-2 size-5" />
@@ -223,13 +197,39 @@ export default function HeroSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="bg-white/10 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300"
+                  className="bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300"
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />
                     {t("content_lineup")}
                   </a>
                 </Button>
+              </motion.div>
+
+              {/* Contact Info - Secondary utility links */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 border-t border-white/10"
+              >
+                <span className="text-xs text-white/50 uppercase tracking-wider font-medium">
+                  {locale === "de" ? "Fragen?" : "Questions?"}
+                </span>
+                <a
+                  href="tel:+31634392524"
+                  className="flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors"
+                >
+                  <Phone className="size-3.5" />
+                  <span>+31 6 34 39 25 24</span>
+                </a>
+                <a
+                  href="mailto:info@piertronic.events"
+                  className="flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors"
+                >
+                  <Mail className="size-3.5" />
+                  <span>info@piertronic.events</span>
+                </a>
               </motion.div>
             </motion.div>
           </div>

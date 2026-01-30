@@ -154,15 +154,32 @@ export default function FooterSection() {
             {links.map((link, index) => (
               <div key={index} className="space-y-4 text-sm">
                 <span className="block font-medium">{t(link.groupKey)}</span>
-                {link.items.map((item, index) => (
-                  <Link
-                    key={index}
-                    href={item.href}
-                    className="text-muted-foreground hover:text-primary block duration-150"
-                  >
-                    <span>{t(item.key)}</span>
-                  </Link>
-                ))}
+                {link.items.map((item, index) => {
+                  const isExternal = item.href.startsWith("mailto:") || item.href.startsWith("tel:") || item.href.startsWith("http");
+                  
+                  if (isExternal) {
+                    return (
+                      <a
+                        key={index}
+                        href={item.href}
+                        className="text-muted-foreground hover:text-primary block duration-150"
+                        {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      >
+                        <span>{t(item.key)}</span>
+                      </a>
+                    );
+                  }
+                  
+                  return (
+                    <Link
+                      key={index}
+                      href={item.href}
+                      className="text-muted-foreground hover:text-primary block duration-150"
+                    >
+                      <span>{t(item.key)}</span>
+                    </Link>
+                  );
+                })}
               </div>
             ))}
           </div>

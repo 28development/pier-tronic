@@ -65,7 +65,7 @@ export default function TicketsSection() {
               style={{
                 border: "none",
                 borderRadius: "20px",
-                height: "500px",
+                height: "800px",
                 width: "100%",
                 overflowY: "hidden",
               }}
