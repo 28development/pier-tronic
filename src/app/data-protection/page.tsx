@@ -103,10 +103,10 @@ export default function DataProtectionPage() {
                     team is here to assist.
                   </p>
                   <a
-                    href="mailto:privacy@piertronic.events"
+                    href="mailto:info@piertronic.events"
                     className="text-sm font-medium text-primary hover:underline"
                   >
-                    privacy@piertronic.events
+                    info@piertronic.events
                   </a>
                 </CardContent>
               </Card>
