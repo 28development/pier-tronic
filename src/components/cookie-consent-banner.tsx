@@ -3,7 +3,6 @@
 import { useLocale } from "@/contexts/locale-context";
 import {
   getCookieConsent,
-  initializeGoogleConsentMode,
   loadTrackingScripts,
   removeTrackingCookies,
   setCookieConsent,
@@ -21,9 +20,8 @@ export function CookieConsentBanner() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // CRITICAL: Initialize Google Consent Mode V2 with default denied state
-    // This MUST happen before any tracking scripts are loaded
-    initializeGoogleConsentMode();
+    // NOTE: Google Consent Mode V2 is already initialized in layout.tsx <head>
+    // with default denied state. We only need to handle consent decisions here.
 
     // Check if user has already given consent
     const existingConsent = getCookieConsent();

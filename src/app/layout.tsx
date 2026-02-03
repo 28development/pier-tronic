@@ -84,10 +84,11 @@ export default function RootLayout({
     },
   };
   // Google Consent Mode V2 - Default denied state (must load before GTM)
+  // IMPORTANT: This is the ONLY place where consent mode is initialized
   const consentModeScript = `
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
+    window.gtag = function(){window.dataLayer.push(arguments);};
+    window.gtag('consent', 'default', {
       'ad_storage': 'denied',
       'ad_user_data': 'denied',
       'ad_personalization': 'denied',
@@ -97,8 +98,8 @@ export default function RootLayout({
       'security_storage': 'granted',
       'wait_for_update': 500
     });
-    gtag('set', 'ads_data_redaction', true);
-    gtag('set', 'url_passthrough', true);
+    window.gtag('set', 'ads_data_redaction', true);
+    window.gtag('set', 'url_passthrough', true);
   `;
 
   return (

@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="Improve hero-section increase iframe height" />
+    <list default="true" id="96c0ae89-4104-483c-a811-958f954328e4" name="Changes" comment="Update mail.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +99,7 @@
       <workItem from="1768847202168" duration="1835000" />
       <workItem from="1768905459315" duration="51000" />
       <workItem from="1769171316699" duration="754000" />
-      <workItem from="1769698979802" duration="1556000" />
+      <workItem from="1769698979802" duration="2462000" />
     </task>
     <task id="LOCAL-00001" summary="Update header component.">
       <option name="closed" value="true" />
@@ -195,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769784337574</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Update mail.">
+      <option name="closed" value="true" />
+      <created>1769784642464</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1769784642464</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +237,7 @@
     <MESSAGE value="Add Malive" />
     <MESSAGE value="Make phonenumber clickable" />
     <MESSAGE value="Improve hero-section increase iframe height" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve hero-section increase iframe height" />
+    <MESSAGE value="Update mail." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update mail." />
   </component>
 </project>

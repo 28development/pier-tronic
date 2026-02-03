@@ -31,49 +31,28 @@ export const setCookieConsent = (consent: CookieConsent): void => {
   }
 };
 
-// Initialize gtag function and dataLayer
-const initializeGtag = (): void => {
+// Ensure gtag function is available
+// NOTE: gtag is initialized in layout.tsx <head> with consent mode defaults
+// This function is a fallback to ensure gtag exists before use
+const ensureGtagExists = (): void => {
   if (typeof window === "undefined") return;
 
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
-  };
+  // gtag should already be initialized from layout.tsx
+  // This is a safety fallback only
+  if (!window.gtag) {
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function (...args: unknown[]) {
+      window.dataLayer.push(args);
+    };
+  }
 };
 
-// Initialize Google Consent Mode V2 with default denied state
-// This MUST be called before GTM loads
-export const initializeGoogleConsentMode = (): void => {
-  if (typeof window === "undefined") return;
-
-  // Initialize gtag
-  initializeGtag();
-
-  // Set default consent state - DENIED by default (GDPR compliant)
-  window.gtag("consent", "default", {
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    analytics_storage: "denied",
-    functionality_storage: "denied",
-    personalization_storage: "denied",
-    security_storage: "granted", // Always granted for security purposes
-    wait_for_update: 500, // Wait 500ms for consent update
-  });
-
-  // Set data redaction for denied consent
-  window.gtag("set", "ads_data_redaction", true);
-  window.gtag("set", "url_passthrough", true);
-};
-
-// Update Google Consent Mode when user accepts
+// Update Google Consent Mode when user accepts or rejects
 export const updateGoogleConsent = (granted: boolean): void => {
   if (typeof window === "undefined") return;
 
-  // Ensure gtag is initialized
-  if (!window.gtag) {
-    initializeGtag();
-  }
+  // Ensure gtag is available (should already exist from layout.tsx)
+  ensureGtagExists();
 
   const consentState = granted ? "granted" : "denied";
 
