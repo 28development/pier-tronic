@@ -195,7 +195,7 @@ export const ARTISTS: Record<string, Artist> = {
     id: "colle",
     name: "Collé",
     role: "Melodic Organic House",
-    location: "Netherlands",
+    location: "Amsterdam, Netherlands",
     images: [
       "/images/colle/colle_1.webp",
       "/images/colle/colle_2.webp",
@@ -226,7 +226,7 @@ export const ARTISTS: Record<string, Artist> = {
     id: "malive",
     name: "Malive",
     role: "House / Techno",
-    location: "Brazil",
+    location: "São Paulo, Brazil",
     images: [
       "/images/malive/Malive_Presskit_01.webp",
       "/images/malive/Malive_Presskit_02.webp",
@@ -284,7 +284,14 @@ export const EVENTS: Event[] = [
         "Immersives Erlebnis",
       ],
     },
-    artists: ["anaPak", "inanBatman", "quincyKluivert", "claudiaLeon", "colle", "malive"],
+    artists: [
+      "anaPak",
+      "inanBatman",
+      "quincyKluivert",
+      "claudiaLeon",
+      "colle",
+      "malive",
+    ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
     stageDatesId: "stagedates-iframe-event-1",
