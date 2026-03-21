@@ -24,6 +24,13 @@ export const HlsVideo = forwardRef<HTMLVideoElement, HlsVideoProps>(
       const video = videoRef.current;
       if (!video) return;
 
+      const isHlsSource = src.includes(".m3u8");
+
+      if (!isHlsSource) {
+        video.src = src;
+        return;
+      }
+
       // Check if browser has native HLS support (Safari)
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = src;

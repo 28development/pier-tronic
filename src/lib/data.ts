@@ -222,6 +222,34 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  osfur: {
+    id: "osfur",
+    name: "OSFUR",
+    role: "Melodic House / Indie Dance",
+    location: "International",
+    images: [
+      "/images/osfur/Mainpic.webp",
+      "/images/osfur/OSFUR-132.webp",
+      "/images/osfur/OSFUR-2.webp",
+    ],
+    videos: ["/videos/osfur/osfur_main.mp4"],
+    links: {
+      instagram: "https://www.instagram.com/osfurrr",
+      soundcloud: "https://www.soundcloud.com/osfuuur/tracks"
+    },
+    bio: {
+      en: {
+        short:
+          "OSFUR has quickly become a force in the global electronic scene, defined by a sound that is unmistakably his. His productions have earned the support of industry heavyweights like Adriatique, Mind Against, and Keinemusik.",
+        long: "OSFUR has quickly become a force in the global electronic scene, defined by a sound that is unmistakably his. His productions have earned the support of industry heavyweights, and his journey now takes him to leading venues worldwide — from Soho Garden in Dubai to Volt Club in Milan — sharing stages with icons like AMÊ, Jimi Jules and Bedouin.\n\nIn 2025, OSFUR stepped fully into the international spotlight. Singles like \"Permission To Move,\" \"No Way Out,\" and \"AGAMA\" became essential DJ weapons, backed by names such as Adriatique, Mind Against, and Keinemusik. With the launch of The Scripture, his new collective created with Uvita, OSFUR is carving a bold new path — one that cements his rise as one of the most sought-after DJ/producers of today.",
+      },
+      de: {
+        short:
+          "OSFUR hat sich schnell zu einer festen Größe in der globalen elektronischen Szene entwickelt, geprägt von einem Sound, der unverkennbar seiner ist. Seine Produktionen werden von Branchengrößen wie Adriatique, Mind Against und Keinemusik unterstützt.",
+        long: "OSFUR hat sich schnell zu einer festen Größe in der globalen elektronischen Szene entwickelt, geprägt von einem Sound, der unverkennbar seiner ist. Seine Produktionen haben die Unterstützung von Branchengrößen gewonnen, und seine Reise führt ihn nun zu führenden Venues weltweit — vom Soho Garden in Dubai bis zum Volt Club in Mailand — wo er die Bühne mit Ikonen wie AMÊ, Jimi Jules und Bedouin teilt.\n\nIm Jahr 2025 trat OSFUR vollständig ins internationale Rampenlicht. Singles wie \"Permission To Move\", \"No Way Out\" und \"AGAMA\" wurden zu unverzichtbaren DJ-Waffen, unterstützt von Namen wie Adriatique, Mind Against und Keinemusik. Mit der Gründung von The Scripture, seinem neuen Kollektiv mit Uvita, schlägt OSFUR einen mutigen neuen Weg ein — einen, der seinen Aufstieg zu einem der gefragtesten DJ/Produzenten der Gegenwart zementiert.",
+      },
+    },
+  },
   malive: {
     id: "malive",
     name: "Malive",
@@ -291,6 +319,7 @@ export const EVENTS: Event[] = [
       "claudiaLeon",
       "colle",
       "malive",
+      "osfur",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
