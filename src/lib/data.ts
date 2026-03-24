@@ -250,6 +250,34 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  uvita: {
+    id: "uvita",
+    name: "UVITA",
+    role: "Melodic House / Indie Dance",
+    location: "Ireland",
+    images: [
+      "/images/uvita/uvita_1.webp",
+      "/images/uvita/uvita_2.webp",
+      "/images/uvita/uvita_3.webp",
+    ],
+    videos: ["/videos/uvita/uvita_agama_volt_milan.mp4"],
+    links: {
+      instagram: "https://www.instagram.com/thisisuvita",
+      soundcloud: "https://www.soundcloud.com/thisisuvita",
+    },
+    bio: {
+      en: {
+        short:
+          "UVITA has captivated the global electronic scene with his unique productions and clear musical identity. The Irish-born artist has garnered major support from industry heavyweights.",
+        long: "UVITA has captivated the global electronic scene with his unique productions and clear musical identity. The Irish-born artist has garnered major support from industry heavyweights and now brings his unique sound to top venues across the world, from Soho Garden, Dubai to Volt Club, Milan; sharing the stage with major names from AMÊ and Jimi Jules to Bedouin and Avangart Tabldot. Whilst only being 27, his productions reflect a diverse background, where his roots in classical music are ever audible. Paired with a mature taste and meticulous way of working, this gives UVITA his distinct edge. An artist who seeks to challenge and cross boundaries, defined by deep melodies, hypnotic rhythms and an analogue touch, he joins a new wave of artists committed to pushing electronic music forward.\n\n2025 saw UVITA announce himself onto the global stage, with standout singles \"Permission To Move\", \"Agama\" and \"No Way Out\" receiving support from fellow DJs across the board. Adriatique, Mind Against, Trikk and Keinemusik to name a few. 2026 has already started strong with his highly anticipated EP \"Traffik\" released in January on ICONYC. With the birth of \"The Scripture\", his new record label and collective together with Osfur, UVITA is set to become one of today's most sought-after DJ/producers.",
+      },
+      de: {
+        short:
+          "UVITA hat die globale elektronische Szene mit seinen einzigartigen Produktionen und seiner klaren musikalischen Identität begeistert. Der aus Irland stammende Künstler hat sich die Unterstützung von Branchengrößen gesichert.",
+        long: "UVITA hat die globale elektronische Szene mit seinen einzigartigen Produktionen und seiner klaren musikalischen Identität begeistert. Der aus Irland stammende Künstler hat sich die Unterstützung von Branchengrößen gesichert und bringt seinen einzigartigen Sound nun in Top-Venues auf der ganzen Welt — vom Soho Garden in Dubai bis zum Volt Club in Mailand — wo er die Bühne mit großen Namen wie AMÊ, Jimi Jules, Bedouin und Avangart Tabldot teilt. Obwohl er erst 27 ist, spiegeln seine Produktionen einen vielfältigen Hintergrund wider, in dem seine Wurzeln in der klassischen Musik stets hörbar sind. Gepaart mit einem reifen Geschmack und einer akribischen Arbeitsweise verleiht ihm das seinen unverwechselbaren Vorsprung. Ein Künstler, der Grenzen herausfordert und überschreitet, geprägt von tiefen Melodien, hypnotischen Rhythmen und einem analogen Touch — er gehört zu einer neuen Welle von Künstlern, die sich der Weiterentwicklung elektronischer Musik verschrieben haben.\n\n2025 kündigte UVITA sich auf der Weltbühne an, mit herausragenden Singles wie \"Permission To Move\", \"Agama\" und \"No Way Out\", die Unterstützung von DJs quer durch die Szene erhielten — Adriatique, Mind Against, Trikk und Keinemusik, um nur einige zu nennen. 2026 hat bereits stark begonnen mit seiner lang erwarteten EP \"Traffik\", die im Januar auf ICONYC erschien. Mit der Gründung von \"The Scripture\", seinem neuen Plattenlabel und Kollektiv zusammen mit Osfur, ist UVITA auf dem besten Weg, einer der gefragtesten DJ/Produzenten der Gegenwart zu werden.",
+      },
+    },
+  },
   malive: {
     id: "malive",
     name: "Malive",
@@ -320,6 +348,7 @@ export const EVENTS: Event[] = [
       "colle",
       "malive",
       "osfur",
+      "uvita",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
