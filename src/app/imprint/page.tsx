@@ -144,7 +144,7 @@ export default function ImpressumPage() {
                       Tax Identification
                     </h3>
                     <div className="space-y-1">
-                      <p className="text-xl font-medium">NL123456789B01</p>
+                      <p className="text-xl font-medium">NL005364057B72</p>
                       <p className="text-sm text-muted-foreground">
                         VAT identification number
                       </p>
