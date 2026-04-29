@@ -66,6 +66,9 @@
   "cookie_stroeer_title": "Ströer Campagne Tracking",
   "cookie_stroeer_description": "We gebruiken Ströer Online Marketing voor website-analyse en het meten van advertentie-effectiviteit. Dit genereert statistische gegevens over hoe bezoekers de website gebruiken.",
   "cookie_stroeer_cookies": "Cookies: campaignId (Bewaartermijn: 14 dagen)",
+  "cookie_meta_title": "Meta Pixel",
+  "cookie_meta_description": "We gebruiken Meta Pixel om de effectiviteit van advertenties te meten en interacties na Meta-advertenties te begrijpen.",
+  "cookie_meta_cookies": "Cookies: _fbp, _fbc, fr (Bewaartermijn: tot 90 dagen)",
   "cookie_accept": "Cookies accepteren",
   "cookie_reject": "Weigeren"
 }

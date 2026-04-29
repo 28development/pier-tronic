@@ -144,6 +144,19 @@ export function CookieConsentBanner() {
                             {t("cookie_stroeer_cookies")}
                           </p>
                         </div>
+
+                        {/* Meta Pixel */}
+                        <div>
+                          <p>
+                            <strong className="text-foreground">
+                              {t("cookie_meta_title")}:
+                            </strong>{" "}
+                            {t("cookie_meta_description")}
+                          </p>
+                          <p className="text-xs opacity-75 mt-1">
+                            {t("cookie_meta_cookies")}
+                          </p>
+                        </div>
                       </div>
                     </details>
                   </div>

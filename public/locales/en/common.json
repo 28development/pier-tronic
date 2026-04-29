@@ -67,6 +67,9 @@
   "cookie_stroeer_title": "Ströer Campaign Tracking",
   "cookie_stroeer_description": "We use Ströer Online Marketing for website analytics and advertising effectiveness measurement. This generates statistical data about how visitors use the website.",
   "cookie_stroeer_cookies": "Cookies: campaignId (Retention: 14 days)",
+  "cookie_meta_title": "Meta Pixel",
+  "cookie_meta_description": "We use Meta Pixel to measure advertising effectiveness and understand interactions after Meta ads.",
+  "cookie_meta_cookies": "Cookies: _fbp, _fbc, fr (Retention: up to 90 days)",
   "cookie_accept": "Accept Cookies",
   "cookie_reject": "Reject"
 }

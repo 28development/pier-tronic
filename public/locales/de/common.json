@@ -67,6 +67,9 @@
   "cookie_stroeer_title": "Ströer Kampagnen-Tracking",
   "cookie_stroeer_description": "Wir verwenden Ströer Online Marketing zur Website-Analyse und Werbewirksamkeitsermittlung. Erzeugt statistische Daten darüber, wie Besucher die Website nutzen.",
   "cookie_stroeer_cookies": "Cookies: campaignId (Laufzeit: 14 Tage)",
+  "cookie_meta_title": "Meta Pixel",
+  "cookie_meta_description": "Wir verwenden Meta Pixel, um die Wirksamkeit von Werbung zu messen und Interaktionen nach Meta-Anzeigen nachzuvollziehen.",
+  "cookie_meta_cookies": "Cookies: _fbp, _fbc, fr (Laufzeit: bis zu 90 Tage)",
   "cookie_accept": "Cookies akzeptieren",
   "cookie_reject": "Ablehnen"
 }

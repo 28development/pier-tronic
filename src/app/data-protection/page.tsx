@@ -453,6 +453,57 @@ export default function DataProtectionPage() {
                           </div>
                         </div>
                       </div>
+
+                      {/* Meta Pixel */}
+                      <div className="relative group p-6 rounded-2xl border bg-card/50 transition-colors hover:border-primary/30">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                          <div>
+                            <h4 className="text-lg font-semibold">
+                              Meta Pixel
+                            </h4>
+                            <p className="text-xs text-muted-foreground">
+                              Provider: Meta Platforms Ireland Ltd.
+                            </p>
+                          </div>
+                          <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest w-fit">
+                            Marketing
+                          </span>
+                        </div>
+                        <div className="grid sm:grid-cols-2 gap-6 text-sm">
+                          <div className="space-y-3">
+                            <p className="text-muted-foreground">
+                              Measures advertising effectiveness and helps us
+                              understand interactions after Meta ads.
+                            </p>
+                            <a
+                              href="https://www.facebook.com/privacy/policy/"
+                              target="_blank"
+                              className="inline-flex items-center gap-1.5 text-primary hover:underline text-xs"
+                            >
+                              Meta Privacy Policy{" "}
+                              <ExternalLink className="h-3 w-3" />
+                            </a>
+                          </div>
+                          <div className="space-y-2 bg-muted/30 p-4 rounded-xl">
+                            <div className="flex justify-between">
+                              <span className="text-xs font-medium">
+                                Cookies:
+                              </span>
+                              <span className="text-xs text-muted-foreground">
+                                _fbp, _fbc, fr
+                              </span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="text-xs font-medium">
+                                Retention:
+                              </span>
+                              <span className="text-xs text-muted-foreground">
+                                Up to 90 Days
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </AccordionSection>

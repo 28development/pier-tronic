@@ -9,6 +9,14 @@ declare global {
   interface Window {
     dataLayer: unknown[];
     gtag: (...args: unknown[]) => void;
+    fbq?: ((...args: unknown[]) => void) & {
+      callMethod?: (...args: unknown[]) => void;
+      loaded?: boolean;
+      push?: (...args: unknown[]) => void;
+      queue?: unknown[];
+      version?: string;
+    };
+    _fbq?: Window["fbq"];
     OnSiteObject?: string;
     onsite?: ((...args: unknown[]) => void) & { q?: unknown[] };
   }
@@ -81,6 +89,19 @@ t.src=i;e=n.getElementsByTagName('script')[0];e.parentNode.insertBefore(t,e)
 
 onsite('create', 'RH-077-305-956');`;
 
+const META_PIXEL_ID = "1438038480925333";
+
+const META_PIXEL_SNIPPET = `!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '${META_PIXEL_ID}');
+fbq('track', 'PageView');`;
+
 // Function to inject an inline script with the exact snippet
 const injectInlineScript = (id: string, code: string): void => {
   // Check if script already exists
@@ -112,6 +133,13 @@ export const loadStroeerTracking = (): void => {
   injectInlineScript("stroeer-onsite-script", STROEER_SNIPPET);
 };
 
+// Function to load Meta Pixel when consent is given
+export const loadMetaPixel = (): void => {
+  if (typeof window === "undefined") return;
+
+  injectInlineScript("meta-pixel-script", META_PIXEL_SNIPPET);
+};
+
 // Function to load all tracking scripts when consent is given
 export const loadTrackingScripts = (): void => {
   // First update consent mode to granted
@@ -120,6 +148,7 @@ export const loadTrackingScripts = (): void => {
   // Then load the EXACT tracking scripts as provided by Ströer
   loadGoogleTagManager();
   loadStroeerTracking();
+  loadMetaPixel();
 };
 
 // Function to remove tracking cookies when rejected
@@ -149,6 +178,10 @@ export const removeTrackingCookies = (): void => {
       name === "IDE" ||
       name === "ANID" ||
       name === "NID" ||
+      // Meta Pixel cookies
+      name === "_fbp" ||
+      name === "_fbc" ||
+      name === "fr" ||
       // Ströer OnSite-Tracking cookie
       name === "campaignId";
 
