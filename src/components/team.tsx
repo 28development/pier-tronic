@@ -4,10 +4,12 @@ import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
 import { ARTISTS, Artist, EVENTS } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { Info, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { ArtistBioDialog } from "./artist-bio-dialog";
 import { HlsVideo } from "./hls-video";
 import { BorderBeam } from "./magic-ui/border-beam";
 import { AnimatedGroup } from "./ui/animated-group";
@@ -34,7 +36,15 @@ const beamPalettes = [
   { from: "#FFD166", to: "#EF476F" },
 ];
 
-function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
+function ArtistCard({
+  artist,
+  index,
+  onOpenBio,
+}: {
+  artist: Artist;
+  index: number;
+  onOpenBio: (artist: Artist) => void;
+}) {
   const { t } = useLocale();
   const [isHovered, setIsHovered] = useState(false);
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0);
@@ -43,6 +53,7 @@ function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const palette = beamPalettes[index % beamPalettes.length];
+  const hasBio = Boolean(artist.bio);
 
   // Create staggered start offset for each card (1.25 seconds apart)
   const startOffset = useMemo(() => index * 1250, [index]);
@@ -228,6 +239,27 @@ function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
           </motion.div>
         </AnimatePresence>
 
+        {/* Bio Info Button */}
+        {hasBio && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenBio(artist);
+            }}
+            className={cn(
+              "absolute top-3 right-3 z-20 flex items-center gap-1.5 rounded-full",
+              "bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20",
+              "px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white",
+              "transition-all duration-300 hover:scale-105"
+            )}
+            aria-label={t("team_read_bio")}
+          >
+            <Info className="size-3.5" />
+            <span className="hidden sm:inline">{t("team_read_bio")}</span>
+          </button>
+        )}
+
         {/* Navigation Arrows */}
         {mediaItems.length > 1 && (
           <>
@@ -312,12 +344,13 @@ function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
               {artist.role}
             </motion.p>
             <motion.p
-              className="text-xs sm:text-sm text-white/60"
+              className="flex items-center gap-1.5 text-xs sm:text-sm text-white/60"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
             >
-              📍 {artist.location}
+              <MapPin className="size-3.5 shrink-0" />
+              {artist.location}
             </motion.p>
           </div>
 
@@ -499,6 +532,7 @@ function ArtistCard({ artist, index }: { artist: Artist; index: number }) {
 export default function TeamSection() {
   const { t, locale } = useLocale();
   const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+  const [bioArtist, setBioArtist] = useState<Artist | null>(null);
 
   const activeArtists = activeEvent.artists.map((id) => ARTISTS[id]);
 
@@ -592,6 +626,7 @@ export default function TeamSection() {
                       key={`${activeEvent.id}-${artist.id}`}
                       artist={artist}
                       index={index}
+                      onOpenBio={setBioArtist}
                     />
                   ))}
                 </div>
@@ -600,6 +635,12 @@ export default function TeamSection() {
           </AnimatePresence>
         </div>
       </div>
+
+      <ArtistBioDialog
+        artist={bioArtist}
+        isOpen={Boolean(bioArtist)}
+        onClose={() => setBioArtist(null)}
+      />
     </section>
   );
 }

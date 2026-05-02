@@ -228,39 +228,12 @@ export const HeroHeader = () => {
               </ul>
             </motion.div>
 
-            {/* Language Switcher & CTA Button */}
+            {/* Language Switcher */}
             <motion.div
               variants={itemVariants}
               className="hidden lg:flex lg:items-center lg:gap-3"
             >
               <LanguageSwitcher variant="header" />
-              {/*<AnimatePresence>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8, x: 20 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: 20 }}
-                  transition={{
-                    duration: 0.4,
-                    ease: [0.22, 1, 0.36, 1] as const,
-                  }}
-                >
-                  <motion.div whileTap={{ scale: 0.98 }}>
-                    <Button
-                      asChild
-                      size="default"
-                      className="relative overflow-hidden group font-semibold text-base px-6 h-11"
-                    >
-                      <Link href="#tickets">
-                        <motion.div className="absolute inset-0 bg-gradient-to-r from-red-600/70 via-pink-600/70 to-orange-600/70 opacity-0 group-hover:opacity-100 transition-colors" />
-                        <span className="relative z-10 flex items-center">
-                          <Ticket className="mr-2 size-5" />
-                          {t("hero_cta")}
-                        </span>
-                      </Link>
-                    </Button>
-                  </motion.div>
-                </motion.div>
-              </AnimatePresence>*/}
             </motion.div>
           </div>
         </motion.div>
@@ -303,12 +276,6 @@ export const HeroHeader = () => {
                 <div className="flex justify-center">
                   <LanguageSwitcher />
                 </div>
-                {/*<Button asChild size="lg" className="w-full">
-                  <Link href="#tickets" onClick={() => setMenuState(false)}>
-                    <Ticket className="mr-2 size-4" />
-                    <span>{t("hero_cta")}</span>
-                  </Link>
-                </Button>*/}
               </div>
             </div>
           </motion.div>

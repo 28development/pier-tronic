@@ -89,8 +89,8 @@ export default function HeroSection() {
         </AnimatePresence>
 
         {/* Multi-layer gradient overlay */}
-        <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/70 via-black/50 to-pink-900/50" />
-        <div className="absolute h-dvh inset-0 bg-gradient-to-r from-purple-900/20 via-transparent to-pink-900/20" />
+        <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/75 via-black/50 to-black/85" />
+        <div className="absolute h-dvh inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
       </div>
 
       {/* Hero Content */}
@@ -214,7 +214,7 @@ export default function HeroSection() {
                 className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-4 border-t border-white/10"
               >
                 <span className="text-xs text-white/50 uppercase tracking-wider font-medium">
-                  {locale === "de" ? "Fragen?" : "Questions?"}
+                  {t("hero_questions")}
                 </span>
                 <a
                   href="tel:+31634392524"
