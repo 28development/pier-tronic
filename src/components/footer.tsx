@@ -2,6 +2,7 @@
 
 import { useLocale } from "@/contexts/locale-context";
 import type { TranslationKey } from "@/lib/translations";
+import { Heart } from "lucide-react";
 import Link from "next/link";
 import { LanguageSwitcher } from "./language-switcher";
 import { Logo, LogoIcon } from "./logo";
@@ -191,6 +192,21 @@ export default function FooterSection() {
           <div className="col-span-2">
             <LanguageSwitcher />
           </div>
+        </div>
+        <div className="flex items-center justify-center gap-1.5 pb-6 text-xs text-muted-foreground">
+          <span>{t("footer_made_by")}</span>
+          <Heart
+            className="size-3 fill-primary text-primary animate-pulse"
+            aria-hidden="true"
+          />
+          <a
+            href="https://www.instagram.com/umut.tufanoglu/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-foreground/80 hover:text-primary transition-colors"
+          >
+            Umut Tufanoglu
+          </a>
         </div>
       </AnimatedGroup>
     </footer>
