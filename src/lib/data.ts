@@ -278,6 +278,32 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  radian: {
+    id: "radian",
+    name: "Radian",
+    role: "Afro House / Afro Tech",
+    location: "Berlin, Germany",
+    images: [
+      "/images/radian/radian_1.webp",
+      "/images/radian/radian_2.webp",
+      "/images/radian/radian_3.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/radian.ofc/",
+    },
+    bio: {
+      en: {
+        short:
+          "Radian is a 19-year-old DJ and producer based in Berlin, blending Afro House, Afro Tech, and organic rhythms. With Persian and Moroccan roots and originally from Marbella, he brings high-energy, soulful, and melodic sets to the Berlin scene.",
+        long: "Radian (radian.ofc) is a 19-year-old DJ and producer now based in Berlin, emerging as a fresh voice in the city's electronic scene with a sound that blends Afro House, Afro Tech, and organic rhythms. With Persian and Moroccan roots and originally from Marbella, he is recognized for bringing high-energy, soulful, and melodic sets to the Berlin scene.",
+      },
+      de: {
+        short:
+          "Radian ist ein 19-jähriger DJ und Produzent mit Sitz in Berlin, der Afro House, Afro Tech und organische Rhythmen verbindet. Mit persischen und marokkanischen Wurzeln und ursprünglich aus Marbella bringt er energiegeladene, soulful und melodische Sets in die Berliner Szene.",
+        long: "Radian (radian.ofc) ist ein 19-jähriger DJ und Produzent, der mittlerweile in Berlin lebt und sich als frische Stimme in der elektronischen Szene der Stadt etabliert. Sein Sound verbindet Afro House, Afro Tech und organische Rhythmen. Mit persischen und marokkanischen Wurzeln und ursprünglich aus Marbella stammend, ist er dafür bekannt, energiegeladene, soulful und melodische Sets in die Berliner Szene zu bringen.",
+      },
+    },
+  },
   malive: {
     id: "malive",
     name: "Malive",
@@ -349,6 +375,7 @@ export const EVENTS: Event[] = [
       "malive",
       "osfur",
       "uvita",
+      "radian",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
