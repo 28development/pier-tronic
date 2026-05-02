@@ -1,8 +1,10 @@
 import { BubbleBackground } from "@/components/animate-ui/components/backgrounds/bubble";
+import { BackToTop } from "@/components/back-to-top";
 import { CookieConsentBanner } from "@/components/cookie-consent-banner";
 import { FloatingWhatsApp } from "@/components/floating-whatsapp";
 import FooterSection from "@/components/footer";
 import { HeroHeader } from "@/components/header";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { EventProvider } from "@/contexts/event-context";
 import { LocaleProvider } from "@/contexts/locale-context";
 import type { Metadata } from "next";
@@ -134,11 +136,13 @@ export default function RootLayout({
                 sixth: "255, 230, 240", // very light pink
               }}
             />
+            <ScrollProgress />
             <div className="relative z-10">
               <HeroHeader />
               {children}
               <FooterSection />
             </div>
+            <BackToTop />
             <FloatingWhatsApp />
             <CookieConsentBanner />
           </EventProvider>

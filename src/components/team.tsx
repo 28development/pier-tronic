@@ -28,12 +28,9 @@ const transitionVariants = {
 };
 
 const beamPalettes = [
-  { from: "#FF6B6B", to: "#FFD93D" },
-  { from: "#6BCB77", to: "#4D96FF" },
-  { from: "#E36414", to: "#5E60CE" },
-  { from: "#F72585", to: "#7209B7" },
-  { from: "#00C9A7", to: "#845EC2" },
-  { from: "#FFD166", to: "#EF476F" },
+  { from: "#FF6B6B", to: "#FFA94D" },
+  { from: "#FFA94D", to: "#FFD166" },
+  { from: "#A78BFA", to: "#F472B6" },
 ];
 
 function ArtistCard({
@@ -172,7 +169,8 @@ function ArtistCard({
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative w-full rounded-3xl border-2 shadow-2xl overflow-hidden group"
+      whileHover={{ y: -4 }}
+      className="relative w-full rounded-3xl border border-foreground/10 shadow-xl shadow-black/5 hover:shadow-2xl hover:shadow-black/10 overflow-hidden group transition-shadow duration-300"
     >
       {/* Permanent Border Beam */}
       <BorderBeam
@@ -575,10 +573,13 @@ export default function TeamSection() {
                   preset="fade-in-blur"
                   speedSegment={0.3}
                   as="h2"
-                  className="text-3xl font-bold sm:text-4xl"
+                  className="text-3xl font-bold sm:text-5xl tracking-tight"
                 >
-                  {activeEvent.name}
+                  {t("team_section_heading")}
                 </TextEffect>
+                <p className="mt-3 text-sm uppercase tracking-[0.2em] text-muted-foreground/80">
+                  {activeEvent.name}
+                </p>
               </motion.div>
             </AnimatePresence>
           </div>

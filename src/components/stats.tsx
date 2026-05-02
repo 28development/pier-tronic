@@ -55,45 +55,32 @@ export default function StatsSection() {
           }}
           className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0"
         >
-          <div className="space-y-4 md:px-6">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <Music2 className="size-6" />
+          {[
+            { Icon: Music2, number: 8, key: "stats_card1" as const },
+            { Icon: Users, number: 3000, key: "stats_card2" as const },
+            { Icon: Sparkles, number: 12, key: "stats_card3" as const },
+          ].map(({ Icon, number, key }) => (
+            <div
+              key={key}
+              className="space-y-5 md:px-6 group"
+            >
+              <div className="relative mx-auto size-16 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-2xl bg-primary/10 group-hover:bg-primary/15 transition-colors" />
+                <div className="absolute inset-0 rounded-2xl bg-primary/5 blur-xl group-hover:blur-2xl transition-all" />
+                <Icon className="relative size-7 text-primary" strokeWidth={1.75} />
+              </div>
+              <div className="text-5xl lg:text-6xl font-bold tracking-tight">
+                <CountingNumber
+                  number={number}
+                  inView={true}
+                  transition={{ stiffness: 100, damping: 30 }}
+                />
+              </div>
+              <p className="text-sm uppercase tracking-wider text-muted-foreground">
+                {t(key)}
+              </p>
             </div>
-            <div className="text-5xl font-bold">
-              <CountingNumber
-                number={8}
-                inView={true}
-                transition={{ stiffness: 100, damping: 30 }}
-              />
-            </div>
-            <p className="text-muted-foreground">{t("stats_card1")}</p>
-          </div>
-          <div className="space-y-4 md:px-6">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <Users className="size-6" />
-            </div>
-            <div className="text-5xl font-bold">
-              <CountingNumber
-                number={3000}
-                inView={true}
-                transition={{ stiffness: 100, damping: 30 }}
-              />
-            </div>
-            <p className="text-muted-foreground">{t("stats_card2")}</p>
-          </div>
-          <div className="space-y-4 md:px-6">
-            <div className="mx-auto flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-              <Sparkles className="size-6" />
-            </div>
-            <div className="text-5xl font-bold">
-              <CountingNumber
-                number={12}
-                inView={true}
-                transition={{ stiffness: 100, damping: 30 }}
-              />
-            </div>
-            <p className="text-muted-foreground">{t("stats_card3")}</p>
-          </div>
+          ))}
         </AnimatedGroup>
       </div>
     </section>

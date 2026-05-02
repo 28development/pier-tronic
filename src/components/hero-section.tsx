@@ -7,7 +7,7 @@ import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
 import { ARTISTS, EVENTS } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { Calendar, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
+import { Calendar, ChevronDown, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
@@ -197,7 +197,7 @@ export default function HeroSection() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="bg-white/10 backdrop-blur-md border-white/30 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300"
+                  className="bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300 shadow-lg shadow-black/20"
                 >
                   <a href="#artists">
                     <Users className="mr-2 size-5" />
@@ -238,6 +238,27 @@ export default function HeroSection() {
 
       {/* Bottom Fade Transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-transparent z-10" />
+
+      {/* Scroll Down Indicator */}
+      <motion.a
+        href="#artists"
+        aria-label="Scroll to artists"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 0.8 }}
+        style={{ top: "calc(100dvh - 4.5rem)" }}
+        className="absolute left-1/2 -translate-x-1/2 z-20 hidden md:flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
+      >
+        <span className="text-[10px] uppercase tracking-[0.3em] font-medium">
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="size-5" />
+        </motion.div>
+      </motion.a>
 
       <LogoCloud />
     </section>
