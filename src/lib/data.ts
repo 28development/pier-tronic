@@ -111,6 +111,31 @@ export const ARTISTS: Record<string, Artist> = {
       soundcloud: "https://soundcloud.com/quincy-kluivert",
     },
   },
+  lexlay: {
+    id: "lexlay",
+    name: "LEXLAY",
+    role: "Tech House / House Music / Groovy Techno",
+    location: "Barcelona, Spain",
+    images: [
+      "/images/lexlay/lexlay_1.png",
+      "/images/lexlay/lexlay_2.png",
+      "/images/lexlay/lexlay_3.png",
+    ],
+    videos: ["/videos/lexlay/lexlay_1.mp4"],
+    links: {},
+    bio: {
+      de: {
+        short:
+          "LEXLAY ist ein spanischer DJ und Produzent aus Barcelona mit fast 20 Jahren Erfahrung, bekannt für energiegeladene Sets aus Tech House, House Music und Groovy Techno.",
+        long: "LEXLAY ist ein spanischer DJ und Produzent aus Barcelona mit einer fast 20-jährigen Karriere. Er ist bekannt für seinen vielseitigen Sound zwischen Tech House, House Music und Groovy Techno sowie für seine positive Ausstrahlung und sein Motto \"VAMOS\".\n\n2012 gründete er sein Label Happy Techno Music, das sich mit mehr als 400 beteiligten Artists zu einem international wiedererkennbaren und stetig wachsenden Projekt entwickelt hat. Als Produzent veröffentlichte er auf großen Labels wie Hot Creations, Snatch! Records, Stereo Productions, Deeperfect, Flashmob Records, Moan, Bunny Tiger, Glasgow Underground und Material.\n\nIm Laufe seiner Karriere spielte LEXLAY in mehr als 55 Ländern in Europa, dem Mittleren Osten und Südamerika. Zu seinen Auftritten zählen renommierte Locations und Events wie Pacha, Space und Privilege auf Ibiza, ADE in Amsterdam, ElRow und City Hall in Barcelona, Sao Club und Penthouse in Dubai, das Sea You Festival in Deutschland sowie das Family Piknic Festival in Frankreich.\n\nMit klarem Fokus auf Groove, Dancefloor-Energie und positive Vibes repräsentiert LEXLAY Spanien weiterhin auf internationalen Bühnen und arbeitet gleichzeitig an neuer Musik und neuen Events für die kommenden Jahre.",
+      },
+      en: {
+        short:
+          "LEXLAY is a Spanish DJ and producer from Barcelona with almost 20 years of experience, known for energetic Tech House, House Music, and Groovy Techno sets.",
+        long: "LEXLAY is a Spanish DJ and producer from Barcelona with an almost 20-year career. He is known for his versatile sound across Tech House, House Music, and Groovy Techno, as well as his joyful personality and signature \"VAMOS\" energy.\n\nIn 2012, he founded Happy Techno Music, a label that has become a globally recognized and constantly evolving project with more than 400 contributing artists. As a producer, he has released tracks on major labels such as Hot Creations, Snatch! Records, Stereo Productions, Deeperfect, Flashmob Records, Moan, Bunny Tiger, Glasgow Underground, and Material.\n\nThroughout his journey, LEXLAY has performed in more than 55 countries across Europe, the Middle East, and South America. He has played at renowned venues and events including Pacha, Space, and Privilege in Ibiza, ADE in Amsterdam, ElRow and City Hall in Barcelona, Sao Club and Penthouse in Dubai, Sea You Festival in Germany, and Family Piknic Festival in France.\n\nWith a strong focus on groove, dancefloor connection, and positive vibes, LEXLAY continues to represent Spain on international stages while preparing new music and events for the years ahead.",
+      },
+    },
+  },
   claudiaLeon: {
     id: "claudiaLeon",
     name: "Claudia León",
@@ -288,6 +313,7 @@ export const ARTISTS: Record<string, Artist> = {
       "/images/radian/radian_2.webp",
       "/images/radian/radian_3.webp",
     ],
+    videos: ["/videos/radian/radian_1.mp4"],
     links: {
       instagram: "https://www.instagram.com/radian.ofc/",
     },
@@ -370,6 +396,7 @@ export const EVENTS: Event[] = [
       "anaPak",
       "inanBatman",
       "quincyKluivert",
+      "lexlay",
       "claudiaLeon",
       "colle",
       "malive",
