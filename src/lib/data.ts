@@ -363,6 +363,36 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  diegoSanDiego: {
+    id: "diegoSanDiego",
+    name: "Diego San Diego",
+    role: "Tech House",
+    location: "International",
+    images: [
+      "/images/diego_san_diego/diego_san_diego_1.webp",
+      "/images/diego_san_diego/diego_san_diego_2.webp",
+      "/images/diego_san_diego/diego_san_diego_3.webp",
+      "/images/diego_san_diego/diego_san_diego_4.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/diegosandiego_official/",
+      spotify: "https://open.spotify.com/intl-de/artist/1lal1Zh8FBRbRwzd22s0oX",
+      soundcloud: "https://soundcloud.com/diegosandiegomusic",
+      tiktok: "https://www.tiktok.com/@diegosandiego_official",
+    },
+    bio: {
+      en: {
+        short:
+          "Diego San Diego is bringing the heat — high energy Tech House built for the world's biggest dancefloors. His breakout single \"Tequila\" with Alec Monopoly went viral on TikTok with 40+ million views.",
+        long: "Diego San Diego is bringing the heat — high energy Tech House built for the world's biggest dancefloors. His breakout single \"Tequila\" with Alec Monopoly went viral on TikTok with 40+ million views and was supported by Tiesto during his set at EDC Las Vegas. From Amnesia and Chinois Ibiza to Fabric and Koko London, Void Mykonos, and all the way to Asia, Australia and South America, Diego has ignited some of the most iconic venues around the globe captivating diverse crowds with his signature style.",
+      },
+      de: {
+        short:
+          "Diego San Diego bringt die Hitze — hochenergetischer Tech House, gebaut für die größten Dancefloors der Welt. Seine Durchbruch-Single \"Tequila\" mit Alec Monopoly ging auf TikTok mit über 40 Millionen Views viral.",
+        long: "Diego San Diego bringt die Hitze — hochenergetischer Tech House, gebaut für die größten Dancefloors der Welt. Seine Durchbruch-Single \"Tequila\" mit Alec Monopoly ging auf TikTok mit über 40 Millionen Views viral und wurde von Tiesto während seines Sets auf der EDC Las Vegas unterstützt. Von Amnesia und Chinois Ibiza über Fabric und Koko London bis hin zu Void Mykonos und weiter nach Asien, Australien und Südamerika — Diego hat einige der ikonischsten Venues rund um den Globus entflammt und begeistert ein vielfältiges Publikum mit seinem unverwechselbaren Stil.",
+      },
+    },
+  },
 };
 
 export const EVENTS: Event[] = [
@@ -403,6 +433,7 @@ export const EVENTS: Event[] = [
       "osfur",
       "uvita",
       "radian",
+      "diegoSanDiego",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
