@@ -100,7 +100,7 @@ export const ARTISTS: Record<string, Artist> = {
   },
   quincyKluivert: {
     id: "quincyKluivert",
-    name: "Quincy Kluivert",
+    name: "Quincy Owen",
     role: "Techhouse",
     location: "Amsterdam, Netherlands",
     images: ["/images/quincy_kluivert/quincy_kluivert_1.webp"],
