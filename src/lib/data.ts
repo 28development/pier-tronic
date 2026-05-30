@@ -363,6 +363,18 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  hristoTafkov: {
+    id: "hristoTafkov",
+    name: "Hristo Tafkov",
+    role: "Organic House",
+    location: "Amsterdam, Netherlands",
+    images: ["/images/hristo_tafkov/hristo_tafkov_1.webp"],
+    videos: [
+      "/videos/hristo_tafkov/hristo_tafkov_1.mp4",
+      "/videos/hristo_tafkov/hristo_tafkov_2.mp4",
+    ],
+    links: {},
+  },
   diegoSanDiego: {
     id: "diegoSanDiego",
     name: "Diego San Diego",
@@ -434,6 +446,7 @@ export const EVENTS: Event[] = [
       "uvita",
       "radian",
       "diegoSanDiego",
+      "hristoTafkov",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
