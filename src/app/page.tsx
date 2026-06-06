@@ -4,6 +4,7 @@ import HeroSection from "@/components/hero-section";
 import StatsSection from "@/components/stats";
 import TeamSection from "@/components/team";
 import TicketsSection from "@/components/tickets-section";
+import VipSection from "@/components/vip-section";
 import localFont from "next/font/local";
 
 const frick = localFont({
@@ -31,6 +32,7 @@ export default function Home() {
       <TicketsSection />
       <StatsSection />
       <Features />
+      <VipSection />
     </main>
   );
 }
