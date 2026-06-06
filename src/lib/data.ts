@@ -6,6 +6,8 @@ export interface Artist {
   role: string;
   location: string;
   isFeatured?: boolean;
+  /** When true, images are shown before videos in the card media rotation. */
+  imagesFirst?: boolean;
   images: string[];
   videos?: string[];
   links: {
@@ -405,6 +407,39 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  raffaGuido: {
+    id: "raffaGuido",
+    name: "Raffa Guido",
+    role: "Afro / Latin House",
+    location: "Geneva, Switzerland",
+    imagesFirst: true,
+    images: [
+      "/images/raffa_guido/raffa_guido_1.webp",
+      "/images/raffa_guido/raffa_guido_2.webp",
+      "/images/raffa_guido/raffa_guido_3.webp",
+    ],
+    videos: [
+      "/videos/raffa_guido/raffa_guido_1.mp4",
+      "/videos/raffa_guido/raffa_guido_2.mp4",
+      "/videos/raffa_guido/raffa_guido_3.mp4",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/raffa_guido/",
+      spotify: "https://open.spotify.com/artist/5zvKbKHQcyZFvTYADnEkTQ",
+    },
+    bio: {
+      en: {
+        short:
+          "Raffa Guido is a Swiss DJ and producer based in Geneva, blending Afro and Latin deep house into a sound rich in percussion, melody and emotion. His debut 'Famax' was signed to MoBlack Records and backed by Keinemusik, Diplo, Adriatique and Pete Tong.",
+        long: "Raffa Guido is a DJ and producer born in Switzerland and based in Geneva, drawing on his Italian and Spanish roots to craft a distinctive blend of Afro and Latin deep house. His music seamlessly integrates organic percussion, symphonic textures and electronic production into an immersive, emotive experience that resonates with dancefloors and listeners alike.\n\nHis breakout came with the debut single \"Famax\", signed to the influential Afro House label MoBlack Records. The track became a defining moment, earning worldwide support from artists such as Keinemusik, Diplo, Adriatique, Pete Tong, Bedouin, Blond:ish and Pablo Fierro — a powerful stamp of approval for a fast-rising talent.\n\nWith remixes from the likes of Franky Rizardo and Goom Gum and a growing international touring schedule, Raffa Guido continues to push the boundaries of Afro/Latin house while carving out a sound that is unmistakably his own.",
+      },
+      de: {
+        short:
+          "Raffa Guido ist ein Schweizer DJ und Produzent aus Genf, der Afro und Latin Deep House zu einem Sound voller Percussion, Melodie und Emotion verbindet. Seine Debüt-Single 'Famax' erschien auf MoBlack Records und wurde von Keinemusik, Diplo, Adriatique und Pete Tong unterstützt.",
+        long: "Raffa Guido ist ein in der Schweiz geborener und in Genf lebender DJ und Produzent, der mit seinen italienischen und spanischen Wurzeln eine unverwechselbare Mischung aus Afro und Latin Deep House schafft. Seine Musik vereint nahtlos organische Percussion, symphonische Texturen und elektronische Produktion zu einem mitreißenden, emotionalen Erlebnis, das Dancefloors und Zuhörer gleichermaßen berührt.\n\nSeinen Durchbruch feierte er mit der Debüt-Single \"Famax\", die auf dem einflussreichen Afro-House-Label MoBlack Records erschien. Der Track wurde zu einem prägenden Moment und erhielt weltweite Unterstützung von Künstlern wie Keinemusik, Diplo, Adriatique, Pete Tong, Bedouin, Blond:ish und Pablo Fierro – ein starkes Zeichen für ein schnell aufstrebendes Talent.\n\nMit Remixen unter anderem von Franky Rizardo und Goom Gum sowie einem wachsenden internationalen Tourplan verschiebt Raffa Guido weiterhin die Grenzen des Afro/Latin House und prägt dabei einen Sound, der unverkennbar sein eigener ist.",
+      },
+    },
+  },
 };
 
 export const EVENTS: Event[] = [
@@ -447,6 +482,7 @@ export const EVENTS: Event[] = [
       "radian",
       "diegoSanDiego",
       "hristoTafkov",
+      "raffaGuido",
     ],
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",

@@ -57,27 +57,21 @@ function ArtistCard({
 
   // Combine videos and images for rotation
   const mediaItems = useMemo(() => {
-    const items: Array<{ type: "video" | "image"; src: string }> = [];
-
-    // Add videos first
-    if (artist.videos && artist.videos.length > 0) {
-      items.push(
-        ...artist.videos.map((v) => ({ type: "video" as const, src: v }))
-      );
-    }
+    const videoItems: Array<{ type: "video" | "image"; src: string }> =
+      artist.videos?.map((v) => ({ type: "video" as const, src: v })) ?? [];
 
     // Add images (limit to first 6 for featured, or all for others)
     const imageLimit = artist.isFeatured ? 6 : artist.images.length;
-    if (artist.images && artist.images.length > 0) {
-      items.push(
-        ...artist.images
-          .slice(0, imageLimit)
-          .map((i) => ({ type: "image" as const, src: i }))
-      );
-    }
+    const imageItems: Array<{ type: "video" | "image"; src: string }> =
+      artist.images
+        ?.slice(0, imageLimit)
+        .map((i) => ({ type: "image" as const, src: i })) ?? [];
 
-    return items;
-  }, [artist.videos, artist.images, artist.isFeatured]);
+    // Default order is videos first, but some artists lead with a clean photo.
+    return artist.imagesFirst
+      ? [...imageItems, ...videoItems]
+      : [...videoItems, ...imageItems];
+  }, [artist.videos, artist.images, artist.isFeatured, artist.imagesFirst]);
 
   // Auto-play rotation with staggered start
   useEffect(() => {
