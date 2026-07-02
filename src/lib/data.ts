@@ -138,6 +138,30 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  richiRisco: {
+    id: "richiRisco",
+    name: "Richi Risco",
+    role: "House / Disco / Funk / Soul / Techno",
+    location: "Spain",
+    images: [
+      "/images/richi_risco/richi_risco_1.webp",
+      "/images/richi_risco/richi_risco_2.webp",
+    ],
+    videos: ["/videos/richi_risco/richi_risco_1.mp4"],
+    links: {},
+    bio: {
+      de: {
+        short:
+          "Richi Risco, auch bekannt als \"El Coleccionista\", ist ein spanischer DJ und Produzent mit über 30 Jahren Erfahrung und einem Sound, der House, Disco, Funk, Soul und Techno verbindet.",
+        long: "Richi Risco, \"El Coleccionista\", ist ein spanischer DJ und Produzent mit über 30 Jahren Erfahrung, bekannt für seine Fähigkeit, Genres zu verbinden und einzigartige Erlebnisse auf der Tanzfläche zu schaffen. Seit seinen Anfängen im Jahr 2005 hat er einen eigenen Stil entwickelt, in dem House und Disco mit der Wärme von Funk und Soul verschmelzen und durch die Energie von Techno verstärkt werden.\n\nSein musikalisches Erbe spiegelt sich in einer persönlichen Sammlung von über 4.000 Vinyls wider, die aus jahrzehntelanger Erkundung und der Suche nach zeitlosen Sounds entstanden ist. Diese Leidenschaft für Crate Digging und sein profundes Wissen über Clubmusik ermöglichen es ihm, Sets mit einer kohärenten Erzählung und voller Identität aufzubauen.\n\nSeine internationale Präsenz umfasst wichtige Märkte wie Lateinamerika und Asien, wo er jährlich wiederkehrender Gast ist, Tanzflächen füllt und zahlreiche Ausverkäufe erzielt. Diese globale Erfahrung, verbunden mit seiner Verbindung zum Publikum und seiner Vielseitigkeit als Selector, macht Richi Risco zu einer der respektiertesten und konstantesten Figuren der nationalen und internationalen House-Szene.",
+      },
+      en: {
+        short:
+          "Richi Risco, also known as \"The Collector\", is a Spanish DJ and producer with over 30 years of experience, blending house, disco, funk, soul, and techno into cohesive dancefloor journeys.",
+        long: "Richi Risco, \"The Collector\", is a Spanish DJ and producer with over 30 years of experience, well-known for his ability to mix genres and create unique experiences on the dance floor. From the start, back in 2005, he has developed his own style where house and disco get linked with the warmth of funk and soul, and become stronger with the energy of techno.\n\nHis musical baggage reflects in his personal collection of vinyls, with over 4000 of them, thanks to decades of exploration and the search for timeless sounds. This passion for crate digging and his profound knowledge of club music have allowed him to build sets with a coherent narrative and full of identity.\n\nHis international projection includes markets as important as South America and Asia, where he is a recurring yearly guest, filling up dance floors and achieving multiple sell outs. This global experience, along with his connection to the public and his versatility as a selector, place Richi Risco as one of the most respected and consistent figures in the national and international scene of house music.",
+      },
+    },
+  },
   claudiaLeon: {
     id: "claudiaLeon",
     name: "Claudia León",
@@ -474,6 +498,7 @@ export const EVENTS: Event[] = [
       "inanBatman",
       "quincyKluivert",
       "lexlay",
+      "richiRisco",
       "claudiaLeon",
       "colle",
       "malive",
