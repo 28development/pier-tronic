@@ -32,14 +32,33 @@ export interface Artist {
   };
 }
 
+export interface EventPartner {
+  name: string;
+  logo: string;
+  url?: string;
+}
+
 export interface Event {
   id: string;
   name: string;
   slug: string;
+  /** Human-readable date shown in the UI, e.g. "8 Aug 2026". */
   date: string;
+  /** ISO start timestamp used for sorting and picking the next upcoming event. */
+  startDate: string;
   time: string;
   location: string;
   locationFull: string;
+  /** Venue name, e.g. "Reborn Whitehouse". */
+  venueName?: string;
+  /** Full street address of the venue. */
+  venueAddress?: string;
+  /** Optional Google Maps link for the venue. */
+  mapsUrl?: string;
+  subtitle?: {
+    en: string;
+    de: string;
+  };
   description: {
     en: string;
     de: string;
@@ -52,6 +71,16 @@ export interface Event {
   ticketsUrl: string;
   stageDatesId: string;
   heroImage?: string;
+  /** Poster/key artwork for the event, used on overview cards. */
+  poster?: string;
+  /** Optional promo video (HLS/MP4) used as the hero background. */
+  heroVideo?: string;
+  /** Accent color (hex) that themes the event's UI. */
+  accent?: string;
+  /** Foreground color to place on top of the accent (hex). */
+  accentForeground?: string;
+  /** Partner / sponsor logos shown for this event. */
+  partners?: EventPartner[];
 }
 
 export const ARTISTS: Record<string, Artist> = {
@@ -466,15 +495,76 @@ export const ARTISTS: Record<string, Artist> = {
   },
 };
 
+const PIER_PARTNERS: EventPartner[] = [
+  { name: "Fightology", logo: "/images/fightology.webp" },
+  { name: "Reborn", logo: "/images/reborn_logo.webp" },
+  { name: "De Pier Scheveningen", logo: "/images/DePier_Scheveningen_logo.svg" },
+];
+
 export const EVENTS: Event[] = [
+  {
+    id: "the-hague",
+    name: "The Hague",
+    slug: "the-hague",
+    date: "8 Aug 2026",
+    startDate: "2026-08-08T21:00:00+02:00",
+    time: "21:00 – 03:00",
+    location: "Scheveningen, Netherlands",
+    locationFull: "Reborn Whitehouse, Scheveningen",
+    venueName: "Reborn Whitehouse",
+    venueAddress: "Blvd Noord, Strandweg 180, 2586 JM Scheveningen, Netherlands",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Reborn+Whitehouse+Strandweg+180+Scheveningen",
+    subtitle: {
+      en: "Namito & Noor Sanchez — Live DJ Performance",
+      de: "Namito & Noor Sanchez — Live DJ Performance",
+    },
+    description: {
+      en: "Two artists, one unforgettable night by the sea. Namito and Noor Sanchez bring deep, melodic and oriental house to the Reborn Whitehouse in Scheveningen. Secure your ticket and dance from dusk till the early hours.",
+      de: "Zwei Artists, eine unvergessliche Nacht am Meer. Namito und Noor Sanchez bringen deep, melodic und oriental House ins Reborn Whitehouse in Scheveningen. Sichere dir dein Ticket und tanze von der Dämmerung bis in die frühen Morgenstunden.",
+    },
+    highlights: {
+      en: [
+        "Namito — Deep, Melodic & Oriental House",
+        "Noor Sanchez — House, Afro & Melodic",
+        "Beachfront venue at Reborn Whitehouse",
+        "Live DJ performance, 21:00 – 03:00",
+      ],
+      de: [
+        "Namito — Deep, Melodic & Oriental House",
+        "Noor Sanchez — House, Afro & Melodic",
+        "Location direkt am Strand im Reborn Whitehouse",
+        "Live-DJ-Performance, 21:00 – 03:00",
+      ],
+    },
+    artists: ["namito", "noorSanchez"],
+    ticketsUrl:
+      "https://stagedates.com/events/namito-x-noor-sanchez-the-hague-reborn-whitehouse-scheveningen-20260808-kZrGl?embedded=true",
+    stageDatesId: "stagedates-iframe-the-hague",
+    poster: "/images/nxn/nxn_2.webp",
+    heroImage: "/images/nxn/nxn_1.webp",
+    heroVideo: getBunnyStreamUrl(VIDEO_IDS.nxn.clip1),
+    accent: "#EAC20B",
+    accentForeground: "#111111",
+    partners: PIER_PARTNERS,
+  },
   {
     id: "pulse-of-the-pier",
     name: "Pulse of the Pier",
     slug: "pulse-of-the-pier",
     date: "July 18, 2026",
+    startDate: "2026-07-18T21:00:00+02:00",
     time: "21:00 – 04:00",
     location: "Scheveningen, Netherlands",
     locationFull: "The Pier, Scheveningen",
+    venueName: "The Pier",
+    venueAddress: "Strandweg, 2586 JW Scheveningen, Netherlands",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=De+Pier+Scheveningen",
+    subtitle: {
+      en: "The Ultimate Music Festival",
+      de: "Das ultimative Musikfestival",
+    },
     description: {
       en: "Join thousands of music lovers for a night of electrifying DJs, immersive light shows, and unforgettable experiences. Grab your tickets now and be part of the celebration!",
       de: "Erleben Sie eine Nacht mit elektrisierenden DJs, beeindruckenden Lichtshows und unvergesslichen Momenten. Sichern Sie sich jetzt Ihre Tickets und werden Sie Teil der Celebration!",
@@ -512,5 +602,31 @@ export const EVENTS: Event[] = [
     ticketsUrl:
       "https://stagedates.com/events/pulse-of-the-pier-the-pier-20260718-FPjdR?embedded=true",
     stageDatesId: "stagedates-iframe-event-1",
+    poster: "/images/party.webp",
+    heroImage: "/images/party.webp",
+    accent: "#5B8DEF",
+    accentForeground: "#0b1220",
+    partners: PIER_PARTNERS,
   },
 ];
+
+/** Events sorted by start date, soonest first. */
+export const EVENTS_BY_DATE: Event[] = [...EVENTS].sort(
+  (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+);
+
+export function getEventBySlug(slug: string): Event | undefined {
+  return EVENTS.find((event) => event.slug === slug);
+}
+
+/**
+ * Returns the next upcoming event relative to `now`, falling back to the most
+ * recent past event when everything is in the past.
+ */
+export function getFeaturedEvent(now: Date = new Date()): Event {
+  const upcoming = EVENTS_BY_DATE.filter(
+    (event) => new Date(event.startDate).getTime() >= now.getTime()
+  );
+  if (upcoming.length > 0) return upcoming[0];
+  return EVENTS_BY_DATE[EVENTS_BY_DATE.length - 1];
+}

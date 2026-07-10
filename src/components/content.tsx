@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { ChevronRight } from "lucide-react";
+import { Event } from "@/lib/data";
+import { CalendarDays, ChevronRight, Clock, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,9 +22,11 @@ const transitionVariants = {
   },
 };
 
-export default function ContentSection() {
+export default function ContentSection({ event }: { event: Event }) {
   const { t, locale } = useLocale();
-  const { activeEvent } = useEvent();
+  const activeEvent = event;
+  const highlights =
+    activeEvent.highlights[locale as "en" | "de"] || activeEvent.highlights.en;
 
   return (
     <section className="py-16 md:py-32">
@@ -50,18 +52,50 @@ export default function ContentSection() {
         </AnimatePresence>
 
         <div className="grid gap-6 md:grid-cols-2 md:gap-12">
-          <TextEffect
-            key={activeEvent.id + "-content-title"}
-            preset="fade-in-blur"
-            speedSegment={0.3}
-            delay={0.4}
-            as="h2"
-            className="text-4xl font-medium"
-          >
-            {activeEvent.name === "Pulse of the Pier"
-              ? t("content_title")
-              : activeEvent.name}
-          </TextEffect>
+          <div className="space-y-6">
+            <TextEffect
+              key={activeEvent.id + "-content-title"}
+              preset="fade-in-blur"
+              speedSegment={0.3}
+              delay={0.4}
+              as="h2"
+              className="text-4xl font-medium"
+            >
+              {activeEvent.name}
+            </TextEffect>
+
+            {/* Event meta */}
+            <dl className="space-y-3 text-sm">
+              <div className="flex items-center gap-3">
+                <CalendarDays
+                  className="size-4 shrink-0"
+                  style={{ color: "var(--event-accent)" }}
+                />
+                <dd className="font-medium">{activeEvent.date}</dd>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock
+                  className="size-4 shrink-0"
+                  style={{ color: "var(--event-accent)" }}
+                />
+                <dd className="font-medium">{activeEvent.time}</dd>
+              </div>
+              <div className="flex items-start gap-3">
+                <MapPin
+                  className="size-4 shrink-0 mt-0.5"
+                  style={{ color: "var(--event-accent)" }}
+                />
+                <dd className="font-medium">
+                  {activeEvent.venueName || activeEvent.locationFull}
+                  {activeEvent.venueAddress && (
+                    <span className="block text-muted-foreground font-normal">
+                      {activeEvent.venueAddress}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            </dl>
+          </div>
           <div className="space-y-6">
             <TextEffect
               key={activeEvent.id + "-content-blurb"}
@@ -74,6 +108,18 @@ export default function ContentSection() {
               {activeEvent.description[locale as "en" | "de"] ||
                 activeEvent.description.en}
             </TextEffect>
+
+            <ul className="space-y-2">
+              {highlights.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-sm">
+                  <span
+                    className="mt-1.5 size-1.5 shrink-0 rounded-full"
+                    style={{ backgroundColor: "var(--event-accent)" }}
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
 
             <AnimatedGroup
               variants={{

@@ -1,3 +1,4 @@
+import { EVENTS } from "@/lib/data";
 import { locales } from "@/lib/translations";
 import type { MetadataRoute } from "next";
 
@@ -40,6 +41,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.5,
+    });
+  }
+
+  for (const event of EVENTS) {
+    entries.push({
+      url: `${baseUrl}/events/${event.slug}`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
     });
   }
 

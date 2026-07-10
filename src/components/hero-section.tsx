@@ -3,21 +3,24 @@
 import { HlsVideo } from "@/components/hls-video";
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
-import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, EVENTS } from "@/lib/data";
-import { cn } from "@/lib/utils";
-import { Calendar, ChevronDown, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
+import { ARTISTS, Event } from "@/lib/data";
+import { Calendar, ChevronDown, Clock, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
 
-export default function HeroSection() {
+export default function HeroSection({ event }: { event: Event }) {
   const { t, locale } = useLocale();
-  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+  const activeEvent = event;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-  // Array of video URLs to rotate based on active event artists
+  // Array of video URLs for the hero background.
+  // Prefer the event's dedicated promo video, otherwise rotate artist clips.
   const videoUrls = useMemo(() => {
+    if (activeEvent.heroVideo) {
+      return [activeEvent.heroVideo];
+    }
+
     const urls: string[] = [];
     activeEvent.artists.forEach((artistId) => {
       const artist = ARTISTS[artistId];
@@ -34,7 +37,7 @@ export default function HeroSection() {
     }
 
     return urls;
-  }, [activeEvent.artists]);
+  }, [activeEvent.artists, activeEvent.heroVideo]);
 
   // Rotate videos every 10 seconds
   useEffect(() => {
@@ -70,7 +73,7 @@ export default function HeroSection() {
               muted
               playsInline
               preload="none"
-              poster="/images/party.webp"
+              poster={activeEvent.heroImage || activeEvent.poster || "/images/party.webp"}
               aria-hidden="true"
             />
 
@@ -83,7 +86,7 @@ export default function HeroSection() {
               muted
               playsInline
               preload="none"
-              poster="/images/party.webp"
+              poster={activeEvent.heroImage || activeEvent.poster || "/images/party.webp"}
             />
           </motion.div>
         </AnimatePresence>
@@ -97,31 +100,6 @@ export default function HeroSection() {
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="mx-auto max-w-6xl px-6 py-32 lg:px-12 lg:py-40 w-full">
           <div className="max-w-4xl">
-            {/* Event Switcher in Hero - Only show if multiple events */}
-            {EVENTS.length > 1 && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                className="flex gap-2 mb-12 bg-white/10 backdrop-blur-md border border-white/20 p-1 rounded-full w-fit"
-              >
-                {EVENTS.map((event, idx) => (
-                  <button
-                    key={event.id}
-                    onClick={() => setActiveEventIndex(idx)}
-                    className={cn(
-                      "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300",
-                      activeEventIndex === idx
-                        ? "bg-white text-black shadow-lg scale-105"
-                        : "text-white/70 hover:text-white hover:bg-white/10"
-                    )}
-                  >
-                    {event.name}
-                  </button>
-                ))}
-              </motion.div>
-            )}
-
             {/* Main Content */}
             <motion.div
               key={activeEvent.id}
@@ -132,16 +110,30 @@ export default function HeroSection() {
             >
               {/* Main Headline Group */}
               <div className="space-y-4">
+                {activeEvent.subtitle && (
+                  <motion.span
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15, duration: 0.6 }}
+                    className="inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em]"
+                    style={{
+                      color: "var(--event-accent)",
+                      borderColor: "color-mix(in oklab, var(--event-accent) 50%, transparent)",
+                      backgroundColor: "color-mix(in oklab, var(--event-accent) 12%, transparent)",
+                    }}
+                  >
+                    {activeEvent.subtitle[locale as "en" | "de"] ||
+                      activeEvent.subtitle.en}
+                  </motion.span>
+                )}
                 <motion.h1
                   id="hero-heading"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
-                  className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight"
+                  className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.05]"
                 >
-                  {activeEvent.name === "Pier-Tronic"
-                    ? t("hero_subtitle")
-                    : activeEvent.name}
+                  {activeEvent.name}
                 </motion.h1>
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
@@ -159,18 +151,24 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
-                className="flex flex-wrap items-center gap-4 text-white"
+                className="flex flex-wrap items-center gap-3 text-white"
               >
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                  <Calendar className="size-4 text-white" />
+                  <Calendar className="size-4" style={{ color: "var(--event-accent)" }} />
                   <span className="text-sm font-semibold">
                     {activeEvent.date}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                  <MapPin className="size-4 text-white" />
+                  <Clock className="size-4" style={{ color: "var(--event-accent)" }} />
                   <span className="text-sm font-semibold">
-                    {activeEvent.location}
+                    {activeEvent.time}
+                  </span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
+                  <MapPin className="size-4" style={{ color: "var(--event-accent)" }} />
+                  <span className="text-sm font-semibold">
+                    {activeEvent.venueName || activeEvent.location}
                   </span>
                 </div>
               </motion.div>
@@ -185,7 +183,11 @@ export default function HeroSection() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-black hover:bg-white/90 font-semibold text-base px-8 h-12 rounded-full shadow-lg shadow-white/20"
+                  className="font-semibold text-base px-8 h-12 rounded-full shadow-lg transition-transform hover:scale-[1.03]"
+                  style={{
+                    backgroundColor: "var(--event-accent)",
+                    color: "var(--event-accent-foreground)",
+                  }}
                 >
                   <a href="#tickets">
                     <Ticket className="mr-2 size-5" />
@@ -260,7 +262,7 @@ export default function HeroSection() {
         </motion.div>
       </motion.a>
 
-      <LogoCloud />
+      <LogoCloud partners={activeEvent.partners} />
     </section>
   );
 }

@@ -1,10 +1,21 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
+import { Event } from "@/lib/data";
 import { Music2, Sparkles, Users } from "lucide-react";
 import { AnimatedGroup } from "./ui/animated-group";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
 import { TextEffect } from "./ui/text-effect";
+
+/** Rough duration in hours parsed from a "21:00 – 03:00" style time range. */
+function durationHours(time: string): number {
+  const match = time.match(/(\d{1,2}):(\d{2})\s*[–-]\s*(\d{1,2}):(\d{2})/);
+  if (!match) return 0;
+  const [, sh, sm, eh, em] = match.map(Number) as unknown as number[];
+  let minutes = eh * 60 + em - (sh * 60 + sm);
+  if (minutes <= 0) minutes += 24 * 60;
+  return Math.round(minutes / 60);
+}
 
 const transitionVariants = {
   item: {
@@ -18,8 +29,10 @@ const transitionVariants = {
   },
 };
 
-export default function StatsSection() {
+export default function StatsSection({ event }: { event: Event }) {
   const { t } = useLocale();
+  const djCount = event.artists.length;
+  const hours = durationHours(event.time) || 12;
 
   return (
     <section id="about" className="py-12 md:py-20">
@@ -56,9 +69,9 @@ export default function StatsSection() {
           className="grid gap-12 divide-y *:text-center md:grid-cols-3 md:gap-2 md:divide-x md:divide-y-0"
         >
           {[
-            { Icon: Music2, number: 8, key: "stats_card1" as const },
+            { Icon: Music2, number: djCount, key: "stats_card1" as const },
             { Icon: Users, number: 3000, key: "stats_card2" as const },
-            { Icon: Sparkles, number: 12, key: "stats_card3" as const },
+            { Icon: Sparkles, number: hours, key: "stats_card3" as const },
           ].map(({ Icon, number, key }) => (
             <div
               key={key}

@@ -3,7 +3,7 @@
 import { useLocale } from "@/contexts/locale-context";
 import type { TranslationKey } from "@/lib/translations";
 import { cn } from "@/lib/utils";
-import { Info, Menu, Ticket, Users, X } from "lucide-react";
+import { CalendarDays, Info, Menu, Ticket, Users, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -15,6 +15,7 @@ const menuItems: Array<{
   href: string;
   icon: typeof Users;
 }> = [
+  { key: "events_eyebrow", href: "/", icon: CalendarDays },
   { key: "team_caption", href: "#artists", icon: Users },
   { key: "tickets_title", href: "#tickets", icon: Ticket },
   { key: "link_about", href: "#about", icon: Info },

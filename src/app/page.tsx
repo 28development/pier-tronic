@@ -1,10 +1,4 @@
-import ContentSection from "@/components/content";
-import Features from "@/components/feature";
-import HeroSection from "@/components/hero-section";
-import StatsSection from "@/components/stats";
-import TeamSection from "@/components/team";
-import TicketsSection from "@/components/tickets-section";
-import VipSection from "@/components/vip-section";
+import { EventsOverview } from "@/components/events-overview";
 import localFont from "next/font/local";
 
 const frick = localFont({
@@ -26,13 +20,7 @@ const frick = localFont({
 export default function Home() {
   return (
     <main id="main-content" className={frick.className}>
-      <HeroSection />
-      <TeamSection />
-      <ContentSection />
-      <TicketsSection />
-      <StatsSection />
-      <Features />
-      <VipSection />
+      <EventsOverview />
     </main>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
+import { Event } from "@/lib/data";
 import type { TranslationKey } from "@/lib/translations";
 import { Crown, Disc3, Lock, Sofa, Sparkles, Zap } from "lucide-react";
 import { motion } from "motion/react";
@@ -42,9 +42,9 @@ const transitionVariants = {
   },
 };
 
-export default function VipSection() {
+export default function VipSection({ event }: { event: Event }) {
   const { t } = useLocale();
-  const { activeEvent } = useEvent();
+  const activeEvent = event;
 
   return (
     <section id="vip" className="px-4 py-12 md:px-6 md:py-20 lg:py-28">

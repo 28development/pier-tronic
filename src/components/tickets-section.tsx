@@ -1,14 +1,14 @@
 "use client";
 
-import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
+import { Event } from "@/lib/data";
 import { useEffect } from "react";
 import { Button } from "./ui/button";
 import { TextEffect } from "./ui/text-effect";
 
-export default function TicketsSection() {
+export default function TicketsSection({ event }: { event: Event }) {
   const { t } = useLocale();
-  const { activeEvent } = useEvent();
+  const activeEvent = event;
 
   useEffect(() => {
     // Dynamically load and initialize the StageDates iframe module

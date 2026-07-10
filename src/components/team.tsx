@@ -1,8 +1,7 @@
 "use client";
 
-import { useEvent } from "@/contexts/event-context";
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, Artist, EVENTS } from "@/lib/data";
+import { ARTISTS, Artist, Event } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Info, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -521,9 +520,9 @@ function ArtistCard({
   );
 }
 
-export default function TeamSection() {
+export default function TeamSection({ event }: { event: Event }) {
   const { t, locale } = useLocale();
-  const { activeEvent, activeEventIndex, setActiveEventIndex } = useEvent();
+  const activeEvent = event;
   const [bioArtist, setBioArtist] = useState<Artist | null>(null);
 
   const activeArtists = activeEvent.artists.map((id) => ARTISTS[id]);
@@ -535,22 +534,6 @@ export default function TeamSection() {
           <span className="text-caption block w-max bg-gray-50 rounded-4xl px-6 dark:bg-gray-950">
             {t("team_caption")}
           </span>
-          <div className="flex gap-2 bg-gray-100 dark:bg-gray-900 p-1 rounded-full">
-            {EVENTS.map((event, idx) => (
-              <button
-                key={event.id}
-                onClick={() => setActiveEventIndex(idx)}
-                className={cn(
-                  "px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300",
-                  activeEventIndex === idx
-                    ? "bg-white dark:bg-gray-800 text-black dark:text-white shadow-sm"
-                    : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                )}
-              >
-                {event.name}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className="mt-12 gap-4 sm:grid sm:grid-cols-2 md:mt-24">
