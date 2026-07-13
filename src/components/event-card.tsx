@@ -3,7 +3,7 @@
 import { useLocale } from "@/contexts/locale-context";
 import { ARTISTS, Event } from "@/lib/data";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, CalendarDays, Clock, MapPin } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Clock, MapPin, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +33,9 @@ export function EventCard({
       style={eventAccentStyle(event)}
       className={cn(
         "group relative overflow-hidden rounded-3xl border bg-neutral-950 text-white shadow-xl transition-all duration-300 hover:shadow-2xl",
-        featured ? "lg:col-span-2" : ""
+        featured
+          ? "border-[var(--event-accent)]/60 shadow-2xl ring-2 ring-[var(--event-accent)]/70 sm:col-span-2 lg:col-span-2"
+          : "border-white/10"
       )}
     >
       <Link
@@ -69,6 +71,20 @@ export function EventCard({
             <CalendarDays className="size-3.5" style={{ color: "var(--event-accent)" }} />
             <span className="text-xs font-semibold">{event.date}</span>
           </div>
+
+          {/* Featured badge */}
+          {featured && (
+            <div
+              className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] shadow-lg"
+              style={{
+                backgroundColor: "var(--event-accent)",
+                color: "var(--event-accent-foreground)",
+              }}
+            >
+              <Sparkles className="size-3.5" />
+              {t("events_featured_badge")}
+            </div>
+          )}
         </div>
 
         {/* Content */}
@@ -84,17 +100,19 @@ export function EventCard({
           <h3
             className={cn(
               "font-bold leading-tight tracking-tight",
-              featured ? "text-3xl sm:text-4xl" : "text-2xl"
+              featured ? "text-3xl sm:text-4xl lg:text-5xl" : "text-2xl"
             )}
           >
             {event.name}
           </h3>
 
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-white/70">
-            <span className="flex items-center gap-1.5">
-              <Clock className="size-3.5" />
-              {event.time}
-            </span>
+            {event.time && (
+              <span className="flex items-center gap-1.5">
+                <Clock className="size-3.5" />
+                {event.time}
+              </span>
+            )}
             <span className="flex items-center gap-1.5">
               <MapPin className="size-3.5" />
               {event.venueName || event.location}

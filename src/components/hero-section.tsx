@@ -159,12 +159,14 @@ export default function HeroSection({ event }: { event: Event }) {
                     {activeEvent.date}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                  <Clock className="size-4" style={{ color: "var(--event-accent)" }} />
-                  <span className="text-sm font-semibold">
-                    {activeEvent.time}
-                  </span>
-                </div>
+                {activeEvent.time && (
+                  <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
+                    <Clock className="size-4" style={{ color: "var(--event-accent)" }} />
+                    <span className="text-sm font-semibold">
+                      {activeEvent.time}
+                    </span>
+                  </div>
+                )}
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
                   <MapPin className="size-4" style={{ color: "var(--event-accent)" }} />
                   <span className="text-sm font-semibold">

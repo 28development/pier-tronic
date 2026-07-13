@@ -73,13 +73,15 @@ export default function ContentSection({ event }: { event: Event }) {
                 />
                 <dd className="font-medium">{activeEvent.date}</dd>
               </div>
-              <div className="flex items-center gap-3">
-                <Clock
-                  className="size-4 shrink-0"
-                  style={{ color: "var(--event-accent)" }}
-                />
-                <dd className="font-medium">{activeEvent.time}</dd>
-              </div>
+              {activeEvent.time && (
+                <div className="flex items-center gap-3">
+                  <Clock
+                    className="size-4 shrink-0"
+                    style={{ color: "var(--event-accent)" }}
+                  />
+                  <dd className="font-medium">{activeEvent.time}</dd>
+                </div>
+              )}
               <div className="flex items-start gap-3">
                 <MapPin
                   className="size-4 shrink-0 mt-0.5"

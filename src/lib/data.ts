@@ -516,12 +516,12 @@ export const EVENTS: Event[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Reborn+Whitehouse+Strandweg+180+Scheveningen",
     subtitle: {
-      en: "Namito & Noor Sanchez — Live DJ Performance",
-      de: "Namito & Noor Sanchez — Live DJ Performance",
+      en: "Namito x Noor Sanchez — Live DJ Performance",
+      de: "Namito x Noor Sanchez — Live DJ Performance",
     },
     description: {
-      en: "Two artists, one unforgettable night by the sea. Namito and Noor Sanchez bring deep, melodic and oriental house to the Reborn Whitehouse in Scheveningen. Secure your ticket and dance from dusk till the early hours.",
-      de: "Zwei Artists, eine unvergessliche Nacht am Meer. Namito und Noor Sanchez bringen deep, melodic und oriental House ins Reborn Whitehouse in Scheveningen. Sichere dir dein Ticket und tanze von der Dämmerung bis in die frühen Morgenstunden.",
+      en: "Two artists, one unforgettable night by the sea. Namito x Noor Sanchez bring deep, melodic and oriental house to the Reborn Whitehouse in Scheveningen. Secure your ticket and dance from dusk till the early hours.",
+      de: "Zwei Artists, eine unvergessliche Nacht am Meer. Namito x Noor Sanchez bringen deep, melodic und oriental House ins Reborn Whitehouse in Scheveningen. Sichere dir dein Ticket und tanze von der Dämmerung bis in die frühen Morgenstunden.",
     },
     highlights: {
       en: [
@@ -541,7 +541,7 @@ export const EVENTS: Event[] = [
     ticketsUrl:
       "https://stagedates.com/events/namito-x-noor-sanchez-the-hague-reborn-whitehouse-scheveningen-20260808-kZrGl?embedded=true",
     stageDatesId: "stagedates-iframe-the-hague",
-    poster: "/images/nxn/nxn_2.webp",
+    poster: "/images/nxn/nxn_flyer.webp",
     heroImage: "/images/nxn/nxn_1.webp",
     heroVideo: getBunnyStreamUrl(VIDEO_IDS.nxn.clip1),
     accent: "#EAC20B",
@@ -554,7 +554,7 @@ export const EVENTS: Event[] = [
     slug: "pulse-of-the-pier",
     date: "July 18, 2026",
     startDate: "2026-07-18T21:00:00+02:00",
-    time: "21:00 – 04:00",
+    time: "",
     location: "Scheveningen, Netherlands",
     locationFull: "The Pier, Scheveningen",
     venueName: "The Pier",
