@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
-import { Event } from "@/lib/data";
+import { Event, getEventArtists } from "@/lib/data";
 import { Music2, Sparkles, Users } from "lucide-react";
 import { AnimatedGroup } from "./ui/animated-group";
 import { CountingNumber } from "./ui/shadcn-io/counting-number";
@@ -31,7 +31,7 @@ const transitionVariants = {
 
 export default function StatsSection({ event }: { event: Event }) {
   const { t } = useLocale();
-  const djCount = event.artists.length;
+  const djCount = getEventArtists(event).length;
   const hours = durationHours(event.time) || 12;
 
   return (

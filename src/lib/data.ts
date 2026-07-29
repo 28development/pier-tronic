@@ -5,6 +5,8 @@ export interface Artist {
   name: string;
   role: string;
   location: string;
+  /** When false, the artist is hidden from event lineups and cards. Defaults to true. */
+  active?: boolean;
   isFeatured?: boolean;
   /** When true, images are shown before videos in the card media rotation. */
   imagesFirst?: boolean;
@@ -245,6 +247,7 @@ export const ARTISTS: Record<string, Artist> = {
     name: "Namito",
     role: "Deep, Melodic & Oriental House",
     location: "Berlin, Germany",
+    active: false,
     images: [
       "/images/namito/namito_1.webp",
       "/images/namito/namito_2.webp",
@@ -516,22 +519,20 @@ export const EVENTS: Event[] = [
     mapsUrl:
       "https://www.google.com/maps/search/?api=1&query=Reborn+Whitehouse+Strandweg+180+Scheveningen",
     subtitle: {
-      en: "Namito x Noor Sanchez — Live DJ Performance",
-      de: "Namito x Noor Sanchez — Live DJ Performance",
+      en: "Noor Sanchez — Live DJ Performance",
+      de: "Noor Sanchez — Live DJ Performance",
     },
     description: {
-      en: "Two artists, one unforgettable night by the sea. Namito x Noor Sanchez bring deep, melodic and oriental house to the Reborn Whitehouse in Scheveningen. Secure your ticket and dance from dusk till the early hours.",
-      de: "Zwei Artists, eine unvergessliche Nacht am Meer. Namito x Noor Sanchez bringen deep, melodic und oriental House ins Reborn Whitehouse in Scheveningen. Sichere dir dein Ticket und tanze von der Dämmerung bis in die frühen Morgenstunden.",
+      en: "An unforgettable night by the sea. Noor Sanchez brings deep, melodic and oriental house to the Reborn Whitehouse in Scheveningen. Secure your ticket and dance from dusk till the early hours.",
+      de: "Eine unvergessliche Nacht am Meer. Noor Sanchez bringt deep, melodic und oriental House ins Reborn Whitehouse in Scheveningen. Sichere dir dein Ticket und tanze von der Dämmerung bis in die frühen Morgenstunden.",
     },
     highlights: {
       en: [
-        "Namito — Deep, Melodic & Oriental House",
         "Noor Sanchez — House, Afro & Melodic",
         "Beachfront venue at Reborn Whitehouse",
         "Live DJ performance, 21:00 – 03:00",
       ],
       de: [
-        "Namito — Deep, Melodic & Oriental House",
         "Noor Sanchez — House, Afro & Melodic",
         "Location direkt am Strand im Reborn Whitehouse",
         "Live-DJ-Performance, 21:00 – 03:00",
@@ -539,11 +540,11 @@ export const EVENTS: Event[] = [
     },
     artists: ["namito", "noorSanchez"],
     ticketsUrl:
-      "https://stagedates.com/events/namito-x-noor-sanchez-the-hague-reborn-whitehouse-scheveningen-20260808-kZrGl?embedded=true",
+      "https://stagedates.com/events/noor-sanchez-the-hague-reborn-whitehouse-scheveningen-20260808-kZrGl?embedded=true",
     stageDatesId: "stagedates-iframe-the-hague",
-    poster: "/images/nxn/nxn_flyer.webp",
-    heroImage: "/images/nxn/nxn_1.webp",
-    heroVideo: getBunnyStreamUrl(VIDEO_IDS.nxn.clip1),
+    poster: "/images/noor_sanchez/noor_sanchez_1.webp",
+    heroImage: "/images/noor_sanchez/noor_sanchez_1.webp",
+    heroVideo: getBunnyStreamUrl(VIDEO_IDS.noorSanchez.clip1),
     accent: "#EAC20B",
     accentForeground: "#111111",
     partners: PIER_PARTNERS,
@@ -617,6 +618,24 @@ export const EVENTS_BY_DATE: Event[] = [...EVENTS].sort(
 
 export function getEventBySlug(slug: string): Event | undefined {
   return EVENTS.find((event) => event.slug === slug);
+}
+
+/** Returns true when an artist should appear in lineups (active by default). */
+export function isArtistActive(artistId: string): boolean {
+  return ARTISTS[artistId]?.active !== false;
+}
+
+/** Active artists assigned to an event, in lineup order. */
+export function getEventArtists(event: Event): Artist[] {
+  return event.artists
+    .filter(isArtistActive)
+    .map((id) => ARTISTS[id])
+    .filter(Boolean);
+}
+
+/** Display names for an event's active lineup. */
+export function getEventArtistNames(event: Event): string[] {
+  return getEventArtists(event).map((artist) => artist.name);
 }
 
 /**

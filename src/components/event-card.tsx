@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, Event } from "@/lib/data";
+import { Event, getEventArtistNames } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, CalendarDays, Clock, MapPin, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
@@ -19,9 +19,7 @@ export function EventCard({
   index?: number;
 }) {
   const { locale, t } = useLocale();
-  const lineup = event.artists
-    .map((id) => ARTISTS[id]?.name)
-    .filter(Boolean) as string[];
+  const lineup = getEventArtistNames(event);
   const subtitle = event.subtitle?.[locale as "en" | "de"] || event.subtitle?.en;
 
   return (

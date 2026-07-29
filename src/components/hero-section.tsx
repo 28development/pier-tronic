@@ -4,7 +4,7 @@ import { HlsVideo } from "@/components/hls-video";
 import { LogoCloud } from "@/components/logo-cloud";
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, Event } from "@/lib/data";
+import { Event, getEventArtists } from "@/lib/data";
 import { Calendar, ChevronDown, Clock, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useState } from "react";
@@ -22,9 +22,8 @@ export default function HeroSection({ event }: { event: Event }) {
     }
 
     const urls: string[] = [];
-    activeEvent.artists.forEach((artistId) => {
-      const artist = ARTISTS[artistId];
-      if (artist && artist.videos && artist.videos.length > 0) {
+    getEventArtists(activeEvent).forEach((artist) => {
+      if (artist.videos && artist.videos.length > 0) {
         urls.push(...artist.videos);
       }
     });

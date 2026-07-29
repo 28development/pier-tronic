@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
-import { ARTISTS, Artist, Event } from "@/lib/data";
+import { Artist, Event, getEventArtists } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Info, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
@@ -525,7 +525,7 @@ export default function TeamSection({ event }: { event: Event }) {
   const activeEvent = event;
   const [bioArtist, setBioArtist] = useState<Artist | null>(null);
 
-  const activeArtists = activeEvent.artists.map((id) => ARTISTS[id]);
+  const activeArtists = getEventArtists(activeEvent);
 
   return (
     <section id="artists" className="py-16 dark:bg-transparent">
