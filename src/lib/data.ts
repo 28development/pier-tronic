@@ -44,6 +44,11 @@ export interface Event {
   id: string;
   name: string;
   slug: string;
+  /**
+   * When false, the event is kept in data but hidden from the public site.
+   * Defaults to true when omitted.
+   */
+  active?: boolean;
   /** Human-readable date shown in the UI, e.g. "8 Aug 2026". */
   date: string;
   /** ISO start timestamp used for sorting and picking the next upcoming event. */
@@ -83,6 +88,10 @@ export interface Event {
   accentForeground?: string;
   /** Partner / sponsor logos shown for this event. */
   partners?: EventPartner[];
+}
+
+export function isEventActive(event: Event): boolean {
+  return event.active !== false;
 }
 
 export const ARTISTS: Record<string, Artist> = {
@@ -509,6 +518,7 @@ export const EVENTS: Event[] = [
     id: "the-hague",
     name: "The Hague",
     slug: "the-hague",
+    active: false,
     date: "8 Aug 2026",
     startDate: "2026-08-08T21:00:00+02:00",
     time: "21:00 – 03:00",
@@ -611,13 +621,16 @@ export const EVENTS: Event[] = [
   },
 ];
 
-/** Events sorted by start date, soonest first. */
-export const EVENTS_BY_DATE: Event[] = [...EVENTS].sort(
+/** Publicly visible events only. */
+export const ACTIVE_EVENTS: Event[] = EVENTS.filter(isEventActive);
+
+/** Active events sorted by start date, soonest first. */
+export const EVENTS_BY_DATE: Event[] = [...ACTIVE_EVENTS].sort(
   (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
 );
 
 export function getEventBySlug(slug: string): Event | undefined {
-  return EVENTS.find((event) => event.slug === slug);
+  return ACTIVE_EVENTS.find((event) => event.slug === slug);
 }
 
 /** Returns true when an artist should appear in lineups (active by default). */

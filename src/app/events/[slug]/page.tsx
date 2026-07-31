@@ -1,5 +1,5 @@
 import { EventExperience } from "@/components/event-experience";
-import { EVENTS, EVENTS_BY_DATE, getEventBySlug } from "@/lib/data";
+import { ACTIVE_EVENTS, EVENTS_BY_DATE, getEventBySlug } from "@/lib/data";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
@@ -21,7 +21,7 @@ const frick = localFont({
 });
 
 export function generateStaticParams() {
-  return EVENTS.map((event) => ({ slug: event.slug }));
+  return ACTIVE_EVENTS.map((event) => ({ slug: event.slug }));
 }
 
 export async function generateMetadata({

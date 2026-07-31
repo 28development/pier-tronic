@@ -1,4 +1,4 @@
-import { EVENTS } from "@/lib/data";
+import { ACTIVE_EVENTS } from "@/lib/data";
 import { locales } from "@/lib/translations";
 import type { MetadataRoute } from "next";
 
@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  for (const event of EVENTS) {
+  for (const event of ACTIVE_EVENTS) {
     entries.push({
       url: `${baseUrl}/events/${event.slug}`,
       lastModified,
