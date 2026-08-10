@@ -2,7 +2,8 @@
 
 import { Button } from "@/components/ui/button";
 import { useLocale } from "@/contexts/locale-context";
-import { Event } from "@/lib/data";
+import { Event, getEventArtists } from "@/lib/data";
+import { cn } from "@/lib/utils";
 import { CalendarDays, ChevronRight, Clock, MapPin } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import Image from "next/image";
@@ -27,9 +28,11 @@ export default function ContentSection({ event }: { event: Event }) {
   const activeEvent = event;
   const highlights =
     activeEvent.highlights[locale as "en" | "de"] || activeEvent.highlights.en;
+  const hasLineup = getEventArtists(activeEvent).length > 0;
+  const isFocused = activeEvent.experience === "focused";
 
   return (
-    <section className="py-16 md:py-32">
+    <section id="event-details" className="py-16 md:py-32">
       <div className="mx-auto max-w-5xl space-y-8 px-6 md:space-y-12">
         <AnimatePresence mode="wait">
           <motion.div
@@ -41,8 +44,15 @@ export default function ContentSection({ event }: { event: Event }) {
             className="size-full overflow-hidden rounded-2xl border shadow-md p-2"
           >
             <Image
-              className="rounded-(--radius) grayscale hover:grayscale-0 transition-all duration-300"
-              src={activeEvent.heroImage || "/images/party.webp"}
+              className={cn(
+                "rounded-(--radius) transition-all duration-300",
+                !isFocused && "grayscale hover:grayscale-0"
+              )}
+              src={
+                activeEvent.heroImage ||
+                activeEvent.poster ||
+                "/images/party.webp"
+              }
               alt={activeEvent.name}
               loading="lazy"
               width={1600}
@@ -123,28 +133,53 @@ export default function ContentSection({ event }: { event: Event }) {
               ))}
             </ul>
 
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: { staggerChildren: 0.05, delayChildren: 0.8 },
+            {hasLineup ? (
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: { staggerChildren: 0.05, delayChildren: 0.8 },
+                    },
                   },
-                },
-                ...transitionVariants,
-              }}
-            >
-              <Button
-                asChild
-                variant="secondary"
-                size="sm"
-                className="gap-1 pr-1.5"
+                  ...transitionVariants,
+                }}
               >
-                <Link href="#artists">
-                  <span>{t("content_lineup")}</span>
-                  <ChevronRight className="size-2" />
-                </Link>
-              </Button>
-            </AnimatedGroup>
+                <Button
+                  asChild
+                  variant="secondary"
+                  size="sm"
+                  className="gap-1 pr-1.5"
+                >
+                  <Link href="#artists">
+                    <span>{t("content_lineup")}</span>
+                    <ChevronRight className="size-2" />
+                  </Link>
+                </Button>
+              </AnimatedGroup>
+            ) : (
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: { staggerChildren: 0.05, delayChildren: 0.8 },
+                    },
+                  },
+                  ...transitionVariants,
+                }}
+              >
+                <Button
+                  asChild
+                  variant="secondary"
+                  size="sm"
+                  className="gap-1 pr-1.5"
+                >
+                  <Link href="#tickets">
+                    <span>{t("hero_cta")}</span>
+                    <ChevronRight className="size-2" />
+                  </Link>
+                </Button>
+              </AnimatedGroup>
+            )}
           </div>
         </div>
       </div>

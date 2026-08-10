@@ -8,6 +8,7 @@ import TeamSection from "@/components/team";
 import TicketsSection from "@/components/tickets-section";
 import VipSection from "@/components/vip-section";
 import type { Event } from "@/lib/data";
+import { getEventArtists } from "@/lib/data";
 
 export function EventExperience({
   event,
@@ -18,15 +19,22 @@ export function EventExperience({
   prev?: Event;
   next?: Event;
 }) {
+  const isFocused = event.experience === "focused";
+  const hasLineup = getEventArtists(event).length > 0;
+
   return (
     <EventThemeProvider event={event}>
       <HeroSection event={event} />
-      <TeamSection event={event} />
+      {hasLineup && <TeamSection event={event} />}
       <ContentSection event={event} />
       <TicketsSection event={event} />
-      <StatsSection event={event} />
-      <Features />
-      <VipSection event={event} />
+      {!isFocused && (
+        <>
+          <StatsSection event={event} />
+          <Features />
+          <VipSection event={event} />
+        </>
+      )}
       <EventNav prev={prev} next={next} />
     </EventThemeProvider>
   );

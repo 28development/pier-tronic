@@ -7,15 +7,20 @@ import { useLocale } from "@/contexts/locale-context";
 import { Event, getEventArtists } from "@/lib/data";
 import { Calendar, ChevronDown, Clock, Mail, MapPin, Phone, Ticket, Users } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 export default function HeroSection({ event }: { event: Event }) {
   const { t, locale } = useLocale();
   const activeEvent = event;
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const hasLineup = getEventArtists(activeEvent).length > 0;
+  const posterSrc =
+    activeEvent.heroImage || activeEvent.poster || "/images/party.webp";
+  const scrollTarget = hasLineup ? "#artists" : "#event-details";
 
-  // Array of video URLs for the hero background.
   // Prefer the event's dedicated promo video, otherwise rotate artist clips.
+  // No generic fallback video — use the poster image instead.
   const videoUrls = useMemo(() => {
     if (activeEvent.heroVideo) {
       return [activeEvent.heroVideo];
@@ -28,78 +33,95 @@ export default function HeroSection({ event }: { event: Event }) {
       }
     });
 
-    // Fallback if no videos
-    if (urls.length === 0) {
-      urls.push(
-        "https://vz-9b35a891-b60.b-cdn.net/a9f79476-87ca-49cf-83bd-c212d90db0f6/playlist.m3u8"
-      );
-    }
-
     return urls;
-  }, [activeEvent.artists, activeEvent.heroVideo]);
+  }, [activeEvent]);
 
-  // Rotate videos every 10 seconds
+  const useVideoBackground = videoUrls.length > 0;
+
   useEffect(() => {
+    if (!useVideoBackground) return;
+
     const interval = setInterval(() => {
       setCurrentVideoIndex((prev) => (prev + 1) % videoUrls.length);
     }, 10_000);
 
     return () => clearInterval(interval);
-  }, [videoUrls.length]);
+  }, [useVideoBackground, videoUrls.length]);
 
   return (
     <section
       aria-labelledby="hero-heading"
       className="relative overflow-hidden"
     >
-      {/* Dynamic Background with Video */}
       <div className="absolute inset-0 z-0 h-dvh">
-        <AnimatePresence mode="wait">
+        {useVideoBackground ? (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeEvent.id}-${currentVideoIndex}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className="absolute inset-0"
+            >
+              <HlsVideo
+                src={videoUrls[currentVideoIndex]}
+                className="absolute inset-0 h-dvh w-full object-cover scale-110 blur-3xl brightness-50"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="none"
+                poster={posterSrc}
+                aria-hidden="true"
+              />
+              <HlsVideo
+                src={videoUrls[currentVideoIndex]}
+                className="absolute inset-0 h-dvh w-full object-contain"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="none"
+                poster={posterSrc}
+              />
+            </motion.div>
+          </AnimatePresence>
+        ) : (
           <motion.div
-            key={`${activeEvent.id}-${currentVideoIndex}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            key={`${activeEvent.id}-poster`}
+            initial={{ opacity: 0, scale: 1.04 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="absolute inset-0"
           >
-            {/* Blurred background video layer - fills viewport */}
-            <HlsVideo
-              src={videoUrls[currentVideoIndex]}
-              className="absolute inset-0 h-dvh w-full object-cover scale-110 blur-3xl brightness-50"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              poster={activeEvent.heroImage || activeEvent.poster || "/images/party.webp"}
+            <Image
+              src={posterSrc}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center scale-110 blur-3xl brightness-50"
               aria-hidden="true"
             />
-
-            {/* Main video layer - preserves aspect ratio */}
-            <HlsVideo
-              src={videoUrls[currentVideoIndex]}
-              className="absolute inset-0 h-dvh w-full object-contain"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              poster={activeEvent.heroImage || activeEvent.poster || "/images/party.webp"}
+            <Image
+              src={posterSrc}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
             />
           </motion.div>
-        </AnimatePresence>
+        )}
 
-        {/* Multi-layer gradient overlay */}
         <div className="absolute h-dvh inset-0 bg-gradient-to-b from-black/75 via-black/50 to-black/85" />
         <div className="absolute h-dvh inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/40" />
       </div>
 
-      {/* Hero Content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="mx-auto max-w-6xl px-6 py-32 lg:px-12 lg:py-40 w-full">
           <div className="max-w-4xl">
-            {/* Main Content */}
             <motion.div
               key={activeEvent.id}
               initial={{ opacity: 0, y: 30 }}
@@ -107,7 +129,6 @@ export default function HeroSection({ event }: { event: Event }) {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-6"
             >
-              {/* Main Headline Group */}
               <div className="space-y-4">
                 {activeEvent.subtitle && (
                   <motion.span
@@ -117,8 +138,10 @@ export default function HeroSection({ event }: { event: Event }) {
                     className="inline-block rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em]"
                     style={{
                       color: "var(--event-accent)",
-                      borderColor: "color-mix(in oklab, var(--event-accent) 50%, transparent)",
-                      backgroundColor: "color-mix(in oklab, var(--event-accent) 12%, transparent)",
+                      borderColor:
+                        "color-mix(in oklab, var(--event-accent) 50%, transparent)",
+                      backgroundColor:
+                        "color-mix(in oklab, var(--event-accent) 12%, transparent)",
                     }}
                   >
                     {activeEvent.subtitle[locale as "en" | "de"] ||
@@ -145,7 +168,6 @@ export default function HeroSection({ event }: { event: Event }) {
                 </motion.p>
               </div>
 
-              {/* Event Info - Enhanced */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -153,28 +175,36 @@ export default function HeroSection({ event }: { event: Event }) {
                 className="flex flex-wrap items-center gap-3 text-white"
               >
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                  <Calendar className="size-4" style={{ color: "var(--event-accent)" }} />
+                  <Calendar
+                    className="size-4"
+                    style={{ color: "var(--event-accent)" }}
+                  />
                   <span className="text-sm font-semibold">
                     {activeEvent.date}
                   </span>
                 </div>
                 {activeEvent.time && (
                   <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                    <Clock className="size-4" style={{ color: "var(--event-accent)" }} />
+                    <Clock
+                      className="size-4"
+                      style={{ color: "var(--event-accent)" }}
+                    />
                     <span className="text-sm font-semibold">
                       {activeEvent.time}
                     </span>
                   </div>
                 )}
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-sm">
-                  <MapPin className="size-4" style={{ color: "var(--event-accent)" }} />
+                  <MapPin
+                    className="size-4"
+                    style={{ color: "var(--event-accent)" }}
+                  />
                   <span className="text-sm font-semibold">
                     {activeEvent.venueName || activeEvent.location}
                   </span>
                 </div>
               </motion.div>
 
-              {/* CTAs */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -196,20 +226,21 @@ export default function HeroSection({ event }: { event: Event }) {
                   </a>
                 </Button>
 
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300 shadow-lg shadow-black/20"
-                >
-                  <a href="#artists">
-                    <Users className="mr-2 size-5" />
-                    {t("content_lineup")}
-                  </a>
-                </Button>
+                {hasLineup && (
+                  <Button
+                    asChild
+                    size="lg"
+                    variant="outline"
+                    className="bg-white/15 backdrop-blur-md border-white/40 text-white hover:bg-white hover:text-black font-semibold text-base px-8 h-12 rounded-full transition-all duration-300 shadow-lg shadow-black/20"
+                  >
+                    <a href="#artists">
+                      <Users className="mr-2 size-5" />
+                      {t("content_lineup")}
+                    </a>
+                  </Button>
+                )}
               </motion.div>
 
-              {/* Contact Info - Secondary utility links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -239,13 +270,11 @@ export default function HeroSection({ event }: { event: Event }) {
         </div>
       </div>
 
-      {/* Bottom Fade Transition */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-transparent z-10" />
 
-      {/* Scroll Down Indicator */}
       <motion.a
-        href="#artists"
-        aria-label="Scroll to artists"
+        href={scrollTarget}
+        aria-label="Scroll to event details"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.4, duration: 0.8 }}

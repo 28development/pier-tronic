@@ -2,16 +2,24 @@
 
 import { useLocale } from "@/contexts/locale-context";
 import { Event } from "@/lib/data";
+import { ExternalLink, Ticket } from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "./ui/button";
 import { TextEffect } from "./ui/text-effect";
 
+function isStageDatesEmbed(url: string): boolean {
+  return url.includes("stagedates.com");
+}
+
 export default function TicketsSection({ event }: { event: Event }) {
   const { t } = useLocale();
   const activeEvent = event;
+  const useEmbed =
+    Boolean(activeEvent.stageDatesId) && isStageDatesEmbed(activeEvent.ticketsUrl);
 
   useEffect(() => {
-    // Dynamically load and initialize the StageDates iframe module
+    if (!useEmbed || !activeEvent.stageDatesId) return;
+
     const script = document.createElement("script");
     script.type = "module";
     script.textContent = `
@@ -23,7 +31,7 @@ export default function TicketsSection({ event }: { event: Event }) {
     return () => {
       document.body.removeChild(script);
     };
-  }, [activeEvent.stageDatesId]);
+  }, [activeEvent.stageDatesId, useEmbed]);
 
   return (
     <section id="tickets" className="py-12 md:py-20 lg:py-32">
@@ -52,30 +60,57 @@ export default function TicketsSection({ event }: { event: Event }) {
           </TextEffect>
         </div>
 
-        <div className="flex flex-col gap-2">
-          <Button
-            onClick={() => window.open(activeEvent.ticketsUrl, "_blank")}
-            className="py-2 w-fit self-end"
-          >
-            {t("tickets_button")}
-          </Button>
-          <div className="iframe-container" id="iframe-container">
-            <iframe
-              key={activeEvent.id}
-              style={{
-                border: "none",
-                borderRadius: "20px",
-                height: "800px",
-                width: "100%",
-                overflowY: "hidden",
-              }}
-              src={activeEvent.ticketsUrl}
-              id={activeEvent.stageDatesId}
-              allow="fullscreen; encrypt-media; payment;"
-              scrolling="no"
-            />
+        {useEmbed ? (
+          <div className="flex flex-col gap-2">
+            <Button
+              onClick={() => window.open(activeEvent.ticketsUrl, "_blank")}
+              className="py-2 w-fit self-end"
+            >
+              {t("tickets_button")}
+            </Button>
+            <div className="iframe-container" id="iframe-container">
+              <iframe
+                key={activeEvent.id}
+                style={{
+                  border: "none",
+                  borderRadius: "20px",
+                  height: "800px",
+                  width: "100%",
+                  overflowY: "hidden",
+                }}
+                src={activeEvent.ticketsUrl}
+                id={activeEvent.stageDatesId}
+                allow="fullscreen; encrypt-media; payment;"
+                scrolling="no"
+              />
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="mx-auto flex max-w-lg flex-col items-center gap-4 text-center">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 rounded-full px-8 text-base font-semibold"
+              style={{
+                backgroundColor: "var(--event-accent)",
+                color: "var(--event-accent-foreground)",
+              }}
+            >
+              <a
+                href={activeEvent.ticketsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Ticket className="mr-2 size-5" />
+                {t("hero_cta")}
+                <ExternalLink className="ml-2 size-4 opacity-70" />
+              </a>
+            </Button>
+            <p className="text-sm text-muted-foreground">
+              {activeEvent.ticketsUrl.replace(/^https?:\/\//, "")}
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );

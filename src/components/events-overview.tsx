@@ -1,13 +1,21 @@
 "use client";
 
 import { useLocale } from "@/contexts/locale-context";
-import { EVENTS_BY_DATE } from "@/lib/data";
+import {
+  getEventsForOverview,
+  getFeaturedEvent,
+  isEventPast,
+} from "@/lib/data";
 import { EventCard } from "./event-card";
 import { TextEffect } from "./ui/text-effect";
 
 export function EventsOverview() {
   const { t } = useLocale();
-  const events = EVENTS_BY_DATE;
+  const now = new Date();
+  const events = getEventsForOverview(now);
+  const featuredId = getFeaturedEvent(now).id;
+  const upcoming = events.filter((event) => !isEventPast(event, now));
+  const past = events.filter((event) => isEventPast(event, now));
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-24 md:py-32">
@@ -35,16 +43,39 @@ export function EventsOverview() {
         </TextEffect>
       </div>
 
-      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:gap-8">
-        {events.map((event, index) => (
-          <EventCard
-            key={event.id}
-            event={event}
-            featured={index === 0}
-            index={index}
-          />
-        ))}
-      </div>
+      {upcoming.length > 0 && (
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:gap-8">
+          {upcoming.map((event, index) => (
+            <EventCard
+              key={event.id}
+              event={event}
+              featured={event.id === featuredId}
+              index={index}
+            />
+          ))}
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <div className={upcoming.length > 0 ? "mt-20" : "mt-16"}>
+          <div className="mb-8 flex items-center gap-4">
+            <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+              {t("events_past_title")}
+            </h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+            {past.map((event, index) => (
+              <EventCard
+                key={event.id}
+                event={event}
+                past
+                index={upcoming.length + index}
+              />
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

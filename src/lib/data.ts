@@ -76,12 +76,18 @@ export interface Event {
   };
   artists: string[]; // Artist IDs
   ticketsUrl: string;
-  stageDatesId: string;
+  /** StageDates iframe id. Omit when tickets are an external link only. */
+  stageDatesId?: string;
   heroImage?: string;
   /** Poster/key artwork for the event, used on overview cards. */
   poster?: string;
   /** Optional promo video (HLS/MP4) used as the hero background. */
   heroVideo?: string;
+  /**
+   * Page density for the event experience.
+   * `focused` keeps hero, story and tickets — no lineup/stats/VIP stack.
+   */
+  experience?: "full" | "focused";
   /** Accent color (hex) that themes the event's UI. */
   accent?: string;
   /** Foreground color to place on top of the accent (hex). */
@@ -513,7 +519,55 @@ const PIER_PARTNERS: EventPartner[] = [
   { name: "De Pier Scheveningen", logo: "/images/DePier_Scheveningen_logo.svg" },
 ];
 
+const WHITEHOUSE_PARTNERS: EventPartner[] = [
+  { name: "Reborn", logo: "/images/reborn_logo.webp" },
+];
+
 export const EVENTS: Event[] = [
+  {
+    id: "piertronic-whitehouse",
+    name: "PierTronic × Whitehouse",
+    slug: "piertronic-whitehouse",
+    date: "Sunday 4 Oct 2026",
+    startDate: "2026-10-04T15:00:00+02:00",
+    time: "Doors 15:00",
+    location: "Scheveningen, Netherlands",
+    locationFull: "Whitehouse Scheveningen",
+    venueName: "Whitehouse Scheveningen",
+    venueAddress: "Blvd Noord, Strandweg 180, 2586 Den Haag, Scheveningen",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Whitehouse+Scheveningen+Strandweg+180",
+    subtitle: {
+      en: "Scheveningen",
+      de: "Scheveningen",
+    },
+    description: {
+      en: "The sea opens. The White House rises. PierTronic takes over. A full electronic experience at the iconic Whitehouse in Scheveningen — glass, the North Sea, and sunset views. Line-up dropping soon.",
+      de: "Das Meer öffnet sich. Das White House erhebt sich. PierTronic übernimmt. Ein volles Electronic-Erlebnis im ikonischen Whitehouse in Scheveningen — Glas, Nordsee und Sonnenuntergang. Line-up folgt in Kürze.",
+    },
+    highlights: {
+      en: [
+        "Sunday 4 October 2026 — doors 15:00",
+        "Whitehouse Scheveningen by the North Sea",
+        "From daylight through sunset into the night",
+        "International energy — line-up dropping soon",
+      ],
+      de: [
+        "Sonntag, 4. Oktober 2026 — Einlass 15:00",
+        "Whitehouse Scheveningen an der Nordsee",
+        "Vom Tageslicht über den Sonnenuntergang in die Nacht",
+        "Internationale Energie — Line-up folgt in Kürze",
+      ],
+    },
+    artists: [],
+    ticketsUrl: "https://www.piertronic.events",
+    poster: "/images/whitehouse/poster.webp",
+    heroImage: "/images/whitehouse/hero.webp",
+    experience: "focused",
+    accent: "#E89B4B",
+    accentForeground: "#14110C",
+    partners: WHITEHOUSE_PARTNERS,
+  },
   {
     id: "the-hague",
     name: "The Hague",
@@ -629,6 +683,25 @@ export const EVENTS_BY_DATE: Event[] = [...ACTIVE_EVENTS].sort(
   (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
 );
 
+/** True when the event start is already in the past. */
+export function isEventPast(event: Event, now: Date = new Date()): boolean {
+  return new Date(event.startDate).getTime() < now.getTime();
+}
+
+/**
+ * Upcoming events first (soonest → latest), then past events
+ * (most recent → oldest) — suited for the homepage overview.
+ */
+export function getEventsForOverview(now: Date = new Date()): Event[] {
+  const upcoming = ACTIVE_EVENTS.filter((event) => !isEventPast(event, now)).sort(
+    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+  );
+  const past = ACTIVE_EVENTS.filter((event) => isEventPast(event, now)).sort(
+    (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime()
+  );
+  return [...upcoming, ...past];
+}
+
 export function getEventBySlug(slug: string): Event | undefined {
   return ACTIVE_EVENTS.find((event) => event.slug === slug);
 }
@@ -656,9 +729,8 @@ export function getEventArtistNames(event: Event): string[] {
  * recent past event when everything is in the past.
  */
 export function getFeaturedEvent(now: Date = new Date()): Event {
-  const upcoming = EVENTS_BY_DATE.filter(
-    (event) => new Date(event.startDate).getTime() >= now.getTime()
-  );
+  const ordered = getEventsForOverview(now);
+  const upcoming = ordered.filter((event) => !isEventPast(event, now));
   if (upcoming.length > 0) return upcoming[0];
-  return EVENTS_BY_DATE[EVENTS_BY_DATE.length - 1];
+  return ordered[0];
 }
