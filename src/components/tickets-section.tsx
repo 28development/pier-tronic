@@ -8,7 +8,7 @@ import { Button } from "./ui/button";
 import { TextEffect } from "./ui/text-effect";
 
 function isStageDatesEmbed(url: string): boolean {
-  return url.includes("stagedates.com");
+  return url.includes("stagedates.com") || url.includes("stgdts.com");
 }
 
 export default function TicketsSection({ event }: { event: Event }) {

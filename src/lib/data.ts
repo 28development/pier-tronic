@@ -560,7 +560,9 @@ export const EVENTS: Event[] = [
       ],
     },
     artists: [],
-    ticketsUrl: "https://www.piertronic.events",
+    ticketsUrl:
+      "https://pier-tronic-events.stgdts.com/events/piertronic-x-whitehouse-reborn-whitehouse-scheveningen-20261004-27rwH/checkout/products?embedded=true",
+    stageDatesId: "stagedates-iframe-whitehouse",
     poster: "/images/whitehouse/poster.webp",
     heroImage: "/images/whitehouse/hero.webp",
     experience: "focused",
