@@ -193,7 +193,10 @@ export const ARTISTS: Record<string, Artist> = {
       "/images/richi_risco/richi_risco_1.webp",
       "/images/richi_risco/richi_risco_2.webp",
     ],
-    videos: ["/videos/richi_risco/richi_risco_1.mp4"],
+    videos: [
+      "/videos/richi_risco/richi_risco_2.mp4",
+      "/videos/richi_risco/richi_risco_1.mp4",
+    ],
     links: {},
     bio: {
       de: {
@@ -511,6 +514,100 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  kian: {
+    id: "kian",
+    name: "KiAN",
+    role: "Tech House / Techno",
+    location: "The Hague, Netherlands",
+    imagesFirst: true,
+    images: [
+      "/images/kian/kian_1.webp",
+      "/images/kian/kian_2.webp",
+      "/images/kian/kian_3.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/kian_music/",
+      soundcloud: "https://soundcloud.com/kian_music05",
+      website: "https://linktr.ee/kian_music",
+    },
+    bio: {
+      en: {
+        short:
+          "KiAN is a Hague-based DJ moving between underground tech house and faster techno — crispy drums, bouncy rhythms and high-energy dancefloor sets.",
+        long: "KiAN is a DJ from The Hague whose sets move between underground tech house and faster techno grooves. Built on crispy drums and bouncy rhythms, his sound is made for late-night floors — from intimate studio sessions to club nights like Herr Walter and Mollywood Studios.\n\nHis mixes and live recordings, including groovy house sets and b2b sessions, show a selector who stays close to the underground: functional, physical and always in service of the dancefloor.",
+      },
+      de: {
+        short:
+          "KiAN ist ein DJ aus Den Haag, der zwischen Underground Tech House und schnellerem Techno wechselt — knackige Drums, bouncy Rhythmen und energiegeladene Dancefloor-Sets.",
+        long: "KiAN ist ein DJ aus Den Haag, dessen Sets zwischen Underground Tech House und schnelleren Techno-Grooves pendeln. Getragen von knackigen Drums und bouncy Rhythmen ist sein Sound für späte Nächte gemacht — von intimen Studio-Sessions bis zu Clubnächten wie Herr Walter und Mollywood Studios.\n\nSeine Mixes und Live-Aufnahmen, darunter groovy House-Sets und B2B-Sessions, zeigen einen Selector, der nah am Underground bleibt: funktional, physisch und immer im Dienst des Dancefloors.",
+      },
+    },
+  },
+  chicoRose: {
+    id: "chicoRose",
+    name: "Chico Rose",
+    role: "Tech House",
+    location: "Netherlands",
+    imagesFirst: true,
+    images: [
+      "/images/chico_rose/chico_rose_1.webp",
+      "/images/chico_rose/chico_rose_2.webp",
+      "/images/chico_rose/chico_rose_3.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/chicorose/",
+      tiktok: "https://www.tiktok.com/@chicorose",
+      soundcloud: "https://soundcloud.com/chico-rose-nl",
+      spotify: "https://open.spotify.com/artist/77dO0yIWjKSJeC4gOEo3NU",
+      youtube: "https://www.youtube.com/@chicorose",
+    },
+    bio: {
+      en: {
+        short:
+          "Chico Rose is a Dutch Tech House DJ and producer, known for Beatport smash 'POM' and his imprint Story Starters. Supported by Franky Rizardo, Marco Carola and Mau P.",
+        long: "Chico Rose continues to rise as one of the most exciting forces in the Tech House scene. Fresh off the success of his track \"POM\", which stormed the Beatport charts and received heavy support from heavyweights like Franky Rizardo, Marco Carola, Mau P, and many more, Chico shows once again why he’s considered a master of his craft.\n\nDriven by groove, energy, and pure instinct, Chico’s sound has taken him across the world and landed him releases on respected labels such as Elrow Music, Nervous Records, Deeperfect, Moxy Muzik and more. With each release he sharpens his style, pushes his boundaries, and proves his place among the top-tier producers shaping today’s club culture.\n\nNow, Chico steps into a new chapter with the launch of his own imprint ‘Story Starters’. A label created from the desire to express the moment without limits — no rules, no pressure, just honest music straight from the source. Its first release, \"TIKI TIKI\", captures that raw freedom: a Tech House weapon packed with rhythm, spark, and an irresistible vocal hook that show Chico at his best.\n\nWith Story Starters, Chico isn’t just creating a home for his own music, he’s opening the door for talented producers around the world to tell their own stories. Chico Rose is ready for this next chapter, fully independent, fully inspired, and pushing harder than ever.",
+      },
+      de: {
+        short:
+          "Chico Rose ist ein niederländischer Tech-House-DJ und Produzent, bekannt für den Beatport-Hit 'POM' und sein Label Story Starters. Unterstützt von Franky Rizardo, Marco Carola und Mau P.",
+        long: "Chico Rose gehört zu den spannendsten Kräften der Tech-House-Szene. Nach dem Erfolg seines Tracks \"POM\", der die Beatport-Charts stürmte und starken Support von Größen wie Franky Rizardo, Marco Carola, Mau P und vielen mehr erhielt, zeigt Chico erneut, warum er als Meister seines Fachs gilt.\n\nGetrieben von Groove, Energie und Instinkt hat sein Sound ihn um die Welt geführt und Releases auf Labels wie Elrow Music, Nervous Records, Deeperfect und Moxy Muzik eingebracht. Mit jeder Veröffentlichung schärft er seinen Stil, verschiebt Grenzen und festigt seinen Platz unter den Produzenten, die die heutige Clubkultur prägen.\n\nNun startet Chico ein neues Kapitel mit seinem eigenen Imprint „Story Starters“ — ein Label aus dem Wunsch, den Moment ohne Limits auszudrücken: keine Regeln, kein Druck, nur ehrliche Musik. Die erste Veröffentlichung \"TIKI TIKI\" fängt diese Freiheit ein: eine Tech-House-Waffe voller Rhythmus, Funken und einem unwiderstehlichen Vocal-Hook.\n\nMit Story Starters schafft Chico nicht nur ein Zuhause für die eigene Musik, sondern öffnet die Tür für Produzenten weltweit, ihre eigenen Geschichten zu erzählen. Chico Rose ist bereit für dieses nächste Kapitel — unabhängig, inspiriert und mit mehr Drive denn je.",
+      },
+    },
+  },
+  sarahrey: {
+    id: "sarahrey",
+    name: "Sarahrey",
+    role: "House / Minimal Deep Tech / Tech House",
+    location: "Ibiza, Spain",
+    imagesFirst: true,
+    images: [
+      "/images/sarahrey/sarahrey_1.webp",
+      "/images/sarahrey/sarahrey_2.webp",
+      "/images/sarahrey/sarahrey_3.webp",
+    ],
+    videos: [
+      "/videos/sarahrey/sarahrey_1.mp4",
+      "/videos/sarahrey/sarahrey_2.mp4",
+      "/videos/sarahrey/sarahrey_3.mp4",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/sarahrey.dj/",
+      soundcloud: "https://soundcloud.com/sarahrey",
+      youtube: "https://www.youtube.com/@sarahrey",
+    },
+    bio: {
+      en: {
+        short:
+          "Sarahrey is an Italian DJ and producer based in Ibiza. Her sound blends house, tech house and minimal deep tech, shaped by long-format sets at Pacha, Hï, Club Chinois, Fabric and E1.",
+        long: "Based in Ibiza, Sarahrey has developed her sound through years spent on dancefloors shaped by the tech-house and minimal movement that defined her early clubbing experiences starting in 2007. Her approach is defined by groove and flow, built through long-format DJing and a deep connection with the dancefloor.\n\nShe has performed across England, Italy, Spain, Portugal, Germany, the Netherlands, Romania and Ibiza, with notable appearances at clubs such as Pacha, Hï and Club Chinois (Ibiza), Fabric and E1 (London), NOOK (Bucharest) and Circolo degli Illuminati (Rome), sharing lineups with artists including Michael Bibi, Loco Dice, wAFF and Carl Craig.\n\nIn 2024 she released her first official records, followed by further releases on Innocent Music, Material, Distance, Way Out Records, Lapsus and TBX — marking her evolution as a producer alongside her work as a DJ.",
+      },
+      de: {
+        short:
+          "Sarahrey ist eine italienische DJ und Produzentin mit Sitz auf Ibiza. Ihr Sound verbindet House, Tech House und Minimal Deep Tech — geprägt von Long-Format-Sets in Pacha, Hï, Club Chinois, Fabric und E1.",
+        long: "Auf Ibiza lebend hat Sarahrey ihren Sound über Jahre auf Dancefloors entwickelt, die vom Tech-House- und Minimal-Movement geprägt waren — angefangen 2007. Ihr Ansatz definiert sich über Groove und Flow, entstanden durch Long-Format-DJing und eine enge Verbindung zum Dancefloor.\n\nSie hat in England, Italien, Spanien, Portugal, Deutschland, den Niederlanden, Rumänien und auf Ibiza gespielt, unter anderem in Clubs wie Pacha, Hï und Club Chinois (Ibiza), Fabric und E1 (London), NOOK (Bukarest) und Circolo degli Illuminati (Rom) — auf Line-ups mit Michael Bibi, Loco Dice, wAFF und Carl Craig.\n\n2024 erschienen ihre ersten offiziellen Releases, gefolgt von weiteren Veröffentlichungen auf Innocent Music, Material, Distance, Way Out Records, Lapsus und TBX — der nächste Schritt in ihrer Entwicklung als Produzentin neben ihrer Arbeit als DJ.",
+      },
+    },
+  },
 };
 
 const PIER_PARTNERS: EventPartner[] = [
@@ -542,24 +639,24 @@ export const EVENTS: Event[] = [
       de: "Scheveningen",
     },
     description: {
-      en: "The sea opens. The White House rises. PierTronic takes over. A full electronic experience at the iconic Whitehouse in Scheveningen — glass, the North Sea, and sunset views. Line-up dropping soon.",
-      de: "Das Meer öffnet sich. Das White House erhebt sich. PierTronic übernimmt. Ein volles Electronic-Erlebnis im ikonischen Whitehouse in Scheveningen — Glas, Nordsee und Sonnenuntergang. Line-up folgt in Kürze.",
+      en: "The sea opens. The White House rises. PierTronic takes over. A full electronic experience at the iconic Whitehouse in Scheveningen — glass, the North Sea, and sunset views. Chico Rose, Richi Risco, Sarahrey and KiAN take the floor.",
+      de: "Das Meer öffnet sich. Das White House erhebt sich. PierTronic übernimmt. Ein volles Electronic-Erlebnis im ikonischen Whitehouse in Scheveningen — Glas, Nordsee und Sonnenuntergang. Chico Rose, Richi Risco, Sarahrey und KiAN legen auf.",
     },
     highlights: {
       en: [
         "Sunday 4 October 2026 — doors 15:00",
         "Whitehouse Scheveningen by the North Sea",
         "From daylight through sunset into the night",
-        "International energy — line-up dropping soon",
+        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN",
       ],
       de: [
         "Sonntag, 4. Oktober 2026 — Einlass 15:00",
         "Whitehouse Scheveningen an der Nordsee",
         "Vom Tageslicht über den Sonnenuntergang in die Nacht",
-        "Internationale Energie — Line-up folgt in Kürze",
+        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN",
       ],
     },
-    artists: [],
+    artists: ["chicoRose", "richiRisco", "sarahrey", "kian"],
     ticketsUrl:
       "https://pier-tronic-events.stgdts.com/events/piertronic-x-whitehouse-reborn-whitehouse-scheveningen-20261004-27rwH/checkout/products?embedded=true",
     stageDatesId: "stagedates-iframe-whitehouse",
