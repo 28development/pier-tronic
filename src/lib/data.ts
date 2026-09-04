@@ -265,7 +265,6 @@ export const ARTISTS: Record<string, Artist> = {
     name: "Namito",
     role: "Deep, Melodic & Oriental House",
     location: "Berlin, Germany",
-    active: false,
     images: [
       "/images/namito/namito_1.webp",
       "/images/namito/namito_2.webp",
@@ -608,6 +607,22 @@ export const ARTISTS: Record<string, Artist> = {
       },
     },
   },
+  waiyu: {
+    id: "waiyu",
+    name: "WAIYu",
+    role: "DJ",
+    location: "Schwerte, Germany",
+    imagesFirst: true,
+    images: [
+      "/images/waiyu/waiyu_1.webp",
+      "/images/waiyu/waiyu_2.webp",
+      "/images/waiyu/waiyu_3.webp",
+    ],
+    links: {
+      instagram: "https://www.instagram.com/waiyu_be/",
+      soundcloud: "https://soundcloud.com/waiyu",
+    },
+  },
 };
 
 const PIER_PARTNERS: EventPartner[] = [
@@ -639,24 +654,24 @@ export const EVENTS: Event[] = [
       de: "Scheveningen",
     },
     description: {
-      en: "The sea opens. The White House rises. PierTronic takes over. A full electronic experience at the iconic Whitehouse in Scheveningen — glass, the North Sea, and sunset views. Chico Rose, Richi Risco, Sarahrey and KiAN take the floor.",
-      de: "Das Meer öffnet sich. Das White House erhebt sich. PierTronic übernimmt. Ein volles Electronic-Erlebnis im ikonischen Whitehouse in Scheveningen — Glas, Nordsee und Sonnenuntergang. Chico Rose, Richi Risco, Sarahrey und KiAN legen auf.",
+      en: "The sea opens. The White House rises. PierTronic takes over. A full electronic experience at the iconic Whitehouse in Scheveningen — glass, the North Sea, and sunset views. Chico Rose, Richi Risco, Sarahrey, KiAN and WAIYu take the floor.",
+      de: "Das Meer öffnet sich. Das White House erhebt sich. PierTronic übernimmt. Ein volles Electronic-Erlebnis im ikonischen Whitehouse in Scheveningen — Glas, Nordsee und Sonnenuntergang. Chico Rose, Richi Risco, Sarahrey, KiAN und WAIYu legen auf.",
     },
     highlights: {
       en: [
         "Sunday 4 October 2026 — doors 15:00",
         "Whitehouse Scheveningen by the North Sea",
         "From daylight through sunset into the night",
-        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN",
+        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN, WAIYu",
       ],
       de: [
         "Sonntag, 4. Oktober 2026 — Einlass 15:00",
         "Whitehouse Scheveningen an der Nordsee",
         "Vom Tageslicht über den Sonnenuntergang in die Nacht",
-        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN",
+        "Line-up: Chico Rose, Richi Risco, Sarahrey, KiAN, WAIYu",
       ],
     },
-    artists: ["chicoRose", "richiRisco", "sarahrey", "kian"],
+    artists: ["chicoRose", "richiRisco", "sarahrey", "kian", "waiyu"],
     ticketsUrl:
       "https://pier-tronic-events.stgdts.com/events/piertronic-x-whitehouse-reborn-whitehouse-scheveningen-20261004-27rwH/checkout/products?embedded=true",
     stageDatesId: "stagedates-iframe-whitehouse",
@@ -666,6 +681,50 @@ export const EVENTS: Event[] = [
     accent: "#E89B4B",
     accentForeground: "#14110C",
     partners: WHITEHOUSE_PARTNERS,
+  },
+  {
+    id: "the-hague-november",
+    name: "The Hague",
+    slug: "the-hague-november",
+    date: "Friday 20 Nov 2026",
+    startDate: "2026-11-20T21:00:00+01:00",
+    time: "21:00 – 03:00",
+    location: "The Hague, Netherlands",
+    locationFull: "Reborn Whitehouse, Scheveningen",
+    venueName: "Reborn Whitehouse",
+    venueAddress: "Blvd Noord, Strandweg 180, 2586 JM Scheveningen, Netherlands",
+    mapsUrl:
+      "https://www.google.com/maps/search/?api=1&query=Reborn+Whitehouse+Strandweg+180+Scheveningen",
+    subtitle: {
+      en: "Namito × Noor Sanchez — Live DJ Performance",
+      de: "Namito × Noor Sanchez — Live DJ Performance",
+    },
+    description: {
+      en: "Namito and Noor Sanchez take over Reborn Whitehouse in The Hague for a live DJ night by the sea. Friday 20 November, 21:00 – 03:00. More details coming soon.",
+      de: "Namito und Noor Sanchez übernehmen das Reborn Whitehouse in Den Haag für eine Live-DJ-Nacht am Meer. Freitag, 20. November, 21:00 – 03:00. Weitere Infos folgen in Kürze.",
+    },
+    highlights: {
+      en: [
+        "Friday 20 November 2026 — 21:00 – 03:00",
+        "Reborn Whitehouse, The Hague",
+        "Namito × Noor Sanchez — live DJ performance",
+        "More details coming soon",
+      ],
+      de: [
+        "Freitag, 20. November 2026 — 21:00 – 03:00",
+        "Reborn Whitehouse, Den Haag",
+        "Namito × Noor Sanchez — Live-DJ-Performance",
+        "Weitere Infos folgen in Kürze",
+      ],
+    },
+    artists: ["namito", "noorSanchez"],
+    ticketsUrl: "https://www.piertronic.events",
+    poster: "/images/the-hague-november/poster.webp",
+    heroImage: "/images/the-hague-november/hero.webp",
+    experience: "focused",
+    accent: "#7A2430",
+    accentForeground: "#F4E8D8",
+    partners: PIER_PARTNERS,
   },
   {
     id: "the-hague",
